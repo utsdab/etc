@@ -1,0 +1,79 @@
+[
+    {
+        "keys": ["default"],
+        "environment": {
+        },
+       "envhandler": "default"
+    },
+    {
+        "keys": ["rms-*-maya-*"], 
+        "environment": {
+            "RMSTREE": "/Applications/Pixar/RenderManStudio-$TR_ENV_RMSVER-maya$TR_ENV_MAYAVER",
+            "RMANTREE": "$RMSTREE/rmantree",
+            "MAYA_LOCATION": "$TR_ENV_MAYALOCATION/Maya.app/Contents",
+            "MAYA_MODULE_PATH": "$RMSTREE/etc",
+            "PATH": "$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:$PATH"
+        },
+        "envhandler": "rmshandler"
+    },
+    {
+        "keys": ["rfm-*-maya-*"],
+        "environment": {
+            "RMSTREE": "/Applications/Pixar/RenderManForMaya-$TR_ENV_RFMVER-maya$TR_ENV_MAYAVER",
+            "RMANTREE": "/Applications/Pixar/RenderManProServer-$TR_ENV_RFMVER",
+            "MAYA_LOCATION": "$TR_ENV_MAYALOCATION",
+            "MAYA_MODULE_PATH": "$RMSTREE/etc",
+            "PATH": "$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:$PATH",
+            "DYLD_LIBRARY_PATH": "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS"
+        },
+        "envhandler": "rfmhandler"
+    },
+    {
+        "keys": ["prman-*"],
+        "environment": {
+            "APPBASEDIR": "/Applications/Pixar:/Applications/Pixar/RenderMan.app/Versions",
+            "RMANTREE": "$TR_ENV_RMANTREE",
+            "PATH": "$RMANTREE/bin:$PATH"
+        },
+        "envhandler": "rmanhandler"
+    },
+    {
+        "keys": ["rmantree=*"],
+        "environment": {
+            "RMANTREE": "$TR_ENV_RMANTREE",
+            "PATH": "$RMANTREE/bin:$PATH"
+       },
+       "envhandler": "rmantreehandler",
+       "rewritedict": {}
+    },
+    {
+        "keys": ["rmstree=*"],
+        "environment": {
+            "RMSTREE": "$TR_ENV_RMSTREE",
+            "PATH": "$RMSTREE/bin:$PATH"
+        },
+        "envhandler": "rmstreehandler",
+        "rewritedict": {}
+    },
+    {
+        "keys": ["rfmtree=*"],
+        "environment": {
+            "RMSTREE": "$TR_ENV_RFMTREE",
+            "PATH": "$RMSTREE/bin:$PATH"
+        },
+        "envhandler": "rfmtreehandler",
+        "rewritedict": {}
+    },
+    {
+        "keys": ["maya*"], 
+        "environment": {
+            "MAYA_LOCATION": "$TR_ENV_MAYALOCATION/Maya.app/Contents",
+            "PATH": "$MAYA_LOCATION/bin:$PATH"
+        },
+        "envhandler": "mayahandler"
+    },
+    {
+        "keys": ["setenv *"],
+        "envhandler": "setenvhandler"
+    }
+]

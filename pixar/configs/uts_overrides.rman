@@ -1,0 +1,44 @@
+# 
+#  uts_overrides.rman
+#      used by renderman_maya.ini
+#
+rman "-version 1" {
+    NodeTypeOverrides settings:display:Primary {
+        riopt Display:type {
+            default {openexr}
+        }
+        riopt Display:dither {
+            default {0}
+        }
+        riopt Display:quantize {
+            default {0 0 0 0}
+        }
+        riopt Display:exrcompression {
+            default {zip}
+        }
+        riopt Display:exrpixeltype {
+            default {half}
+        }
+    }
+}
+
+ 
+rman "-version 1" {
+    NodeTypeOverrides settings:display:Secondary {
+        riopt Display:type {
+            default {openexr}
+        }
+        riopt Display:dither {
+            default {0}
+        }
+        riopt Display:quantize {
+            default {0 0 0 0}
+        }
+        riopt Display:exrcompression {
+            default {zip}
+        }
+        riopt Display:exrpixeltype {
+            default {half}
+        }
+    }
+}

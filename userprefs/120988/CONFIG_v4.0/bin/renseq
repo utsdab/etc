@@ -1,0 +1,65 @@
+#!/usr/bin/perl
+
+sub abs{
+   local($x) = @_;
+   eval "(($x) < 0 ? -($x) : ($x))";
+}
+
+$usage = "Usage: renseq inmask outmask start finish [step [offset]]\n"
+        ."eg,\n\n"
+        ."  renseq input.####.rgb out###.rgb 10 20 1 -9\n\n"
+        ."This will rename input.0010.rgb to out001.rgb, etc.\n\n";
+
+die $usage if ($#ARGV < 3);
+
+($inmask,$outmask,$start,$finish,$step,$offset) = @ARGV;
+
+# Compares input masks, ignoring the # marks.
+$tmpin = $inmask;
+$tmpout = $outmask;
+$tmpin=~s/#+//g;
+$tmpout=~s/#+//g;
+die "use a different name for your target clip!\n" 
+    if( $tmpin eq $tmpout );
+
+# Count the # of #'s in the mask.
+($inmask =~ /#+/)  ? ($inlen  = length($&)) : ($inlen = 0);
+($outmask =~ /#+/) ? ($outlen = length($&)) : ($outlen = 0);
+
+# Won't go on if no numbers in output mask.
+die "No #'s in input mask!\n" unless($inlen);
+die "No #'s in output mask!\n" unless($outlen);
+
+if( ! $step )
+{
+    $step = 1;
+}
+
+printf "Input:        $inmask\n";
+printf "Output:       $outmask\n";
+printf "First:        $start\n";
+printf "Last:         $finish\n";
+printf "Step:         $step\n";
+printf "Renumbering:  $start -> %d\n", $start + $offset;
+printf "------------------------------------------\n";
+printf "Press ENTER to continue... ";
+<STDIN>;
+
+for( $num=$start ; $num<=$finish ; $num+=$step )
+{
+    # Format the numbers properly, and replace the #'s with it.
+    $innum = sprintf("%0${inlen}d", $num);
+    $_ = $inmask;
+    s/#+/$innum/;
+    $inname = $_;
+
+    $outnum = sprintf("%0${outlen}d", $num + $offset);
+    $_ = $outmask;
+    s/#+/$outnum/;
+    $outname = $_;
+
+    # Execute the 'mv' command to rename the file, and die if it fails.
+    printf("mv $inname $outname\n");
+    system("mv $inname $outname\n");
+    die "renseq: couldn't rename file $inname to $outname\n" if( $? );
+}

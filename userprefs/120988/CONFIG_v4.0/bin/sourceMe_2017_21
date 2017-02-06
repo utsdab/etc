@@ -1,0 +1,43 @@
+#!/bin/bash
+# version 1.0 mattg
+# this is the confirm dialog to the initialiser
+####################################################
+CWD=$(pwd)
+echo ""
+echo "STARTING UTS STUDIO CONFIGURATION: "${USER}"@"$CWD
+unset CONFIG
+echo  "STARTING: ${BASH_SOURCE}"
+
+export MAYA_VERSION="2017"
+export RMAN_VERSION="21.2"
+export NUKE_VERSION="10.0v5"
+export TRACTOR_VERSION="2.2"
+
+
+if [ -e ~/.startDirectory ] ; then
+	export STARTD=$(cat ~/.startDirectory)
+	echo "INFO    : STARTD=${STARTD}"
+    else
+	echo "WARNING : No ~/.startDirctory found, $STARTD not set"
+    fi
+
+################################################
+#	Set the local config is running from a thumbdrive
+
+if [ -e ${CWD}/mayaConfig ] ; then
+	export CONFIG=${CWD}
+	export MAYA_APP_DIR=${CONFIG}/mayaConfig
+	echo "INFO    : CONFIG=${CONFIG}"
+  else
+	echo "WARNING : No CONFIG found"
+    fi
+
+
+source ${CONFIG}/bin/introduction
+##########################
+echo     "ENDING  : ${CWD}  ${BASH_SOURCE}"
+echo ""
+
+
+
+

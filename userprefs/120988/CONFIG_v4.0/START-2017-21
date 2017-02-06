@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# This script launches a terminal
+
+echo ‘START ${0}’
+HERE=$(dirname $0)
+echo $HERE > ~/.startDirectory
+echo ‘INFO    : $HERE ${HERE}’
+open "${HERE}/bin/UTS_2017_21.terminal"

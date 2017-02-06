@@ -1,0 +1,10 @@
+[
+    {
+        "keys": ["nuke*"],
+        "environment": {
+            "NUKE_LOCATION": "C:/Program Files/Nuke$TR_ENV_NUKEVER/",
+            "PATH": "$NUKE_LOCATION:$PATH"
+        },
+        "envhandler": "nukehandler"
+    }
+]

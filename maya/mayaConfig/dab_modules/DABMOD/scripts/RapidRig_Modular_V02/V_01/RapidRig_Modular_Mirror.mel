@@ -1,0 +1,426 @@
+//CopyRight Dustin Nelson 2010-2016. Please do not distribute
+//http://www.creativecrash.com/maya/script/-rapid-rig-modular-procedural-auto-rig-for-maya
+//Script for Mirroring Rapid Rig: Modular rigs.
+//VERSION 1.8.2
+//MARCH 30, 2016
+//FILE IS NOT INTENDED TO BE HARMFUL, HOWEVER USE AT YOUR OWN RISK
+/*/////////////////////////////////////////////////////////////////////////////
+// 
+//	INSTRUCTIONS:
+//	1. INSTALLATION
+//	TYPE IN THE FOLLOWING COMMAND IN MAYA TO GET YOUR SCRIPT DIRECTORY:
+//
+//	internalVar -userScriptDir;
+//
+//	2. PUT THE RapidRig_Modular_Selector.mel file in that directoy.
+//
+//	3. START UP MAYA, ENTER ANY OF THE FOLLOWING COMMANDS INTO
+//	THE COMMAND LINE OR THE SCRIPT EDITOR:
+//
+//	source RapidRig_Modular_Mirror; RapidRig_Modular_Mirror;
+//	source RapidRig_Modular_Mirror; RapidRig_Modular_MirrorAndSelect;
+//	source RapidRig_Modular_Mirror; RapidRig_Modular_MirrorAndKey;
+//	source RapidRig_Modular_Mirror; RapidRig_Modular_MIrrorAndSelectAndKey;
+//
+//	4. TO HAVE EASY ACCESS TO SCRIPT, CREATE A SHELF BUTTON OR HOTKEY
+//	WITH EACH OF THOSE COMMANDS. EVERY TIME YOU HIT THE BUTTON,
+//	THE PROCEDURE WILL RUN. HAPPY ANIMATING!
+//
+////////////////////////////////////////////////////////////////////////*/
+
+global proc RapidRig_Modular_Mirror_MirrorProc(int $mirrorType)
+{
+	print "mirroring...\n";
+	$initialSelection = `ls -sl`;
+	$modControls = `ls -sl`;
+	int $mirrorSide;
+	string $modRigName;
+	
+	$modSize = `size $modControls`;
+	
+	if ($modSize > 0)
+	{
+		//DEFINE CONTROLS
+		string $centerControls[];
+		string $leftControls[];
+		string $rightControls[];
+		string $oppControls[];
+		
+		string $rightChannels[];
+		string $leftChannels[];
+	
+		//RANDOM VALUE TO CHECK MIRRORING
+		float $randVal = (rand (10,15));
+			
+		for ($each in $modControls)
+		{
+			if (`objExists ($modControls[0] + ".modRigName")` && ! `objExists ($each + ".nonControl")`)
+			{
+				if (`objExists ($each + ".rightControl")` || `objExists ($each + ".leftControl")`)
+				{
+					if (`objExists ($each + ".rightControl")`)
+					{
+						select $leftControls $each;
+						$leftControls = `ls -sl`;
+					}
+					else if (`objExists ($each + ".leftControl")`)
+					{
+						select $rightControls $each;
+						$rightControls = `ls -sl`;
+					}
+					
+				}
+				else
+				{
+					warning ("THERE IS NO CONTROL TO MIRROR TO. SKIPPING");
+				}
+			}
+			else
+			{
+				warning ("\"" + $each + "\" IS NOT A VALID RRM CONTROLLER. SKIPPING");
+			}
+		}
+		
+		for ($eachLeftControl in $leftControls)
+		{
+			//GET RIG NAME
+			$modRigName = `getAttr ($eachLeftControl + ".modRigName")`;
+			
+			$eachRightControl = `getAttr ($eachLeftControl + ".rightControl")`;
+			$eachRightControl = ($modRigName + $eachRightControl);
+			if (`objExists $eachRightControl`)
+			{
+				//ADD TEMP ATTRIBUTE TO AVOID DOUBLE MIRRORING
+				setAttr ($eachRightControl + ".isMirrored") $randVal;
+				
+				$leftChannels  = `listAttr -k -u $eachLeftControl`;
+				//$rightChannels = `listAttr -k -u $eachRightControl`;
+				$channelNum = `size $leftChannels`;
+				for ($eachSideChannel in $leftChannels)
+				{
+					float $leftVal = `getAttr ($eachLeftControl + "." + $eachSideChannel)`;
+					//float $rightVal = `getAttr ($eachRightControl + "." + $eachSideChannel)`;
+					
+					
+					$moduleType = `getAttr ($eachLeftControl + ".moduleType")`;
+	
+					//SPLINE
+					if ($moduleType == "spline")
+					{
+						if ($eachSideChannel == "translateZ" || $eachSideChannel == "rotateX" || $eachSideChannel == "rotateZ")
+						{
+							setAttr ($eachRightControl + "." + $eachSideChannel) ($leftVal * -1);
+							//setAttr ($eachLeftControl + "." + $eachSideChannel) ($rightVal * -1);
+						}
+						else
+						{
+							setAttr ($eachRightControl + "." + $eachSideChannel) $leftVal;
+							//setAttr ($eachLeftControl + "." + $eachSideChannel) $rightVal;
+						}
+					}				
+					
+					
+					//ARM
+					if ($moduleType == "arm")
+					{
+						if ($eachSideChannel == "translateX" || $eachSideChannel == "rotateY" || $eachSideChannel == "rotateZ")
+						{
+							setAttr ($eachRightControl + "." + $eachSideChannel) ($leftVal * -1);
+							//setAttr ($eachLeftControl + "." + $eachSideChannel) ($rightVal * -1);
+						}
+						else
+						{
+							setAttr ($eachRightControl + "." + $eachSideChannel) $leftVal;
+							//setAttr ($eachLeftControl + "." + $eachSideChannel) $rightVal;
+						}
+					}
+					//LEG
+					if ($moduleType == "leg")
+					{
+						if (`gmatch $eachLeftControl ($modRigName + "_?_*_HipFKCtrl")` || `gmatch $eachLeftControl ($modRigName + "_?_*_KneeFKCtrl")` ||
+							`gmatch $eachLeftControl ($modRigName + "_?_*_KneeFKCtrl")` || `gmatch $eachLeftControl ($modRigName + "_?_*_LowerLegFKCtrl")` ||
+							`gmatch $eachLeftControl ($modRigName + "_?_*_AnkleFKCtrl")` || `gmatch $eachLeftControl ($modRigName + "_?_*_BallFKCtrl")` ||
+							`gmatch $eachLeftControl ($modRigName + "_?_*_ToeFKCtrl")`)
+						{
+							if ($eachSideChannel == "translateY" || $eachSideChannel == "rotateX" || $eachSideChannel == "rotateZ" ||
+							$eachSideChannel == "footTilt" || $eachSideChannel == "ballSwivel")
+							{
+								setAttr ($eachRightControl + "." + $eachSideChannel) ($leftVal * -1);
+							}
+							else
+							{
+								setAttr ($eachRightControl + "." + $eachSideChannel) $leftVal;
+							}
+						}
+						else
+						{
+							if ($eachSideChannel == "translateX" || $eachSideChannel == "rotateY" || $eachSideChannel == "rotateZ" ||
+							$eachSideChannel == "footTilt" || $eachSideChannel == "ballSwivel")
+							{
+								setAttr ($eachRightControl + "." + $eachSideChannel) ($leftVal * -1);
+							}
+							else
+							{
+								setAttr ($eachRightControl + "." + $eachSideChannel) $leftVal;
+							}
+						}
+					}
+					//FK CHAIN
+					if ($moduleType == "fkChain")
+					{
+						//GET DIRECTION
+						$direction = `getAttr ($eachLeftControl + ".direction")`;
+						if ($direction == 2 || $direction == 5)
+						{
+							if ($eachSideChannel == "translateX" || $eachSideChannel == "translateY" || $eachSideChannel == "translateZ")
+							{
+								setAttr ($eachRightControl + "." + $eachSideChannel) ($leftVal * -1);
+							}
+							else
+							{
+								setAttr ($eachRightControl + "." + $eachSideChannel) $leftVal;
+							}
+						}
+						else
+						{
+							if ($eachSideChannel == "translateX" || $eachSideChannel == "rotateY" || $eachSideChannel == "rotateZ")
+							{
+								setAttr ($eachRightControl + "." + $eachSideChannel) ($leftVal * -1);
+							}
+							else
+							{
+								setAttr ($eachRightControl + "." + $eachSideChannel) $leftVal;
+							}
+						}
+					}
+					//AUXILIARY
+					if ($moduleType == "auxiliary")
+					{
+						if ($eachSideChannel == "translateX" || $eachSideChannel == "translateZ" || $eachSideChannel == "rotateY")
+						{
+							setAttr ($eachRightControl + "." + $eachSideChannel) ($leftVal * -1);
+							//setAttr ($eachLeftControl + "." + $eachSideChannel) ($rightVal * -1);
+						}
+						else
+						{
+							setAttr ($eachRightControl + "." + $eachSideChannel) $leftVal;
+							//setAttr ($eachLeftControl + "." + $eachSideChannel) $rightVal;
+						}
+					}
+
+					//SET KEY ON OPP IF SETTING IS TURNED ON
+					if ($mirrorType == 2 || $mirrorType == 3)
+					{
+						string $isConnected[] = `listConnections -s 1 -c 1 ($eachLeftControl + "." + $eachSideChannel)`;
+						int $endLoop = 0;
+						for ($eachConnection in $isConnected)
+						{
+							if (`gmatch $eachConnection ($eachLeftControl + "_" + $eachSideChannel)` && $endLoop == 0)
+							{
+								setKeyframe ($eachRightControl + "." + $eachSideChannel);
+								$endLoop++;
+							}
+						}
+					}
+
+				}
+			}
+			//ADD RIGHT CONTROL TO OPP CONTROLS LIST
+			select $oppControls $eachRightControl;
+			$oppControls = `ls -sl`;
+		}
+		
+		for ($eachRightControl in $rightControls)
+		{
+			//GET RIG NAME
+			$modRigName = `getAttr ($eachRightControl + ".modRigName")`;
+	
+			//CHECK IF THE RIGHT CONTROL HAS ALREADY BEEN MIRRORED, AND SKIP IF TRUE
+			$isMirrored = `getAttr ($eachRightControl + ".isMirrored")`;
+			
+			if ($isMirrored != $randVal)
+			{
+				$eachLeftControl = `getAttr ($eachRightControl + ".leftControl")`;
+				$eachLeftControl = ($modRigName + $eachLeftControl);
+				if (`objExists $eachLeftControl`)
+				{
+					$rightChannels  = `listAttr -k -u $eachRightControl`;
+					$channelNum = `size $rightChannels`;
+					for ($eachSideChannel in $rightChannels)
+					{
+						float $rightVal = `getAttr ($eachRightControl + "." + $eachSideChannel)`;
+						
+						$moduleType = `getAttr ($eachRightControl + ".moduleType")`;
+		
+						//SPLINE
+						if ($moduleType == "spline")
+						{
+							if ($eachSideChannel == "translateZ" || $eachSideChannel == "rotateX" || $eachSideChannel == "rotateZ")
+							{
+								setAttr ($eachLeftControl + "." + $eachSideChannel) ($rightVal * -1);
+							}
+							else
+							{
+								setAttr ($eachLeftControl + "." + $eachSideChannel) $rightVal;
+							}
+						}				
+						
+						//ARM
+						if ($moduleType == "arm")
+						{
+							if ($eachSideChannel == "translateX" || $eachSideChannel == "rotateY" || $eachSideChannel == "rotateZ")
+							{
+								setAttr ($eachLeftControl + "." + $eachSideChannel) ($rightVal * -1);
+								//setAttr ($eachRightControl + "." + $eachSideChannel) ($leftVal * -1);
+							}
+							else
+							{
+								setAttr ($eachLeftControl + "." + $eachSideChannel) $rightVal;
+								//setAttr ($eachRightControl + "." + $eachSideChannel) $leftVal;
+							}
+						}
+						//LEG
+						if ($moduleType == "leg")
+						{
+							if (`gmatch $eachRightControl ($modRigName + "_?_*_HipFKCtrl")` || `gmatch $eachRightControl ($modRigName + "_?_*_KneeFKCtrl")` ||
+								`gmatch $eachRightControl ($modRigName + "_?_*_KneeFKCtrl")` || `gmatch $eachRightControl ($modRigName + "_?_*_LowerLegFKCtrl")` ||
+								`gmatch $eachRightControl ($modRigName + "_?_*_AnkleFKCtrl")` || `gmatch $eachRightControl ($modRigName + "_?_*_BallFKCtrl")` ||
+								`gmatch $eachRightControl ($modRigName + "_?_*_ToeFKCtrl")`)
+							{
+								if ($eachSideChannel == "translateY" || $eachSideChannel == "rotateX" || $eachSideChannel == "rotateZ" ||
+								$eachSideChannel == "righttTilt" || $eachSideChannel == "ballSwivel")
+								{
+									setAttr ($eachLeftControl + "." + $eachSideChannel) ($rightVal * -1);
+								}
+								else
+								{
+									setAttr ($eachLeftControl + "." + $eachSideChannel) $rightVal;
+								}
+							}
+							else
+							{
+								if ($eachSideChannel == "translateX" || $eachSideChannel == "rotateY" || $eachSideChannel == "rotateZ" ||
+								$eachSideChannel == "righttTilt" || $eachSideChannel == "ballSwivel")
+								{
+									setAttr ($eachLeftControl + "." + $eachSideChannel) ($rightVal * -1);
+								}
+								else
+								{
+									setAttr ($eachLeftControl + "." + $eachSideChannel) $rightVal;
+								}
+							}
+						}
+						//FK CHAIN
+						if ($moduleType == "fkChain")
+						{
+							//GET DIRECTION
+							$direction = `getAttr ($eachRightControl + ".direction")`;
+							if ($direction == 2 || $direction == 5)
+							{
+								if ($eachSideChannel == "translateX" || $eachSideChannel == "translateY" || $eachSideChannel == "translateZ")
+								{
+									setAttr ($eachLeftControl + "." + $eachSideChannel) ($rightVal * -1);
+								}
+								else
+								{
+									setAttr ($eachLeftControl + "." + $eachSideChannel) $rightVal;
+								}
+							}
+							else
+							{
+								if ($eachSideChannel == "translateX" || $eachSideChannel == "rotateY" || $eachSideChannel == "rotateZ")
+								{
+									setAttr ($eachLeftControl + "." + $eachSideChannel) ($rightVal * -1);
+								}
+								else
+								{
+									setAttr ($eachLeftControl + "." + $eachSideChannel) $rightVal;
+								}
+							}
+						}
+						//AUXILIARY
+						if ($moduleType == "auxiliary")
+						{
+							if ($eachSideChannel == "translateX" || $eachSideChannel == "translateZ" || $eachSideChannel == "rotateY")
+							{
+								setAttr ($eachLeftControl + "." + $eachSideChannel) ($rightVal * -1);
+								//setAttr ($eachRightControl + "." + $eachSideChannel) ($leftVal * -1);
+							}
+							else
+							{
+								setAttr ($eachLeftControl + "." + $eachSideChannel) $rightVal;
+								//setAttr ($eachRightControl + "." + $eachSideChannel) $leftVal;
+							}
+						}
+
+						
+						//SET KEY ON OPP IF SETTING IS TURNED
+						if ($mirrorType == 2 || $mirrorType == 3)
+						{
+							string $isConnected[] = `listConnections -s 1 -c 1 ($eachRightControl + "." + $eachSideChannel)`;
+							int $endLoop = 0;
+							for ($eachConnection in $isConnected)
+							{
+								if (`gmatch $eachConnection ($eachRightControl + "_" + $eachSideChannel)` && $endLoop == 0)
+								{
+									setKeyframe ($eachLeftControl + "." + $eachSideChannel);
+									$endLoop++;
+								}
+							}
+						}
+					}
+				}
+			}
+			else
+			{//RESET MIRRORED ATTRIBUTE
+				setAttr ($eachRightControl + ".isMirrored") 1015;
+			}
+			
+			//ADD LEFT CONTROL TO OPP CONTROLS LIST
+			select $oppControls $eachLeftControl;
+			$oppControls = `ls -sl`;
+		}
+		//MIRROR TYPE
+		if ($mirrorType == 0)
+		{//MIRROR
+			select $initialSelection;
+		}
+		else if ($mirrorType == 1)
+		{//MIRROR AND SELECT
+			select $oppControls;
+			select -add $initialSelection;
+		}
+		else if ($mirrorType == 2)
+		{//MIRROR AND KEY
+			select $initialSelection;
+		}
+		else if ($mirrorType == 3)
+		{//MIRROR AND SELECT AND KEY
+			select $oppControls;
+			select -add  $initialSelection;
+		}
+		
+	}
+	else
+	{
+		warning "NOTHING SELECTED";
+	}
+}
+
+global proc RapidRig_Modular_Mirror()
+{
+	RapidRig_Modular_Mirror_MirrorProc(0);
+}
+
+global proc RapidRig_Modular_MirrorAndSelect()
+{
+	RapidRig_Modular_Mirror_MirrorProc(1);
+}
+global proc RapidRig_Modular_MirrorAndKey()
+{
+	RapidRig_Modular_Mirror_MirrorProc(2);
+}
+global proc RapidRig_Modular_MIrrorAndSelectAndKey()
+{
+	RapidRig_Modular_Mirror_MirrorProc(3);
+}

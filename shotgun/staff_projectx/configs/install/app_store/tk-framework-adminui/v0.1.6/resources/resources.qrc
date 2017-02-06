@@ -1,0 +1,23 @@
+<RCC>
+  <qresource prefix="tk-framework-adminui/setup_project">
+    <file>circle_logo.png</file>
+    <file>right_arrow.png</file>
+    <file>wait_screen_icon.png</file>
+    <file>shotgun_folder.png</file>
+    <file>down_arrow.png</file>
+    <file>error.png</file>
+    <file>missing_thumbnail_project.png</file>
+    <file>checkmark.png</file>
+    <file>octocats/original.png</file>
+    <file>octocats/bear-cavalry.png</file>
+    <file>octocats/class-act.png</file>
+    <file>octocats/femalecodertocat.png</file>
+    <file>octocats/kimonotocat.png</file>
+    <file>octocats/labtocat.png</file>
+    <file>octocats/oktobercat.png</file>
+    <file>octocats/poptocat_v2.png</file>
+    <file>octocats/steroidtocat.png</file>
+    <file>shotgun_logo.png</file>
+    <file>icon_lock.png</file>
+  </qresource>
+</RCC>

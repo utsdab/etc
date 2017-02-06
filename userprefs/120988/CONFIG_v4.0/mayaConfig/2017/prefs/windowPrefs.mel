@@ -1,0 +1,46 @@
+//Maya Preference 2017 (Release 1)
+//
+//
+windowPref -topLeftCorner 225 150 -widthHeight 250 400 -maximized false outlinerPanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 700 400 -maximized false hyperGraphPanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 660 400 -maximized false graphEditor1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 1400 400 -maximized false timeEditorPanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 660 400 -maximized false dopeSheetPanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 1040 600 -maximized false nodeEditorPanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 660 400 -maximized false shapePanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 1040 600 -maximized false posePanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 660 400 -maximized false clipEditorPanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 524 470 -maximized false devicePanel1Window;
+windowPref -topLeftCorner 75 75 -widthHeight 1440 900 -maximized false hyperShadePanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 700 400 -maximized false dynPaintScriptedPanelWindow;
+windowPref -topLeftCorner 250 200 -widthHeight 550 562 -maximized false blindDataEditor1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 1120 640 -maximized false polyTexturePlacementPanel1Window;
+windowPref -topLeftCorner 235 230 -widthHeight 1430 710 -maximized false contentBrowserPanel1Window;
+windowPref -topLeftCorner 250 200 -widthHeight 312 400 -maximized false hypershadeCreatePanel;
+windowPref -topLeftCorner 250 200 -widthHeight 312 400 -maximized false hypershadeBinsPanel;
+windowPref -topLeftCorner 250 200 -widthHeight 445 500 -maximized false hypershadePropertyEditorPanel;
+windowPref -topLeftCorner 250 200 -widthHeight 750 215 -maximized false hypershadeBrowserPanel;
+windowPref -topLeftCorner 250 200 -widthHeight 700 400 -maximized false hypershadeShaderballPanel;
+windowPref -topLeftCorner 250 200 -widthHeight 1090 570 -maximized false hypershadeModelEditorPanel;
+windowPref -topLeftCorner 250 200 -widthHeight 675 400 -maximized false hypershadeSpreadsheetPanel;
+windowPref -topLeftCorner 250 200 -widthHeight 570 400 -maximized false hypershadeRenderViewPanel;
+windowPref -topLeftCorner 225 150 -widthHeight 250 400 -maximized false hypershadeOutlinerPanel;
+windowPref -topLeftCorner 250 200 -widthHeight 1090 570 -maximized false hypershadeUVEditorPanel;
+windowPref -topLeftCorner 250 200 -widthHeight 660 400 -maximized false hypershadeGraphEditorPanel;
+windowPref -topLeftCorner 250 200 -widthHeight 250 400 -maximized false hypershadeShaderSourcePanel;
+windowPref -topLeftCorner 250 200 -widthHeight 250 400 -maximized false hypershadeFragmentSourcePanel;
+windowPref -topLeftCorner 23 42 -widthHeight 1736 1079 -maximized false MayaWindow;
+windowPref -topLeftCorner 415 642 -widthHeight 420 630 -maximized false cMuscleCreatorWin;
+windowPref -topLeftCorner 415 642 -widthHeight 550 411 -maximized false pluginManagerWindow;
+windowPref -topLeftCorner 242 727 -widthHeight 1066 760 -maximized false PreferencesWindow;
+windowPref -topLeftCorner 537 901 -widthHeight 780 283 -maximized false BossEditorMainWindow;
+windowPref -topLeftCorner 247 495 -widthHeight 1103 756 -maximized false shelfEditor;
+windowPref -topLeftCorner 415 642 -widthHeight 340 280 -maximized false PluginInfoWin;
+windowPref -topLeftCorner 599 160 -widthHeight 546 350 -maximized false OptionBoxWindow;
+windowPref -topLeftCorner 301 946 -widthHeight 778 686 -maximized false RRM_Window;
+windowPref -topLeftCorner 415 642 -widthHeight 305 605 -maximized false dpAutoRigWindow;
+windowPref -topLeftCorner 415 642 -widthHeight 450 320 -maximized false NewFeatureHighlightWnd;
+windowPref -topLeftCorner 415 642 -widthHeight 300 100 -maximized false RRM_PrefixPromptWindow;
+windowPref -topLeftCorner 415 642 -widthHeight 525 350 -maximized false colorPreferenceWindow;
+windowPref -topLeftCorner 415 642 -widthHeight 552 450 -maximized false renderFlagsWindow;
+windowPref -topLeftCorner 415 642 -widthHeight 550 500 -maximized false projectWindow;

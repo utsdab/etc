@@ -1,0 +1,45 @@
+#!/usr/bin/python
+
+import sys, json, smtplib
+from email.mime.text import MIMEText
+
+def askForHelp(jobs):
+    # email wranglers for help with selected jobs
+
+    # the list of job ids is used informatively in the title and body
+    jidsStr = " ".join([str(job["jid"]) for job in jobs])
+
+    # Create a text/plain message
+    text = "Please be nice to jobs:\n%s" % jidsStr
+    msg = MIMEText(text)
+
+    msg['Subject'] = "Request for Feeling Better %s" % jidsStr
+
+    # site would customize senders and recipients
+    # sender could be set to login username of dashboard through env var
+    sender = "depressed@uts.edu.au"
+    # establish list of distinct job owners
+    #owners = set([job["owner"] + "@uts.edu.au" for job in jobs])
+    #recip = ["wranglers@example.com"] + list(owners)
+    recip = ["120988@uts.edu.au"]  
+
+    msg['From'] = sender
+    msg['To'] = ",".join(recip)
+
+    s = smtplib.SMTP('localhost')
+    s.sendmail(sender, recip, msg.as_string())
+    s.quit()
+
+if __name__=="__main__":
+    
+    try:
+        jsonData = sys.stdin.read()
+        jobs = json.loads(jsonData)
+        askForHelp(jobs)
+    except:
+        import traceback
+        sys.stdout.write("Content-type:text/html\r\n\r\n")
+        sys.stdout.write("<html><body><pre>")
+        sys.stdout.write("menu script error:\n")
+        traceback.print_exc()
+        sys.stdout.write("<pre></body></html>")

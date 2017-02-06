@@ -1,0 +1,37 @@
+#!/bin/bash
+echo ""
+echo "Congratulations the UTS shell environment should be configured"
+echo ""
+echo "██████╗  █████╗ ██████╗     ██████╗  ██████╗  ██╗███████╗  ";
+echo "██╔══██╗██╔══██╗██╔══██╗    ╚════██╗██╔═████╗███║╚════██║  ";
+echo "██║  ██║███████║██████╔╝     █████╔╝██║██╔██║╚██║    ██╔╝  ";
+echo "██║  ██║██╔══██║██╔══██╗    ██╔═══╝ ████╔╝██║ ██║   ██╔╝   ";
+echo "██████╔╝██║  ██║██████╔╝    ███████╗╚██████╔╝ ██║   ██║    ";
+echo "╚═════╝ ╚═╝  ╚═╝╚═════╝     ╚══════╝ ╚═════╝  ╚═╝   ╚═╝    ";
+echo " ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗     ██╗  ██╗";
+echo "██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝     ██║  ██║";
+echo "██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗    ███████║";
+echo "██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║    ╚════██║";
+echo "╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝         ██║";
+echo " ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝          ╚═╝";
+echo "                                                           ";
+echo "You should be able to type in simple commands to launch software and run tools."
+echo "Useful commands: "
+echo "  maya   -  launches maya with all the right tools and set ups"
+echo "  lsq    -  similar to ls but collapses sequences of files to a single entry"
+echo "  renseq -  renaming sequences of files"
+echo "  mved   -  general purpose pattern renamer"
+echo ""
+echo "Some more general shell commands you will use are these:"
+echo "  ls     - list files"
+echo "  lsseq  - list files as sequences"
+echo "  cd     - change directory"
+echo "  man    - the manual pages for all commands eg. man ls   lists info about ls"
+echo '  find   - a powerful searching tool eg. find . -name "*something*" -print'
+echo "  tree   - a tree style listing use -L 2 to restrict the levels to 2"
+echo "  cp     - copy"
+echo "  mv     - move or rename - they are really the same thing"
+echo "  farm_submit.py - submit a job to the renderfarm"
+echo ""
+echo "Google for linux shell commands or bash commands ...... try it!"
+echo "**********************************************************************************"

@@ -1,0 +1,23 @@
+README for $RMANTREE/prman/etc/setup
+
+This directory contains files used to perform a confidence test on the
+installation of the PhotoRealistic RenderMan rendering system.  To perform
+the confidence test, just type "make" in this directory.  If everything
+is installed properly, "make" should run "prman" to create a new image
+called "trial.tif " and then run "cmptiff" to compare the image to another
+image "check.tif" which is shipped with the distribution.
+
+If the comparison shows that the two images are very similar, the "cmptiff"
+will print the message:
+
+	"The images are essentially identical."
+
+If something has gone wrong with installation, the images may be quite
+different.  In this case, "cmptiff" will generate a message of the form:
+
+	"The images are significantly different in %d pixels out of %d."
+
+where the %d's are the numbers of pixels different and the total number
+of pixels.  In this case, "cmptiff" will return an error code which will
+abort the make.  There is something wrong, and you should check to
+see that you have carried out the installation procedures correctly.

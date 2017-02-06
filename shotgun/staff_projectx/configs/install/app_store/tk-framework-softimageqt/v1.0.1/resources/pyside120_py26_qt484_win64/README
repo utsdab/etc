@@ -1,0 +1,8 @@
+This was downloaded from http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyside,
+installed on a windows machine and then simply moved into this location.
+
+On Windows, Softimage uses python2.6 x64 by default so you need to use a 
+binary distribution which is compatible with that.
+
+If you choose to use an external version of Python then you should ensure
+that a compatible version of PySide is also installed with it. 

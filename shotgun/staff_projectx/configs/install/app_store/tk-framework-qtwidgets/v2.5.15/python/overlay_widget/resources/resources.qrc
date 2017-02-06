@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="tk_framework_qtwidgets.overlay_widget">
+    <file>sg_logo.png</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,145 @@
+# Copyright (c) 2015 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
+# Metadata defining the behavior and requirements for this app
+
+# expected fields in the configuration file for this app
+configuration:
+
+    # UI customization
+    menu_name:
+        type: str
+        default_value: "Load"
+        description: Name to appear on the Shotgun menu.
+
+    title_name:
+        type: str
+        default_value: "Loader"
+        description: Name to appear on the title of the UI Dialog.
+
+
+    # hooks
+    actions_hook:
+        type: hook
+        default_value: "{self}/{engine_name}_actions.py"
+        description: Hook which contains all methods for action management.
+
+    filter_publishes_hook:
+        type: hook
+        default_value: "{self}/filter_publishes.py"
+        description: Specify a hook that, if needed, can filter the raw list of publishes returned
+                     from Shotgun for the current location.
+
+    download_thumbnails:
+        type: bool
+        default_value: true
+        description: Controls whether thumbnails should be downloaded from Shotgun or not. We
+                     strongly recommend that thumbnails are downloaded since this greatly enhances
+                     the user experience of the loader, however in some situations this may be
+                     difficult due to bandwidth or infrastructural restrictions.
+
+    action_mappings:
+        type: dict
+        description: Associates published file types with actions. The actions are all defined
+                     inside the actions hook, so a number of actions are available by default
+                     and in addition to this you can add your own actions if you like.
+        default_value: {}
+        default_value_tk-3dsmax:
+            3dsmax Scene: [import, reference]
+        default_value_tk-3dsmaxplus:
+            3dsmax Scene: [import, reference]
+        default_value_tk-houdini:
+            Houdini Scene: [merge]
+        default_value_tk-nuke:
+            Rendered Image: [read_node]
+            Nuke Script: [script_import]
+        default_value_tk-maya:
+            Maya Scene: [reference, import]
+            Rendered Image: [texture_node]
+            Photoshop Image: [texture_node]
+            UDIM Image: [udim_texture_node]
+        default_value_tk-motionbuilder:
+            Motion Builder FBX: [import]
+        default_value_tk-photoshop:
+            Photoshop Image: [add_as_a_layer, open_file]
+            Rendered Image: [add_as_a_layer, open_file]
+        default_value_tk-mari:
+            Alembic Cache: [geometry_import]
+
+
+    entities:
+        default_value:
+            - caption: Assets
+              entity_type: Asset
+              publish_filters: []
+              filters:
+              - ["project", "is", "{context.project}"]
+              hierarchy: [sg_asset_type, code]
+
+            - caption: Shots
+              entity_type: Shot
+              publish_filters: []
+              filters:
+              - ["project", "is", "{context.project}"]
+              hierarchy: [sg_sequence, code]
+
+            - caption: My Tasks
+              entity_type: Task
+              publish_filters: []
+              filters:
+              - [task_assignees, is, '{context.user}']
+              - ["project", "is", "{context.project}"]
+              hierarchy: [entity, content]
+
+
+        type: list
+        description: "This setting defines the different tabs that will show up on the left hand side.
+                      Each tab represents a Shotgun query, grouped by some shotgun fields to form a tree. 
+                      This setting is a list of dictionaries. Each dictionary in the list defines one tab,
+                      and should have they following keys: *caption* specifies the name of the tab, *entity_type*
+                      specifies the shotgun entity type to display. *filters* is a list of standard API Shotgun 
+                      filters. *hierarchy* is a list of shotgun fields, defining the grouping of the tree.
+                      Optionally, you can specify a *publish_filters* key, containing shotgun API filters to
+                      apply to the publishes listing as it is being loaded in the main view." 
+        allows_empty: False
+        values:
+            type: dict
+
+    publish_filters:
+        type: list
+        description: "List of additional shotgun filters to apply to the publish listings.  These
+                      will be applied before any other filtering takes place and would allow you to
+                      for example hide things with a certain status."
+        values:
+            type: shotgun_filter
+        allows_empty: True
+        default_value: []
+
+
+# this app works in all engines - it does not contain
+# any host application specific commands
+supported_engines:
+
+# the Shotgun fields that this app needs in order to operate correctly
+requires_shotgun_fields:
+
+# More verbose description of this item
+display_name: "Loader"
+description: "Locate published files and reference them into your scene."
+
+# Required minimum versions for this item to run
+requires_shotgun_version:
+requires_core_version: "v0.16.32"
+requires_engine_version:
+
+# the frameworks required to run this app
+frameworks:
+    - {"name": "tk-framework-shotgunutils", "version": "v5.x.x"}
+    - {"name": "tk-framework-qtwidgets", "version": "v2.x.x"}

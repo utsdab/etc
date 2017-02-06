@@ -1,0 +1,10 @@
+GTOa (4)
+
+server : floatinglicense (1)
+{
+    id
+    {
+        string hostname = "138.25.185.34"
+        int port = 5436
+    }
+}

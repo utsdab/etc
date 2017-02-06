@@ -1,0 +1,11 @@
+[
+    {
+        "keys": ["maya*"],
+        "environment": {
+            "MAYA_LOCATION": "$TR_ENV_MAYALOCATION",
+            "MAYA_MODULE_PATH": "$TR_ENV_MAYAVER/etc:$MAYA_MODULE_PATH",
+            "PATH": "$MAYA_LOCATION/bin:$PATH"
+        },
+        "envhandler": "mayahandler"
+    }
+]

@@ -1,0 +1,551 @@
+Build instructions for Pyside, QT and Python on Linux
+=====================================================
+
+This version of PySide was built with python 2.5.2 (64 bit) and QT 4.8.5 specifically for 
+Softimage 2013.  Everything is built with gcc 4.1.2
+
+Please see the tk-softimage documentation for further information!
+
+These instructions assume a clean Centos 6 linux build and follow a similar pattern to the
+instructions for building PySide for Maya under Linux with a few additions.
+
+The main steps to build PySide with Qt are:
+
+1. Build GCC 4.1.2
+2. Build Python 2.5.2
+3. Build Qt
+4. Build PySide
+
+Additionally, Softimage is missing a few libraries that Shotgun & Toolkit require in order
+to function correctly.  The steps for building these are detailed in the tk-multi-launchapp
+app in /tk-multi-launchapp/app_specific/softimage/linux/lib/README
+
+Note, the following instructions assume a build root directory '~/xsi_pyside_build'.  Change
+all uses of this if you want to build to a different location!  
+
+
+
+Build GCC 4.1.2
+---------------
+
+Softimage 2013 is built using GCC 4.1.2 so it's important to build everything with the same 
+version of the compiler to avoid segmentation errors and other unexpected problems.
+
+Follow these steps to build GCC 4.1.2 and configure your build environment for everything 
+else.
+
+1.  Configure the build environment:
+    
+    a.  You'll need gcc to build gcc! - if you don't have a version of gcc installed then
+        install the latest version:
+        
+        sudo yum install gcc-c++.x86_64
+    
+    b.  Install the gcc development package:
+        
+        sudo yum install glibc-devel.x86_64
+        sudo yum install glibc-devel.i686
+    
+    c.  Building gcc also requires the zlib development package:
+        
+        sudo yum install zlib-devel.x86_64
+        
+    d.  Install texinfo for doc generation:
+    
+        sudo yum install texinfo.x86_64
+
+2.  Download & extract:
+    
+    a.  Download the source from http://ftp.gnu.org/gnu/gcc/gcc-4.1.2 or equivalent
+     
+    b.  Extract to a directory, e.g.: ~/xsi_pyside_build/src/gcc412/gcc-build - you should 
+        end up with the directory: ~/xsi_pyside_build/src/gcc412/gcc-build/gcc-4.1.2
+
+3.  Configure:
+
+    a.  Make sure you are in the correct directory:  
+    
+        cd ~/xsi_pyside_build/src/gcc412/gcc-build 
+        
+        Note: It's very important to be in the gcc-build directory and NOT /gcc-4.1.2
+        otherwise you will have issues when building gcc!
+
+    b.  Configure gcc using the following command:
+    
+        ./gcc-4.1.2/configure --prefix=/opt/gcc412 --program-suffix=412 --enable-shared 
+        --enable-threads=posix -enable-checking=release --with-system-zlib 
+        --disable-libunwind-exceptions --enable-__cxa_atexit 
+
+4.  Build & install:
+    
+    a.  Build gcc:
+    
+        make -j4 bootstrap
+
+    When building, you will probably encounter this error:
+    
+        WARNING: `makeinfo' is missing on your system.  You should only need it if                                                                   
+             you modified a `.texi' or `.texinfo' file, or any other file                                                                        
+            indirectly affecting the aspect of the manual.  The spurious                                                                        
+            call might also be the consequence of using a buggy `make' (AIX,                                                                    
+            DU, IRIX).  You might want to install the `Texinfo' package or
+            the `GNU make' package.  Grab either from any GNU archive site.
+        make[4]: *** [fastjar.info] Error 1
+    
+    This is a known issue with earlier versions of gcc and can be safely fixed by
+    editing the MakeFile (~/xsi_pyside_build/src/gcc412/gcc-build/MakeFile) and changing 
+    the line:
+    
+        MAKEINFO = ~/xsi_pyside_build/src/gcc412/gcc-build/gcc-4.1.2/missing makeinfo
+        
+    to:
+    
+        MAKEINFO = makeinfo
+
+    b.  Install gcc: 
+    
+        sudo make install
+        
+        Note: This will install into the /opt/gcc412 directory that was specified in the
+        configure command.
+
+5.  Setup symlinks:
+
+    Setting up these symlinks will make it easier to compile everything else using this
+    specific version of GCC.
+
+        cd /usr/bin
+        sudo ln -s /opt/gcc412/bin/gcc412 .
+        sudo ln -s /opt/gcc412/bin/g++412 .
+
+
+Build Python 2.5.2
+------------------
+
+Softimage 2013 includes a custom version of Python 2.5.2 which can't be run externally from
+Softimage.  Because we need an install of Python to build PySide, this means we need to build
+a version that's as close to the one bundled with Softimage as we can!
+
+Follow these steps to build Python 2.5.2 with GCC 4.1.2.
+
+1.  Configure the build environment:
+
+    a.  We need to use a specific version of GCC so set the following environment variables
+        to control this: 
+
+        export CC=gcc412
+        export CXX=g++412
+        
+    b.  Install the python development package:
+    
+        sudo yum install python-devel.x86_64
+    
+2.  Download & extract:
+    
+    a.  Download the source from http://www.python.org/ftp/python/2.1.2 or equivelant
+    
+    b.  Extract to the directory ~/xsi_pyside_build/src/py252
+    
+3.  Configure:
+
+    a.  Make sure you are in the correct directory:
+    
+        cd ~/xsi_pyside_build/src/py252
+        
+    b.  Configure using the following command:
+    
+        ./configure --prefix=$HOME/xsi_pyside_build/py252 --enable-shared --enable-unicode=ucs4
+    
+4.  Build  & install:
+
+    a.  Build Python 2.5.2
+    
+        make -j4
+        
+    b.  Install Python 2.5.2:
+    
+        make install
+        
+        Note: This will install into the ~/xsi_pyside_build/py252 directory that was specified 
+        in the configure command.
+    
+5.  Test
+    
+    Python 2.5.2 should now have been installed to ~/xsi_pyside_build/py252.  This doesn't replace
+    your system python!  To test, add ~/xsi_pyside_build/py252/lib to your LD_LIBRARY_PATH and then
+    run python from within ~/xsi_pyside_build/py252/bin, e.g.:
+    
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/xsi_pyside_build/py252/lib
+        ~/xsi_pyside_build/py252/bin/python
+
+
+Build Qt 4.8.5
+--------------
+
+1.  Configre the build environment:
+
+    a.  Again, we need to use GCC 4.1.2 when building Qt so set the following environment 
+        variables to control this: 
+
+        export CC=gcc412
+        export CXX=g++412
+        
+    b.  Install the Qt development package:
+    
+        sudo yum install qt-devel
+
+2.  Download & extract:
+
+    a.  Download the version you want to build from http://qt-project.org/downloads - any
+        recent version should be ok but if you have problems then you may want to try an 
+        older version, e.g. 4.7.4, which can be found in the archive, here: 
+        http://download.qt-project.org/archive/qt/4.7/  
+        
+        The following instructions assume building Qt 4.8.5.
+        
+    b.  Extract to the directory ~/xsi_pyside_build/src/qt485
+    
+3.  Configure:
+
+    a.  Make sure you are in the correct directory:
+    
+        cd ~/xsi_pyside_build/src/qt485
+
+    b.  Configure using the following command:
+    
+        ./configure -no-ssse3 --prefix=$HOME/xsi_pyside_build/qt485 -no-qt3support -nomake demos -nomake examples
+       
+4.  Build  & install:
+
+    a.  Build Qt 4.8.5
+    
+        make -j4
+        
+    b.  Install Qt 4.8.5:
+    
+        make install
+        
+        Note: This will install into the ~/xsi_pyside_build/qt485 directory that was specified 
+        in the configure command.
+    
+    Qt 4.8.5 should now have been installed to ~/xsi_pyside_build/qt485.  Again, this doesn't 
+    replace your system version of Qt if you have one.
+
+
+Build PySide 1.2.1
+------------------
+
+1.  Configure the build environment:
+
+    a.  Install dependencies required to build Pyside:
+    
+        sudo yum install libxml2-devel libxslt-devel cmake
+
+    b.  Make sure the build will use the versions of Python & Qt you just built.  To do this, 
+        set the following environment variables
+    
+        export QT_SDK_HOME=~/xsi_pyside_build/qt485
+        export PYTHON_EXEC=~/xsi_pyside_build/py252/bin/python
+        export PYTHON_INC=~/xsi_pyside_build/py252/include/python2.5
+        export PYTHON_LIB=~/xsi_pyside_build/py252/lib/libpython2.5.so
+
+2.  Download source:
+
+    Note: git is required to get the latest version of the PySide source.  If you don't have
+    git installed then run the following command to install it:
+    
+        sudo yum install git.x86_64
+    
+    a.  Clone the pyside helpers from git:
+        
+        git clone git://gitorious.org/pyside/buildscripts.git ~/xsi_pyside_build/src/pyside
+
+    b.  Clone the various PySide components from git into the correct subdirectories: 
+
+        git clone git://gitorious.org/pyside/apiextractor.git ~/xsi_pyside_build/src/pyside/apiextractor
+        git clone git://gitorious.org/pyside/generatorrunner.git ~/xsi_pyside_build/src/pyside/generatorrunner
+        git clone git://gitorious.org/pyside/shiboken.git ~/xsi_pyside_build/src/pyside/shiboken
+        git clone git://gitorious.org/pyside/pyside.git ~/xsi_pyside_build/src/pyside/pyside
+        git clone git://gitorious.org/pyside/pyside-tools.git ~/xsi_pyside_build/src/pyside/pyside-tools
+
+3.  Configure:
+
+    a.  To build a specific version of PySide, you will need to checkout a specific tag.  To list
+        available tags, cd to the relevant directory and run `git tag`, e.g.
+        
+            cd ~/xsi_pyside_build/src/pyside/pyside
+            git tag
+
+        Then to checkout a specific tag, run:
+        
+            git checkout 1.2.1
+            
+        For these instructions we will checkout the latest tag (1.2.1) for both PySide and Shiboken:
+        
+            cd ~/xsi_pyside_build/src/pyside/pyside
+            git checkout 1.2.1
+            cd ~/xsi_pyside_build/src/pyside/shiboken
+            git checkout 1.2.1
+            
+    b.  We want to build to a specific location, so edit ~/xsi_pyside_build/src/pyside/environment.sh 
+        and change the line:
+    
+        export PYSIDESANDBOXPATH=$HOME/pkg/pyside-sandbox
+        
+        to:
+        
+        export PYSIDESANDBOXPATH=$HOME/xsi_pyside_build/pyside121
+            
+
+    c.  We want to make sure we use our specific compiler (gcc 4.1.2) and version of Python (2.5.2)
+        so edit ~/xsi_pyside_build/src/pyside/build_and_install.sh and add the following flags:
+
+        -DCMAKE_C_COMPILER=gcc412
+        -DCMAKE_CXX_COMPILER=g++412
+        
+        -DPYTHON_EXECUTABLE=$PYTHON_EXEC 
+        -DPYTHON_INCLUDE_PATH=$PYTHON_INC
+        -DPYTHON_LIBRARY=$PYTHON_LIB
+
+        e.g.:
+        ...
+        cmake .. -DCMAKE_INSTALL_PREFIX=$PYSIDESANDBOXPATH \
+                 -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
+                 -DENABLE_ICECC=0 \
+                 -DCMAKE_C_COMPILER=gcc412 \
+                 -DCMAKE_CXX_COMPILER=g++412 \
+                 -DPYTHON_EXECUTABLE=$PYTHON_EXEC \
+                 -DPYTHON_INCLUDE_PATH=$PYTHON_INC \
+                 -DPYTHON_LIBRARY=$PYTHON_LIB \
+                 $PYSIDE_BS_CMAKE_FLAGS \
+        ...
+
+    d.  To help PySide find the required Qt dso's once we package everything up, we need to ensure
+        that the PySide dso's include an RPATH.  
+        
+        To do this, edit ~/xsi_pyside_build/src/pyside/pyside/CMakeLists.txt and add the following 
+        lines:
+  
+        # use, i.e. don't skip the full RPATH for the build tree
+        SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
+        # when building, don't use the install RPATH already
+        # (but later on when installing)
+        SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
+        # add the automatically determined parts of the RPATH
+        # which point to directories outside the build tree to the install RPATH
+        SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+        # the RPATH to be used when installing, but only if it's not a system directory
+        SET(CMAKE_INSTALL_RPATH "\$ORIGIN/../lib:\$ORIGIN/")
+
+    e.  When building PySide with Python 2.5.2, you may encounter the error:
+        
+            SyntaxError: future feature print_function is not defined
+            CMake Error at CMakeLists.txt:27 (message):
+            Could not detect Python module installation directory.
+        
+        To safely avoid thi, edit ~/xsi_pyside_build/src/pyside/pyside-tools/CMakeLists.txt
+        and changing line 27 from:
+        
+            COMMAND ${PYTHON_EXECUTABLE} -c "from __future__ import print_function; \\
+                from distutils import sysconfig; \\
+                print(sysconfig.get_python_lib(1,0,prefix='${CMAKE_INSTALL_PREFIX}'))"
+
+        to:
+        
+            COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; \\
+                print(sysconfig.get_python_lib(1,0,prefix='${CMAKE_INSTALL_PREFIX}'))"
+
+4.  Build PySide:
+
+    a.  You are now ready to build PySide.  To do this, run the following:
+    
+        cd ~/xsi_pyside_build/src/pyside
+        ./build_and_install
+
+    b.  Fix Python 2.5.2 incompatibility bug.
+    
+        Python 2.5.2 has trouble parsing the file:
+            ~/xsi_pyside_build/pyside121/lib/python2.5/site-packages/PySide/_utils.py
+            
+        To fix this, edit the file and remove lines 181-190:
+        
+            else:
+                rc_struct = b"\
+                    ...
+                rc_name = b"\
+                    ...
+                rc_data = bytes.fromhex("".join(rc_data_ouput))
+
+5.  Test:
+
+    a.  Add the Pyside location to your LD_LIBRARY_PATH and PYTHONPATH:
+    
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/xsi_pyside_build/pyside121/lib
+        export PYTHONPATH=$PYTHONPATH:~/xsi_pyside_build/pyside121/lib/python2.5/site-packages
+        
+    b.  Run Python:
+    
+        ~/xsi_pyside_build/py252/bin/python
+        
+    c.  Test PySide:
+
+        from PySide import QtGui
+        app = QtGui.QApplication([])
+        widget = QtGui.QWidget()
+        widget.show()
+        app.exec_()
+
+        This should display a Qt dialog with no errors!
+        
+6.  Packaging for Softimage
+
+    To use PySide within Softimage, it makes things a bit simpler if we package it up.  The 
+    structure we want is:
+    
+        - pyside121_py25_qt485_linux
+            - lib
+                - imports
+                - plugins
+                - translations
+                - libpyside-python2.5.so.1.2
+                - libshiboken-python2.5.so.1.2
+                - libQt*.so.4
+                - ...
+            - python
+                - PySide
+                    - Qt*.so
+                    - ...
+            - shiboken.so
+            
+    Perform the following steps to achieve this:
+    
+    a.  Create directories:
+    
+        mkdir ~/xsi_pyside_build/pyside121_py25_qt485_linux
+        mkdir ~/xsi_pyside_build/pyside121_py25_qt485_linux/lib
+        mkdir ~/xsi_pyside_build/pyside121_py25_qt485_linux/python
+        mkdir ~/xsi_pyside_build/pyside121_py25_qt485_linux/python/PySide
+        
+    b.  Copy files:
+    
+        cd ~/xsi_pyside_build/pyside121_py25_qt485_linux/lib
+        cp -R ~/xsi_pyside_build/qt485/imports .
+        cp -R ~/xsi_pyside_build/qt485/plugins .
+        cp -R ~/xsi_pyside_build/qt485/translations .
+        cp ~/xsi_pyside_build/pyside121/lib/libpyside-python2.5.so.1.2 .
+        cp ~/xsi_pyside_build/pyside121/lib/libshiboken-python2.5.so.1.2 .
+        cp ~/xsi_pyside_build/qt485/lib/libQt*.so.4 .
+        
+        cd ~/xsi_pyside_build/pyside121_py25_qt485_linux/python
+        cp ~/xsi_pyside_build/pyside121/lib/python2.5/site-packages/shiboken.so .
+        
+        cd ~/xsi_pyside_build/pyside121_py25_qt485_linux/python/PySide
+        cp ~/xsi_pyside_build/pyside121/lib/python2.5/site-packages/PySide/*.so .
+        cp ~/xsi_pyside_build/pyside121/lib/python2.5/site-packages/PySide/*.py .
+        
+    c.  Edit __init__.py to point PySide at our packaged version of Qt
+    
+        By Default, PySide looks in it's own directory to find Qt.  Editing this file
+        allows us to tell it to look in the lib directory instead.
+        
+        Open ~/xsi_pyside_build/pyside121_py25_qt485_linux/python/PySide/__init__.py
+        and add the following lines:
+        
+            prefix = os.path.join(prefix, "..", "..", "lib")
+            prefix = os.path.normpath(prefix)
+    
+        Imediately before the line:
+    
+            _utils.register_qt_conf(prefix=prefix, ...
+            
+    d.  Finally, we need to update the RPATH in some of the dso's so that they will
+        load the correct dependencies.
+        
+        To do this, you will need a tool like chrpath installed - install by running:
+        
+            sudo yum install chrpath
+            
+        Now edit the RPATH in the following dso's:
+        
+        i.  /lib/libshiboken-python2.5.so.1.2 -> No RPATH
+            
+            cd ~/xsi_pyside_build/pyside121_py25_qt485_linux/lib 
+            chrpath -d libshiboken-python2.5.so.1.2
+        
+        ii. /lib/libpyside-python2.5.so.1.2 -> RPATH=$ORIGIN
+            
+            cd ~/xsi_pyside_build/pyside121_py25_qt485_linux/lib
+            chrpath -r \$ORIGIN libpyside-python2.5.so.1.2
+            
+        iii./python/PySide/Qt*.so -> RPATH=$ORIGIN/../../lib
+
+            cd ~/xsi_pyside_build/pyside121_py25_qt485_linux/python/PySide
+            chrpath -r \$ORIGIN/../../lib `ls *.so | cat`
+
+
+7.  Testing in Softimage 2013
+
+    You are now ready to test your new build of PySide in Softimage.
+    
+    a.  Launch Softimage 2013 and open the script editor - switch to Python
+    
+    b.  Add ~/xsi_pyside_build/pyside121_py25_qt485_linux/python to the PYTHONPATH:
+    
+        import sys, os
+        py_path = os.path.expanduser('~/xsi_pyside_build/pyside121_py25_qt485_linux/python')
+        sys.path.append(py_path)
+        
+    c.  Test PySide:
+
+        from PySide import QtGui
+        app = QtGui.QApplication([])
+        widget = QtGui.QWidget()
+        widget.show()
+        app.exec_()
+        
+    If everything went well then this will show a Qt window although it will block Softimage 
+    until it's closed - the tk-softimage engine stops this by running it's own event loop for Qt.
+
+
+Potential problems...
+---------------------
+
+    Segmentation faults in libX11.
+    ------------------------------
+
+    Softimage contains an optional hack to address speed issues on certain linux 
+    distributions.  This is detailed here:
+    
+        http://xsisupport.com/2011/01/19/the-case-of-the-slow-2011-startup-on-fedora-14/
+        
+    This tells Softimage to use a different version of the libX11 library found in:
+        
+        /usr/Softimage/Softimage_2013/Application/mainwin/mw/lib-amd64_linux_optimized/X11
+      
+    If you are using this hack then you will probably get segmentation faults during calls
+    by Qt to the libX11 library (SIGSEGV in the call stack) resulting in frequent crashing.
+    This is because the hack version of the libX11 library is quite old and not compatible
+    with the version Qt was built against!
+    
+    To resolve this, a new version of Qt will need to be built against a version of libX11
+    compatible with the Softimage hack version...
+    
+    
+    Segmentation faults in libssl.
+    ------------------------------
+    
+    If you are using a recent version of openssl, not built using the correct version of
+    GCC (4.1.2) you may see Segmentation faults (SIGSEGV) when the Shotgun API is used.
+    
+    This isn't specific to Qt/PySide but worth mentioning here as it's the second most
+    common problem!
+    
+    Please see /tk-multi-launchapp/app_specific/softimage/linux/lib/README for instructions
+    on how to build a compatible version of openssl for Softimage 2013
+    
+
+
+
+
+
+

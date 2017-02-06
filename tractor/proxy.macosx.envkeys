@@ -1,0 +1,14 @@
+[
+    {
+        "keys": ["rvio*"],
+        "environment": {
+            "Envkey_rvio_osx": "from proxy.macosx.envkeys",
+            "PATH": "$DABSWW/renderfarm/bin:/Applications/Pixar/Tractor-2.2/bin:/Applications/RV64.app/Contents/MacOS:$PATH",
+            "PYTHONPATH": "$DABSWW/renderfarm/:/Applications/Pixar/Tractor-2.2/bin",
+            "RV_LICENSE_FILE": "$DABRENDER/etc/tweak/license.gto",
+            "TWEAK_LICENSE_PATH": "$DABRENDER/etc/tweak/license.gto",
+            "MU_MODULE_PATH": "$DABRENDER/usr/etc/tweak/mu"
+        },
+        "envhandler": "proxyhandler"
+    }
+]
