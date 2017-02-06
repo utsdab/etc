@@ -1,7 +1,0 @@
-# Shotgun Pipeline Toolkit configuration file
-# this file was automatically created
-
-host: https://utsanim.shotgunstudio.com
-http_proxy: null
-
-# End of file.

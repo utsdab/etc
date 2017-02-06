@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="res">
-    <file>camera_hl.png</file>
-    <file>camera.png</file>
-  </qresource>
-</RCC>

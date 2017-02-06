@@ -1,7 +1,0 @@
-<RCC>
-  <qresource prefix="res">
-    <file>clock.png</file>
-    <file>failure.png</file>
-    <file>success.png</file>
-  </qresource>
-</RCC>

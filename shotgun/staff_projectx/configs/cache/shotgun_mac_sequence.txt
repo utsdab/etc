@@ -1,8 +1,0 @@
-launch_nuke$Launch Nuke$$False$$Launches and initializes an application environment.
-Jump to Screening Room in RV$Jump to Screening Room in RV$$False$/Volumes/dabrender/etc/shotgun/staff_projectx/configs/install/app_store/tk-multi-screeningroom/v0.3.0/icon_256.png$Screening Room integration right inside your application.
-Jump to Screening Room Web Player$Jump to Screening Room Web Player$$False$/Volumes/dabrender/etc/shotgun/staff_projectx/configs/install/app_store/tk-multi-screeningroom/v0.3.0/icon_256.png$Screening Room integration right inside your application.
-show_in_filesystem$Show in File System$$True$/Volumes/dabrender/etc/shotgun/staff_projectx/configs/install/core/python/tank/descriptor/resources/default_bundle_256px.png$Jump from a Shotgun page to the file system.
-launch_photoshop$Launch Photoshop$$False$$Launches and initializes an application environment.
-preview_folders$Preview Create Folders$$True$/Volumes/dabrender/etc/shotgun/staff_projectx/configs/install/core/python/tank/descriptor/resources/default_bundle_256px.png$Create filesystem folders from Shotgun.
-create_folders$Create Folders$$True$/Volumes/dabrender/etc/shotgun/staff_projectx/configs/install/core/python/tank/descriptor/resources/default_bundle_256px.png$Create filesystem folders from Shotgun.
-launch_maya$Launch Maya$$False$$Launches and initializes an application environment.

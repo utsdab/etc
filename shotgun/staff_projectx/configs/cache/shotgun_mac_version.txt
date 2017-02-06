@@ -1,3 +1,0 @@
-Jump to Screening Room Web Player$Jump to Screening Room Web Player$$False$/Volumes/dabrender/etc/shotgun/staff_projectx/configs/install/app_store/tk-multi-screeningroom/v0.3.0/icon_256.png$Screening Room integration right inside your application.
-launch_publish$Open in Associated Application$$False$/Volumes/dabrender/etc/shotgun/staff_projectx/configs/install/core/python/tank/descriptor/resources/default_bundle_256px.png$Open a published file in its associated application. 
-Jump to Screening Room in RV$Jump to Screening Room in RV$$False$/Volumes/dabrender/etc/shotgun/staff_projectx/configs/install/app_store/tk-multi-screeningroom/v0.3.0/icon_256.png$Screening Room integration right inside your application.
