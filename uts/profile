@@ -57,7 +57,7 @@ else
 fi
 
 ######### DABUSERPREFS  this is a place for user preferences to be centrally (in lieu of a home directory)
-_dabuserprefs="${DABRENDER}/userprefs"
+_dabuserprefs="${DABRENDER}/work/user_prefs"
 if [ -d ${_dabuserprefs} ]; then
     export DABUSERPREFS="${_dabuserprefs}"
     echo "INFO    : DABUSERPREFS = ${DABUSERPREFS}"
