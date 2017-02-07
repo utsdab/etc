@@ -14,9 +14,25 @@ else
     unset DABRENDER
 #     exit 1
 fi
+##########################  DEV or PRODUCTION
+if [ ${DABDEV} ]; then
+    echo ">>>>>>>>> DEVELOPMENT: Using the development paths"
+    _dabusr="${DABRENDER}/usr"
+    _dabsww="${DABRENDER}/sww"
+    _dabwork="/Volumes/dabrender/work"
+    _dabassets="/Volumes/dabrender/assets"
+    _dabuserprefs="${_dabwork}/user_prefs"
+else
+    echo "PRODUCTION: Using the studio paths"
+    _dabusr="${DABRENDER}/usr"
+    _dabsww="${DABRENDER}/sww"
+    _dabwork="${DABRENDER}/work"
+    _dabassets="${DABRENDER}/assets"
+    _dabuserprefs="${DABRENDER}/work/user_prefs"
+fi
+
 
 ######### DABUSR - this is the main location presently for all things in our suite of farm scripts - all kept in git rep
-_dabusr="${DABRENDER}/usr"
 if [ -d ${_dabusr} ]; then
     #export DABUSR="${_dabusr}"
     echo "INFO    : DABUSR = ${DABUSR}"
@@ -26,7 +42,6 @@ else
 fi
 
 ######## DABSWW - not used yet but a software warehouse hook
-_dabsww="${DABRENDER}/sww"
 if [ -d ${_dabsww} ]; then
     export DABSWW="${_dabsww}"
     echo "INFO    : DABSWW = ${DABSWW}"
@@ -36,7 +51,6 @@ else
 fi
 
 ######### DABWORK - the main work area hook
-_dabwork="${DABRENDER}/work"
 if [ -d ${_dabwork} ]; then
     export DABWORK="${_dabwork}"
     echo "INFO    : DABWORK = ${DABWORK}"
@@ -47,7 +61,6 @@ else
 fi
 
 ######### DABASSETS - an asset library hook
-_dabassets="${DABRENDER}/assets"
 if [ -d ${_dabassets} ]; then
     export DABASSETS="${_dabassets}"
     echo "INFO    : DABASSETS = ${DABASSETS}"
@@ -57,7 +70,6 @@ else
 fi
 
 ######### DABUSERPREFS  this is a place for user preferences to be centrally (in lieu of a home directory)
-_dabuserprefs="${DABRENDER}/work/user_prefs"
 if [ -d ${_dabuserprefs} ]; then
     export DABUSERPREFS="${_dabuserprefs}"
     echo "INFO    : DABUSERPREFS = ${DABUSERPREFS}"
@@ -66,6 +78,15 @@ else
     unset DABUSERPREFS
 fi
 
+######### MAYA_APP_DIR  this is a place for user preferences to be centrally (in lieu of a home directory)
+_MAYA_APP_DIR="${DABUSERPREFS}/${USER}/mayaprefs"
+if [ -d ${_MAYA_APP_DIR} ]; then
+    export MAYA_APP_DIR="${_MAYA_APP_DIR}"
+    echo "INFO    : MAYA_APP_DIR = ${MAYA_APP_DIR}"
+else
+    echo "CRITICAL: Cant set MAYA_APP_DIR correctly as ${_MAYA_APP_DIR}"
+    unset MAYA_APP_DIR
+fi
 
 ##########################
 export MAYA_VERSION="2017"
@@ -80,7 +101,6 @@ echo "INFO    : OS             : ${OSTYPE:0:5}"
 ##########################
 
 case ${OSTYPE:0:5} in
-
 linux)
     export RMANTREE="/opt/pixar/RenderManProServer-${RMAN_VERSION}"
     export RMSTREE="/opt/pixar/RenderManStudio-${RMAN_VERSION}-maya${MAYA_VERSION}"
@@ -88,7 +108,6 @@ linux)
     export MAYA_APPLICATION_LOCATION="/usr/autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}"
     ;;
-
 darwi)
     export RMANTREE="/Applications/Pixar/RenderManProServer-${RMAN_VERSION}"
     export RMSTREE="/Applications/Pixar/RenderManStudio-${RMAN_VERSION}-maya${MAYA_VERSION}"
@@ -102,24 +121,23 @@ darwi)
     export PATH="/usr/aw/COM/bin:/usr/aw/COM/etc:${PATH}"
     export PATH="/Applications/RV64.app/Contents/MacOS:${PATH}"
     ;;
-
 *)
     echo "WARNING:   LIBRARY_PATH and base environment NOT set in profile.d/dabanim.sh"
     ;;
-
 esac
 
 #  $DABUSR and DABRENDER are set in /etc/profile.d/dabanim.sh and is OS aware
 #  These are locations for central scripts and python scripts common to osx and linux eg perl, shell, python:wq
 #  Not entirely sure what the dirrernce between RDIR and RMS_SCRIPT_PATHS is
-export RMS_SCRIPT_PATHS=${DABRENDER}/etc/pixar/configs
-export RDIR=${DABRENDER}/etc/pixar/configs
-export PIXAR_LICENSE_FILE=${DABRENDER}/etc/pixar/pixar.license
-export foundry_LICENSE=${DABRENDER}/etc/foundry/foundry_license.lic
-export RV_LICENSE_FILE=${DABRENDER}/etc/tweak/license.gto
-export TWEAK_LICENSE_FILE=${DABRENDER}/etc/tweak/license.gto
-export MU_MODULE_PATH=${DABRENDER}/usr/etc/tweak/mu
-export SGTK_DESKTOP_CONFIG_LOCATION=${DABRENDER}/etc/shotgun
+export RMS_SCRIPT_PATHS="${DABRENDER}/etc/pixar/configs"
+export RDIR="${DABRENDER}/etc/pixar/configs"
+export PIXAR_LICENSE_FILE="${DABRENDER}/etc/pixar/pixar.license"
+export foundry_LICENSE="${DABRENDER}/etc/foundry/foundry_license.lic"
+export RV_LICENSE_FILE="${DABRENDER}/etc/tweak/license.gto"
+export TWEAK_LICENSE_FILE="${DABRENDER}/etc/tweak/license.gto"
+export MU_MODULE_PATH="${DABRENDER}/usr/etc/tweak/mu"
+export SGTK_DESKTOP_CONFIG_LOCATION="${DABRENDER}/etc/shotgun"
+
 
 # WORKAROUND for libMC3.so.8 error in Maya2016 (added by Chris Bell 10/9/15
 export MAYA_DISABLE_CIP=1
@@ -132,9 +150,8 @@ export MAYA_DISABLE_CIP=1
 export MAYA_MAC_SET_UMASK=0
 
 ##########################  PATH settings
-export PATH=${DABRENDER}/bin:${PATH}
 export PATH=${DABUSR}/bin:${PATH}
-export PATH=${DABUSR}/software/renderfarm/bin:${PATH}
+export PATH=${DABSWW}/renderfarm/bin:${PATH}
 export PATH=${RMANTREE}/bin:${PATH}
 export PATH=${RMSTREE}/bin:${PATH}
 export PATH=${TRACTOR_LOCATION}/bin:${PATH}
@@ -144,7 +161,7 @@ export PATH=${DABUSR}/etc/tractor:${PATH}
 ##########################  PYTHONPATH settings
 export PYTHONPATH=${RMSTREE}/scripts:${PYTHONPATH}
 export PYTHONPATH=${DABUSR}/lib/python:${PYTHONPATH}
-export PYTHONPATH=${DABUSR}/software/renderfarm:${PYTHONPATH}
+export PYTHONPATH=${DABSWW}/renderfarm:${PYTHONPATH}
 export PYTHONPATH=${DABUSR}/etc/tractor:${PYTHONPATH}
 export PYTHONPATH=${DABUSR}:${PYTHONPATH}
 
