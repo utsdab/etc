@@ -1,4 +1,0 @@
-getenv("MAYA_APP_DIR");
-getenv("DABRENDER");
-getenv("DABUSR");
-getenv("MAYA_SHELF_PATH")

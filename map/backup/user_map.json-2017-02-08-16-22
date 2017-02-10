@@ -1,9 +1,4 @@
 {
-    "0000000": {
-        "name": "nextyearstudent", 
-        "number": "0000000", 
-        "year": "2016"
-    }, 
     "10830368": {
         "name": "paulrhodes", 
         "number": "10830368", 
@@ -509,11 +504,6 @@
         "number": "120988", 
         "year": "staff"
     }, 
-    "1209880": {
-        "name": "mattgidney", 
-        "number": "1209880", 
-        "year": "2020"
-    }, 
     "12110019": {
         "name": "yorienarpati", 
         "number": "12110019", 
@@ -563,11 +553,6 @@
         "name": "petethomson", 
         "number": "129544", 
         "year": "staff"
-    }, 
-    "910533": {
-        "name": "stephengowing", 
-        "number": "910533", 
-        "year": "1988"
     }, 
     "97103485": {
         "name": "sunjlee1", 
@@ -774,14 +759,14 @@
         "number": "99143620", 
         "year": "2016"
     }, 
-    "9999999": {
-        "name": "neveryearstudent", 
-        "number": "9999999", 
-        "year": "2016"
-    }, 
     "dataarena": {
         "name": "dataarena", 
         "number": "dataarena", 
         "year": "2016"
+    },
+    "910533": {
+        "name": "stephengowing",
+        "number": "910533",
+        "year": "1988"
     }
 }
