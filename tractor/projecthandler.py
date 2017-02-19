@@ -26,7 +26,7 @@ class projecthandler(TrEnvHandler):
         self.logger.debug("projecthandler.updateEnvironment: %s" % repr(envkeys))
         # Local vars should be initialized in call to updateEnvironment()
         self.initLocalVars()
-        
+
         if envkeys and type(envkeys) == type([]):
             for envkey in envkeys:
                 try:
@@ -48,7 +48,7 @@ class projecthandler(TrEnvHandler):
                         env["PROJECT"] = self.project
                     #elif key == "TASK":
                         #self.task = val
-                        #env["TASK"] = self.task
+                        #farmjob["TASK"] = self.task
                 except:
                     self.logger.warn("failed to split envkey {}".format(envkey))
 
