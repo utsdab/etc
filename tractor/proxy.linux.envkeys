@@ -2,12 +2,19 @@
     {
         "keys": ["rvio*"],
         "environment": {
+            "DABRENDER":         "/Volumes/dabrender",
+            "DABUSR":            "$DABRENDER/usr",
+            "DABETC":            "$DABRENDER/etc",
+            "DABSWW":            "$DABRENDER/sww",
+            "DABWORK":           "$DABRENDER/work",
+            "DABUSERPREFS":      "$DABWORK/user_prefs",
+
             "Envkey_rvio_linux": "from proxy.linux.envkeys",
-            "PATH": "$DABRENDER/usr/renderfarm/bin:/opt/tweak/rv-latest/bin:$PATH",
+            "PATH": "$DABSWW/renderfarm/bin:/opt/tweak/rv-latest/bin:$PATH",
             "PYTHONPATH": "$DABRENDER/usr/renderfarm",
-            "RV_LICENSE_FILE": "$DABRENDER/etc/tweak/license.gto",
-            "TWEAK_LICENSE_PATH": "$DABRENDER/etc/tweak/license.gto",
-            "MU_MODULE_PATH": "$DABRENDER/usr/etc/tweak/mu"
+            "RV_LICENSE_FILE": "$DABETC/tweak/license.gto",
+            "TWEAK_LICENSE_PATH": "$DABETC/tweak/license.gto",
+            "MU_MODULE_PATH": "$DABUSR/etc/tweak/mu"
         },
         "envhandler": "proxyhandler"
     }

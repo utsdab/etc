@@ -18,6 +18,7 @@ fi
 if [ ${DABDEV} ]; then
     echo ">>>>>>>>> DEVELOPMENT: Using the development paths"
     _dabusr="${DABRENDER}/usr"
+    _dabetc="${DABRENDER}/etc"
     _dabsww="${DABRENDER}/sww"
     _dabwork="/Volumes/dabrender/work"
     _dabassets="/Volumes/dabrender/assets"
@@ -25,6 +26,7 @@ if [ ${DABDEV} ]; then
 else
     echo "PRODUCTION: Using the studio paths"
     _dabusr="${DABRENDER}/usr"
+    _dabetc="${DABRENDER}/etc"
     _dabsww="${DABRENDER}/sww"
     _dabwork="${DABRENDER}/work"
     _dabassets="${DABRENDER}/assets"
@@ -34,11 +36,20 @@ fi
 
 ######### DABUSR - this is the main location presently for all things in our suite of farm scripts - all kept in git rep
 if [ -d ${_dabusr} ]; then
-    #export DABUSR="${_dabusr}"
+    export DABUSR="${_dabusr}"
     echo "INFO    : DABUSR = ${DABUSR}"
 else
     echo "CRITICAL: Cant set DABUSR correctly ${_dabusr}"
     unset DABUSR
+fi
+
+######### DABETC - this is the main location presently for all things in our suite of farm scripts - all kept in git rep
+if [ -d ${_dabetc} ]; then
+    export DABETC="${_dabetc}"
+    echo "INFO    : DABETC = ${DABETC}"
+else
+    echo "CRITICAL: Cant set DABETC correctly ${_dabetc}"
+    unset DABETC
 fi
 
 ######## DABSWW - not used yet but a software warehouse hook
@@ -79,7 +90,8 @@ else
 fi
 
 ######### MAYA_APP_DIR  this is a place for user preferences to be centrally (in lieu of a home directory)
-_MAYA_APP_DIR="${DABUSERPREFS}/${USER}/mayaprefs"
+# config is normally a link to the current CONFIG_vXX with mayaprefs inside
+_MAYA_APP_DIR="${DABUSERPREFS}/${USER}/config/mayaprefs"
 if [ -d ${_MAYA_APP_DIR} ]; then
     export MAYA_APP_DIR="${_MAYA_APP_DIR}"
     echo "INFO    : MAYA_APP_DIR = ${MAYA_APP_DIR}"
