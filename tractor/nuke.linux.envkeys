@@ -7,6 +7,7 @@
             "DABETC":            "$DABRENDER/etc",
             "DABSWW":            "$DABRENDER/sww",
             "DABWORK":           "$DABRENDER/work",
+            "DABASSETS":         "$DABRENDER/assets",
             "DABUSERPREFS":      "$DABWORK/user_prefs",
 
             "NUKE_LOCATION": "/opt/foundry/Nuke$TR_ENV_NUKEVER",

@@ -7,6 +7,7 @@
             "DABETC":            "$DABRENDER/etc",
             "DABSWW":            "$DABRENDER/sww",
             "DABWORK":           "$DABRENDER/work",
+            "DABASSETS":         "$DABRENDER/assets",
             "DABUSERPREFS":      "$DABWORK/user_prefs",
 
             "DEBUG_Envkey_nuke_osx": "from nuke.macosx.envkeys",
