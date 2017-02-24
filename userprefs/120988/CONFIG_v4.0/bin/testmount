@@ -1,7 +1,0 @@
-#!/bin/bash
-
-if mount | grep /Volumes/dabrender > /dev/null; then
-    echo "dabrender yay"
-else
-    echo "dabrender nay"
-fi
