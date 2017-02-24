@@ -171,6 +171,7 @@ export PATH=${MAYA_LOCATION}/bin:${PATH}
 export PATH=${DABUSR}/etc/tractor:${PATH}
 
 ##########################  PYTHONPATH settings
+export PYTHONPATH=${DABRENDER}:${PYTHONPATH}
 export PYTHONPATH=${RMSTREE}/scripts:${PYTHONPATH}
 export PYTHONPATH=${DABUSR}/lib/python:${PYTHONPATH}
 export PYTHONPATH=${DABSWW}/renderfarm:${PYTHONPATH}
