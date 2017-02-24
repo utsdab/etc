@@ -2,11 +2,19 @@
     {
         "keys": ["nuke*"],
         "environment": {
+            "DABRENDER":         "/Volumes/dabrender",
+            "DABUSR":            "$DABRENDER/usr",
+            "DABETC":            "$DABRENDER/etc",
+            "DABSWW":            "$DABRENDER/sww",
+            "DABWORK":           "$DABRENDER/work",
+            "DABASSETS":         "$DABRENDER/assets",
+            "DABUSERPREFS":      "$DABWORK/user_prefs",
+
             "DEBUG_Envkey_nuke_osx": "from nuke.macosx.envkeys",
             "NUKE_LOCATION": "/Applications/Nuke$TR_ENV_NUKEVER/Nuke$TR_ENV_NUKEVER.app/Contents",
-	    "DYLD_LIBRARY_PATH": "$NUKE_LOCATION/MacOS",
-	    "foundry_LICENSE": "$DABRENDER/etc/foundry/foundry_license.lic",
-            "PATH": "$NUKE_LOCATION/MacOS:$DABRENDER/usr/renderfarm/bin:$PATH"
+            "DYLD_LIBRARY_PATH": "$NUKE_LOCATION/MacOS",
+	        "foundry_LICENSE": "$DABETC/foundry/foundry_license.lic",
+            "PATH": "$NUKE_LOCATION/MacOS:$DABSWW/renderfarm/bin:$PATH"
         },
         "envhandler": "nukehandler"
     }
