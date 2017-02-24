@@ -16,12 +16,12 @@ def askForHelp(jobs):
     msg['Subject'] = "Request for Render Stats %s" % jidsStr
 
     # site would customize senders and recipients
-    # sender could be set to login username of dashboard through env var
+    # sender could be set to login username of dashboard through farmjob var
     sender = "stats@uts.edu.au"
     # establish list of distinct job owners
     #owners = set([job["owner"] + "@uts.edu.au" for job in jobs])
     #recip = ["wranglers@example.com"] + list(owners)
-    recip = ["120988@uts.edu.au"]  
+    recip = ["120988@uts.edu.au"]
 
     msg['From'] = sender
     msg['To'] = ",".join(recip)
@@ -31,7 +31,7 @@ def askForHelp(jobs):
     s.quit()
 
 if __name__=="__main__":
-    
+
     try:
         jsonData = sys.stdin.read()
         jobs = json.loads(jsonData)

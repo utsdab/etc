@@ -1,7 +1,15 @@
 [
     {
-        "keys": ["maya*"], 
+        "keys": ["maya*"],
         "environment": {
+            "DABRENDER":         "/Volumes/dabrender",
+            "DABUSR":            "$DABRENDER/usr",
+            "DABETC":            "$DABRENDER/etc",
+            "DABSWW":            "$DABRENDER/sww",
+            "DABWORK":           "$DABRENDER/work",
+            "DABASSETS":         "$DABRENDER/assets",
+            "DABUSERPREFS":      "$DABWORK/user_prefs",
+
             "MAYA_LOCATION": "$TR_ENV_MAYALOCATION/Maya.app/Contents",
             "DYLD_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS:$DYLD_LIBRARY_PATH",
             "MAYA_MODULE_PATH": "$TR_ENV_MAYAVER/etc:$MAYA_MODULE_PATH",
