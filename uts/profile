@@ -6,14 +6,13 @@ echo "USER: ${USER}"
 export PATH="/usr/X11R6/bin:${PATH}"
 
 ########################## SETUP STUDIO WIDE ENVIRONMENT HOOKS
-
 if [ -d ${DABRENDER} ]; then
     echo "CHECK   : DABRENDER SEEMS TO BE THERE ${DABRENDER}"
 else
     echo "CRITICAL: Cant see DABRENDER ${DEBRENDER}"
     unset DABRENDER
-#     exit 1
 fi
+
 ##########################  DEV or PRODUCTION
 if [ ${DABDEV} ]; then
     echo ">>>>>>>>> DEVELOPMENT: Using the development paths"
@@ -33,8 +32,7 @@ else
     _dabuserprefs="${DABRENDER}/work/user_prefs"
 fi
 
-
-######### DABUSR - this is the main location presently for all things in our suite of farm scripts - all kept in git rep
+######### DABUSR - this is the main location presently for all things in our suite of farm scripts
 if [ -d ${_dabusr} ]; then
     export DABUSR="${_dabusr}"
     echo "INFO    : DABUSR = ${DABUSR}"
@@ -43,7 +41,7 @@ else
     unset DABUSR
 fi
 
-######### DABETC - this is the main location presently for all things in our suite of farm scripts - all kept in git rep
+######### DABETC
 if [ -d ${_dabetc} ]; then
     export DABETC="${_dabetc}"
     echo "INFO    : DABETC = ${DABETC}"
@@ -52,7 +50,7 @@ else
     unset DABETC
 fi
 
-######## DABSWW - not used yet but a software warehouse hook
+######## DABSWW
 if [ -d ${_dabsww} ]; then
     export DABSWW="${_dabsww}"
     echo "INFO    : DABSWW = ${DABSWW}"
@@ -68,7 +66,6 @@ if [ -d ${_dabwork} ]; then
 else
     echo "CRITICAL: Cant set DABWORK correctly ${_dabwork}"
     unset DABWORK
-#     exit 1
 fi
 
 ######### DABASSETS - an asset library hook
@@ -138,7 +135,7 @@ darwi)
     ;;
 esac
 
-#  $DABUSR and DABRENDER are set in /etc/profile.d/dabanim.sh and is OS aware
+#  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
 #  These are locations for central scripts and python scripts common to osx and linux eg perl, shell, python:wq
 #  Not entirely sure what the dirrernce between RDIR and RMS_SCRIPT_PATHS is
 export RMS_SCRIPT_PATHS="${DABRENDER}/etc/pixar/configs"
@@ -153,12 +150,6 @@ export SGTK_DESKTOP_CONFIG_LOCATION="${DABWORK}/shotgun_configs"
 
 # WORKAROUND for libMC3.so.8 error in Maya2016 (added by Chris Bell 10/9/15
 export MAYA_DISABLE_CIP=1
-
-##########################  generic maya settings
-# export MAYA_APP_DIR=${DABRENDER}/etc/maya/mayaConfig
-# export MAYA_SCRIPT_PATH=${RMSTREE}/scripts:${MAYA_SCRIPT_PATH}
-# export MAYA_PLUG_IN_PATH=${RMSTREE}/plug-ins:${MAYA_APPLICATION_LOCATION}/plug-ins:${MAYA_PLUG_IN_PATH}
-# export XBMLANGPATH=${RMSTREE}/icons:${XBMLANGPATH}
 export MAYA_MAC_SET_UMASK=0
 
 ##########################  PATH settings
@@ -173,14 +164,13 @@ export PATH=${DABUSR}/etc/tractor:${PATH}
 ##########################  PYTHONPATH settings
 export PYTHONPATH=${DABRENDER}:${PYTHONPATH}
 export PYTHONPATH=${RMSTREE}/scripts:${PYTHONPATH}
-export PYTHONPATH=${DABUSR}/lib/python:${PYTHONPATH}
 export PYTHONPATH=${DABSWW}/renderfarm:${PYTHONPATH}
 export PYTHONPATH=${DABUSR}/etc/tractor:${PYTHONPATH}
-export PYTHONPATH=${DABUSR}:${PYTHONPATH}
+export PYTHONPATH=${TRACTOR_LOCATION}/lib/python2.7/site-packages:${PYTHONPATH}
 
 ########################## copy of tractor package only
 ##### need to do this as we dont want all the other site-packages from tractor and rmstree like pyside etc
-export PYTHONPATH=${DABUSR}/lib/site-packages:${PYTHONPATH}
+#export PYTHONPATH=${DABUSR}/lib/site-packages:${PYTHONPATH}
 #export PYTHONPATH=${PYTHONPATH}:${RMSTREE}/lib/python2.7/site-packages
 #export PYTHONPATH="${OCIO_EXECROOT}/lib/python2.7/site-packages:${PYTHONPATH}"
 
@@ -197,8 +187,6 @@ alias nukeassist='Nuke${NUKE_VERSION} --nukeassist'
 alias nukeple='Nuke${NUKE_VERSION} --PLE'
 alias nuke='Nuke${NUKE_VERSION}'
 alias maya='maya'
-# alias runnuke='source nuke_env'
-# alias runmaya='source maya_env'
 alias tqd='tq --engine tractor-engine:5600'
 
 
