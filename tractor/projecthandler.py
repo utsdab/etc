@@ -48,7 +48,7 @@ class projecthandler(TrEnvHandler):
                         env["PROJECT"] = self.project
                     #elif key == "TASK":
                         #self.task = val
-                        #farmjob["TASK"] = self.task
+                        #fj["TASK"] = self.task
                 except:
                     self.logger.warn("failed to split envkey {}".format(envkey))
 

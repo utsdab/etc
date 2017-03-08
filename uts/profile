@@ -138,8 +138,8 @@ esac
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
 #  These are locations for central scripts and python scripts common to osx and linux eg perl, shell, python:wq
 #  Not entirely sure what the dirrernce between RDIR and RMS_SCRIPT_PATHS is
-export RMS_SCRIPT_PATHS="${DABRENDER}/etc/pixar/configs"
-export RDIR="${DABRENDER}/etc/pixar/configs"
+export RMS_SCRIPT_PATHS="${DABRENDER}/etc/pixar/config-${RMAN_VERSION}"
+export RDIR="${DABRENDER}/etc/pixar/config-${RMAN_VERSION}"
 export PIXAR_LICENSE_FILE="${DABRENDER}/etc/pixar/pixar.license"
 export foundry_LICENSE="${DABRENDER}/etc/foundry/foundry_license.lic"
 export RV_LICENSE_FILE="${DABRENDER}/etc/tweak/license.gto"

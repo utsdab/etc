@@ -1,4 +1,4 @@
 //Module file for Maya.  Helps Maya find resources for RenderMan for Maya.
-+ RenderMan_for_Maya 21.2 /Applications/Pixar/RenderManForMaya-21.2-maya2017
++ RenderMan_for_Maya 21.3 /Applications/Pixar/RenderManForMaya-21.3-maya2017
 DYLD_FALLBACK_LIBRARY_PATH+=/Applications/Autodesk/maya2017/plug-ins/xgen/lib
 DYLD_FALLBACK_LIBRARY_PATH+=/Applications/Autodesk/maya2017/Maya.app/Contents/MacOS

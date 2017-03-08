@@ -114,7 +114,7 @@ class multiTrigger ( OpenMayaMPx.MPxNode ):
 
 		# Input Attrs
 		#
-		multiTrigger.aEnvelope = nAttr.create( "envelope", "farmjob", OpenMaya.MFnNumericData.kFloat, 1.0 );
+		multiTrigger.aEnvelope = nAttr.create( "envelope", "fj", OpenMaya.MFnNumericData.kFloat, 1.0 );
 		nAttr.setSoftMin(0.0)
 		nAttr.setSoftMax(1.0)
 		nAttr.setKeyable(True)
