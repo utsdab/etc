@@ -19,8 +19,8 @@ if [ ${DABDEV} ]; then
     _dabusr="${DABRENDER}/usr"
     _dabetc="${DABRENDER}/etc"
     _dabsww="${DABRENDER}/sww"
-    _dabwork="/Volumes/dabrender/work"
-    _dabassets="/Volumes/dabrender/assets"
+    _dabwork="/Users/Shared/UTS_Dev/Volumes/dabrender/work"
+    _dabassets="/Users/Shared/UTS_Dev/Volumes/dabrender/assets"
     _dabuserprefs="${_dabwork}/user_prefs"
 else
     echo "PRODUCTION: Using the studio paths"
@@ -162,6 +162,9 @@ export PATH=${MAYA_LOCATION}/bin:${PATH}
 export PATH=${DABUSR}/etc/tractor:${PATH}
 
 ##########################  PYTHONPATH settings
+# getting PySide2 from Maya2017 distro
+export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages":${PYTHONPATH}
+
 export PYTHONPATH=${DABRENDER}:${PYTHONPATH}
 export PYTHONPATH=${RMSTREE}/scripts:${PYTHONPATH}
 export PYTHONPATH=${DABSWW}/renderfarm:${PYTHONPATH}
