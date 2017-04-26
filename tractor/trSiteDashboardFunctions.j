@@ -80,71 +80,131 @@ function trSitePasswordHash (passwd, challenge)
 //
 // See for example:  http://en.wikipedia.org/wiki/URI_scheme
 //
+// original.................
+// ----------------------------------------------------------------
 
-function trSiteOpenPreviewLink (jid, tid, jobowner, pargs)
-{
-    var url = "";
-
-    if ("string" == typeof(pargs))
-        url = pargs;
-    else
-    if ("object" == typeof(pargs))
-    {
-        if (2==pargs.length && "sho"==pargs[0])  // ["sho", "imgfile"]
-        {
-            // In this example handler we treat the program named "sho"
-            // as a special case, and just attempt to load the image
-            // file directly from the server using a simple http fetch.
-            // For example, network mounted images that are visible
-            // ON THE ENGINE can be served to browsers by specifying
-            // the full engine-visible path to the image in the task's
-            // -chaser or -preview command, and the mapping the root of
-            // the network mount into the root of the tractor-served
-            // website area using an entry in the "SiteURLMap" list in
-            // tractor.config.
-            //
-            url = pargs[1];  // url is just the image file name
-        }
-        else {
-            // otherwise, for example, form a URI-scheme-like URL
-            // from the arguments ...
-
-            url = pargs.join(':');  // plugin:/some/image.img
-        }
-    }
-
-    if (url.length > 0)
-    {
-        // Typically we will want to load the preview image in a
-        // separate browser window using the DOM window.open() function.
-        // Such as when loading a simple image from a webserver.
-        //
-        // However, some built-in or plugin-supplied url scheme handlers
-        // work better when they are triggered by assigning directly to
-        // the semi-magic variable "window.location" since sometimes the
-        // handler launches an external program  without actually
-        // redirecting the current location or requiring a new browser
-        // tab or window.
-        //
-        // As a working but silly example, consider a chaser definition
-        // like this:
-        //
-        //    -chaser {mailto:rmancusp@pixar.com}
-        //
-        // The code here in this function might assume that there is a
-        // browser or OS handler installed for the "mailto" URI scheme,
-        // (as there actually is for all typical browsers, it launches
-        // the user's mail program).  Through experimentation we might
-        // learn that the "mailto" scheme works best with an assignment
-        // to window.location, rather than a call to window.open().
-        //
-        if (0 == url.search("mailto:"))
-            window.location = url;  // launches external mailer
-        else
-            window.open(url);      // open a new window showing the url
-    }
-}
+//function trSiteOpenPreviewLink (jid, tid, jobowner, pargs)
+//{
+//    var url = "";
+//
+//    if ("string" == typeof(pargs))
+//        url = pargs;
+//    else
+//    if ("object" == typeof(pargs))
+//    {
+//        if (2==pargs.length && "sho"==pargs[0])  // ["sho", "imgfile"]
+//        {
+//            // In this example handler we treat the program named "sho"
+//            // as a special case, and just attempt to load the image
+//            // file directly from the server using a simple http fetch.
+//            // For example, network mounted images that are visible
+//            // ON THE ENGINE can be served to browsers by specifying
+//            // the full engine-visible path to the image in the task's
+//            // -chaser or -preview command, and the mapping the root of
+//            // the network mount into the root of the tractor-served
+//            // website area using an entry in the "SiteURLMap" list in
+//            // tractor.config.
+//            //
+//            url = pargs[1];  // url is just the image file name
+//        }
+//        else {
+//            // otherwise, for example, form a URI-scheme-like URL
+//            // from the arguments ...
+//
+//            url = pargs.join(':');  // plugin:/some/image.img
+//        }
+//    }
+//
+//    if (url.length > 0)
+//    {
+//        // Typically we will want to load the preview image in a
+//        // separate browser window using the DOM window.open() function.
+//        // Such as when loading a simple image from a webserver.
+//        //
+//        // However, some built-in or plugin-supplied url scheme handlers
+//        // work better when they are triggered by assigning directly to
+//        // the semi-magic variable "window.location" since sometimes the
+//        // handler launches an external program  without actually
+//        // redirecting the current location or requiring a new browser
+//        // tab or window.
+//        //
+//        // As a working but silly example, consider a chaser definition
+//        // like this:
+//        //
+//        //    -chaser {mailto:rmancusp@pixar.com}
+//        //
+//        // The code here in this function might assume that there is a
+//        // browser or OS handler installed for the "mailto" URI scheme,
+//        // (as there actually is for all typical browsers, it launches
+//        // the user's mail program).  Through experimentation we might
+//        // learn that the "mailto" scheme works best with an assignment
+//        // to window.location, rather than a call to window.open().
+//        //
+//        if (0 == url.search("mailto:"))
+//            window.location = url;  // launches external mailer
+//        else
+//            window.open(url);      // open a new window showing the url
+//    }
+//}
 
 //
 // ----------------------------------------------------------------
 //
+
+
+/* Encodes a string as hex
+ * @param str {string} string to encode
+ * @return {string} encoded string
+ */
+function hexEncode (str) {
+    var rtn = "";
+    for (var i = 0; i < str.length; ++i) {
+        rtn += str.charCodeAt(i).toString(16);
+    }
+    return rtn;
+}
+
+/* Called when someone clicks on the "<font color="red">Preview</font>" menu items for tasks that specify a -preview or -chaser command
+ * @param jid {string} job id
+ * @param tid {string} task id
+ * @param jobowner {string} Job owner
+ * @param pargs {Array} Chaser cmd split on spaces
+ */
+function trSiteOpenPreviewLink (jid, tid, jobowner, pargs) {
+    var hex = "",
+        path = "",
+        url = "";
+
+    if ("string" == typeof(pargs)) {
+        url = pargs;
+    } else if ("object" == typeof(pargs)) {
+        // Use RV for all <font color="red">sho</font> previews
+        //  edited by matt
+//        if (2 == pargs.length && "<font color="red">sho</font>" == pargs[0]) {
+//            // Ex. ["<font color="red">sho</font>", "/some/image.img"]
+//            path = pargs[1];
+          if (/* 2 == pargs.length && */ "<font color="red">sho</font>" == pargs[0] || "rv" == pargs[0]) {
+              path = pargs[pargs.length-1];
+        } else {
+            // Assume a path in the first argument only
+            path = pargs[0];
+        }
+    }
+
+    // We'll be encoding the URL as hex to ensure the URL reaches the protocol handler without being mangled by some browsers (IE).
+    // This is supported by RV: <a href="https://tweaksoftware.zendesk.com/entries/74814-rvlink-urls-rv-as-protocol-handler" target="_blank">https://tweaksoftware.zendesk.com/e...rotocol-handler</a>
+
+    // Path modifications
+    path = path.replace(/%04d/, "#") // Replace frame range wildcard to be URL friendly
+               .replace(/^\/+/, "//") // Force double slashes for greater compatibility
+
+    // Disable window reuse with -reuse 0 and encode the path
+    hex = hexEncode("-reuse 0 " + path)
+    url = ("rvlink://baked/" + hex)
+
+    // Launch RV
+    if (url.length > 0) {
+        // RV works better when triggered by window.location instead of window.open
+        window.location = url;
+    }
+}
