@@ -184,7 +184,6 @@ export PYTHONPATH=${TRACTOR_LOCATION}/lib/python2.7/site-packages:${PYTHONPATH}
 #export NUKE_PATH="${OCIO_ROOT}/share/nuke:${NUKE_PATH}";
 #export NUKE_PATH="${DABUSR}/etc/nuke/tractorNuke:${NUKE_PATH}";
 
-
 ###########################  ALIAS's
 alias nukex='Nuke${NUKE_VERSION} --nukex'
 alias nukestudio='Nuke${NUKE_VERSION} --studio'
@@ -193,8 +192,8 @@ alias nukeple='Nuke${NUKE_VERSION} --PLE'
 alias nuke='Nuke${NUKE_VERSION}'
 alias maya='maya'
 alias tqd='tq --engine tractor-engine:5600'
-alias myprefs='cd `myprefs.py`'
-alias mywork='cd `mywork.py`'
+alias myprefs='open `myprefs.py`'
+alias mywork='open `mywork.py`'
 
 
 # if [ ${CONFIG} ] ; then
