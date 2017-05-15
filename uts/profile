@@ -146,7 +146,7 @@ export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
 export RV_LICENSE_FILE="${DABETC}/tweak/license.gto"
 export TWEAK_LICENSE_FILE="${DABETC}/tweak/license.gto"
 export MU_MODULE_PATH="${DABUSR}/etc/tweak/mu"
-export SGTK_DESKTOP_CONFIG_LOCATION="${DABWORK}/shotgun_configs"
+export SGTK_DESKTOP_CONFIG_LOCATION="${DABWORK}/shotgun/toolkit_configs"
 export solidangle_LICENSE="/Applications/solidAngleLicense"
 
 
