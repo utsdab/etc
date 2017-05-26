@@ -100,11 +100,11 @@ fi
 ##########################
 export MAYA_VERSION="2017"
 echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-export RMAN_VERSION="21.3"
+export RMAN_VERSION="21.4"
 echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 export TRACTOR_VERSION="2.2"
 echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-export NUKE_VERSION="10.5v3"
+export NUKE_VERSION="10.5v4"
 echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
 echo "INFO    : OS             : ${OSTYPE:0:5}"
 ##########################
@@ -141,7 +141,7 @@ esac
 #  Not entirely sure what the dirrernce between RDIR and RMS_SCRIPT_PATHS is
 export RMS_SCRIPT_PATHS="${DABETC}/pixar/config-${RMAN_VERSION}"
 export RDIR="${DABETC}/pixar/config-${RMAN_VERSION}"
-export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
+#export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
 export RV_LICENSE_FILE="${DABETC}/tweak/license.gto"
 export TWEAK_LICENSE_FILE="${DABETC}/tweak/license.gto"
@@ -166,7 +166,6 @@ export PATH=${DABUSR}/etc/tractor:${PATH}
 ##########################  PYTHONPATH settings
 # getting PySide2 from Maya2017 distro
 export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages":${PYTHONPATH}
-
 export PYTHONPATH=${DABRENDER}:${PYTHONPATH}
 export PYTHONPATH=${RMSTREE}/scripts:${PYTHONPATH}
 export PYTHONPATH=${DABSWW}/renderfarm:${PYTHONPATH}
