@@ -93,7 +93,7 @@ if [ -d ${_MAYA_APP_DIR} ]; then
     export MAYA_APP_DIR="${_MAYA_APP_DIR}"
     echo "INFO    : MAYA_APP_DIR = ${MAYA_APP_DIR}"
 else
-    echo "CRITICAL: Cant set MAYA_APP_DIR correctly as ${_MAYA_APP_DIR}"
+    echo "WARNING: Cant set MAYA_APP_DIR correctly as ${_MAYA_APP_DIR}"
     unset MAYA_APP_DIR
 fi
 
@@ -164,7 +164,6 @@ export PATH=${MAYA_LOCATION}/bin:${PATH}
 export PATH=${DABUSR}/etc/tractor:${PATH}
 
 ##########################  PYTHONPATH settings
-# getting PySide2 from Maya2017 distro
 export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages":${PYTHONPATH}
 export PYTHONPATH=${DABRENDER}:${PYTHONPATH}
 export PYTHONPATH=${RMSTREE}/scripts:${PYTHONPATH}
@@ -193,14 +192,6 @@ alias maya='maya'
 alias tqd='tq --engine tractor-engine:5600'
 alias myprefs='open `myprefs.py`'
 alias mywork='open `mywork.py`'
-
-
-# if [ ${CONFIG} ] ; then
-# echo  "INFO    : CONFIG is ${CONFIG} "
-#     export MAYA_APP_DIR="${CONFIG}/mayaConfig"
-# else
-# 	echo  "WARNING: CONFIG not found still "
-# fi
 
 
 ##########################
