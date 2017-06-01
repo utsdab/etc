@@ -18,7 +18,7 @@
             "TWEAK_LICENSE_FILE": "$DABETC/tweak/license.gto",
             "EnvKey_linux":       "from_shared.linux.envkeys",
             "MAYA_DISABLE_CIP":   "1",
-            "PYTHONPATH" :        "$DABETC:$DABRENDER:$DABSWW/renderfarm"
+            "PYTHONPATH" :        "$DABRENDER"
         },
         "envhandler": "default"
     },
@@ -27,13 +27,12 @@
     {
         "keys": ["rms-*-maya-*"],
         "environment": {
-	        "EnvKey_rms_maya":  "from_shared.linux.envkeys",
             "RMSTREE":          "/opt/pixar/RenderManStudio-$TR_ENV_RMSVER-maya$TR_ENV_MAYAVER",
             "RMANTREE":         "$RMSTREE/rmantree",
             "MAYA_LOCATION":    "$TR_ENV_MAYALOCATION",
             "MAYA_MODULE_PATH": "$RMSTREE/etc:$DABETC/maya/mayaConfig/dab_modules",
             "MAYA_PLUG_IN_PATH":"$RMSTREE/plug-ins:$MAYA_LOCATION/plug-ins",
-            "MAYA_SCRIPT_PATH": "$DABETC/maya/mayaConfig/dab_scripts:$RMSTREE/scripts:$MAYA_LOCATION/scripts",
+            "MAYA_SCRIPT_PATH": "$DABETC/maya/dab_scripts:$RMSTREE/scripts:$MAYA_LOCATION/scripts",
             "PATH":             "$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:$PATH",
             "PYTHONPATH":       "$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$PYTHONPATH",
             "MAYA_DISABLE_CIP" :"1"
@@ -47,7 +46,10 @@
             "RMANTREE":          "/opt/pixar/RenderManProServer-$TR_ENV_RFMVER",
             "MAYA_LOCATION":     "$TR_ENV_MAYALOCATION",
             "MAYA_MODULE_PATH":  "$RMSTREE/etc:$DABETC/maya/mayaConfig/dab_modules",
+            "MAYA_PLUG_IN_PATH": "$RMSTREE/plug-ins:$MAYA_LOCATION/plug-ins",
+            "MAYA_SCRIPT_PATH":  "$DABETC/maya/dab_scripts:$RMSTREE/scripts:$MAYA_LOCATION/scripts",
             "PATH":              "$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:$PATH",
+            "PYTHONPATH":        "$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$PYTHONPATH",
             "LD_LIBRARY_PATH":   "@+:/usr/autodesk/maya$TR_ENV_MAYAVER-x64/plug-ins/xgen/lib/:/usr/autodesk/maya$TR_ENV_MAYAVER-x64/lib"
         },
         "envhandler": "rfmhandler"
