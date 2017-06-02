@@ -18,7 +18,7 @@
             "RV_LICENSE_FILE":   "$DABETC/tweak/license.gto",
             "TWEAK_LICENSE_FILE":"$DABETC/tweak/license.gto",
             "MAYA_DISABLE_CIP":  "1",
-            "PYTHONPATH":        "$DABETC:/Applications/Pixar/Tractor-2.2/lib/python2.7/site-packages:$PYTHONPATH"
+            "PYTHONPATH":        "$DABRENDER:$DABETC:/Applications/Pixar/Tractor-2.2/lib/python2.7/site-packages:$PYTHONPATH"
         },
        "envhandler": "default"
     },

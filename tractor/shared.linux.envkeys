@@ -10,8 +10,8 @@
             "DABASSETS":         "$DABRENDER/assets",
             "DABUSERPREFS":      "$DABWORK/user_prefs",
 
-            "RMS_SCRIPT_PATHS":   "$DABETC/pixar/configs",
-            "RDIR":               "$DAB$DABETC/pixar/configs",
+            "RMS_SCRIPT_PATHS":   "$DABETC/pixar/config",
+            "RDIR":               "$DABETC/pixar/config",
             "PATH":               "/usr/local/bin:$DABUSR/bin:$PATH",
             "PIXAR_LICENSE_FILE": "$DABETC/pixar/pixar.license",
             "RV_LICENSE_FILE":    "$DABETC/tweak/license.gto",

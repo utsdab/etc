@@ -139,8 +139,10 @@ esac
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
 #  These are locations for central scripts and python scripts common to osx and linux eg perl, shell, python:wq
 #  Not entirely sure what the dirrernce between RDIR and RMS_SCRIPT_PATHS is
-export RMS_SCRIPT_PATHS="${DABETC}/pixar/config-${RMAN_VERSION}"
-export RDIR="${DABETC}/pixar/config-${RMAN_VERSION}"
+
+export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
+#export RDIR="${DABETC}/pixar/config-${RMAN_VERSION}"
+export RDIR="${DABETC}/pixar/config"
 export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
 export RV_LICENSE_FILE="${DABETC}/tweak/license.gto"
@@ -169,7 +171,7 @@ export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current
 export PYTHONPATH=${DABRENDER}:${PYTHONPATH}
 export PYTHONPATH=${RMSTREE}/scripts:${PYTHONPATH}
 #     export PYTHONPATH=${DABSWW}/renderfarm:${PYTHONPATH}
-export PYTHONPATH=${DABUSR}/etc/tractor:${PYTHONPATH}
+export PYTHONPATH=${DABUSR}/etc/tractor:${DABETC}:${PYTHONPATH}
 export PYTHONPATH=${TRACTOR_LOCATION}/lib/python2.7/site-packages:${PYTHONPATH}
 
 ##########################  NUKE settings
