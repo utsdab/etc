@@ -11,7 +11,7 @@
             "DABUSERPREFS":      "$DABWORK/user_prefs",
 
             "RMS_SCRIPT_PATHS":   "$DABETC/pixar/configs",
-            "RDIR":               "$DAB$DABETC/pixar/configs",
+            "RDIR":               "$DABETC/pixar/configs",
             "PATH":               "/usr/local/bin:$DABUSR/bin:$PATH",
             "PIXAR_LICENSE_FILE": "$DABETC/pixar/pixar.license",
             "RV_LICENSE_FILE":    "$DABETC/tweak/license.gto",
