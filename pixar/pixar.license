@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='ISO-8859-1'?>
+<!DOCTYPE PixarLicense SYSTEM "http://renderman.pixar.com/schema/PixarLicense.dtd">
+<PixarLicense>
+  <LicenseInfo>
+    <SerialNumber>123-4567-89098-7654-321012</SerialNumber>
+    <Created>01-jan-2011 11:11:11</Created>
+    <Licensing>PixarLicense-17.0</Licensing>
+    <CustomerInfo>
+      <CustomerName>Star Command</CustomerName>
+      <ContactName>Buzz Lightyear</ContactName>
+      <Phone></Phone>
+      <Fax></Fax>
+      <Email>blightyear@foo.bar</Email>
+    </CustomerInfo>
+    <LicensedHost>
+    <HostIdentifier>001gg23456f7</HostIdentifier>
+      <LicenseAccess type="floating">9010@138.25.185.34</LicenseAccess>
+    </LicensedHost>
+  </LicenseInfo>
+</PixarLicense>
+
