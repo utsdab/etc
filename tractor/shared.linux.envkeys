@@ -9,7 +9,6 @@
             "DABWORK":           "$DABRENDER/work",
             "DABASSETS":         "$DABRENDER/assets",
             "DABUSERPREFS":      "$DABWORK/user_prefs",
-
             "RMS_SCRIPT_PATHS":   "$DABETC/pixar/config",
             "RDIR":               "$DABETC/pixar/config",
             "PATH":               "/usr/local/bin:$DABUSR/bin:$PATH",
