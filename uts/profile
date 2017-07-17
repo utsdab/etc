@@ -100,7 +100,7 @@ fi
 ##########################
 export MAYA_VERSION="2017"
 echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-export RMAN_VERSION="21.2"
+export RMAN_VERSION="21.4"
 echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 export TRACTOR_VERSION="2.2"
 echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
@@ -123,14 +123,13 @@ darwi)
     export TRACTOR_LOCATION="/Applications/Pixar/Tractor-${TRACTOR_VERSION}"
     export MAYA_APPLICATION_LOCATION="/Applications/Autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}/Maya.app/Contents"
-#    export MAYA_SCRIPT_PATH="${DABUSR}/etc/maya/dab_scripts"
+    export MAYA_RENDER_DESC_PATH="/Applications/solidangle/mtoa/2017/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}"
     export NUKE_INSTALL_PATH="/Applications/Nuke${NUKE_VERSION}"
     export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke$NUKE_VERSION.app"
     export NUKE_TEMP_DIR="/var/tmp/nuke-${USER}"
     export PATH="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app/Contents/MacOS:${PATH}"
     export PATH="/usr/aw/COM/bin:/usr/aw/COM/etc:${PATH}"
     export PATH="/Applications/RV64.app/Contents/MacOS:${PATH}"
-    export MAYA_RENDER_DESC_PATH="/Applications/solidangle/mtoa/2017/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}":${MAYA_RENDER_DESC_PATH}
     ;;
 *)
     echo "WARNING:   LIBRARY_PATH and base environment NOT set in profile.d/dabanim.sh"
@@ -138,55 +137,73 @@ darwi)
 esac
 
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
-#  These are locations for central scripts and python scripts common to osx and linux eg perl, shell, python:wq
-#  Not entirely sure what the dirrernce between RDIR and RMS_SCRIPT_PATHS is
+#  Not entirely sure what the difference between RDIR and RMS_SCRIPT_PATHS is
 
 export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
-#export RDIR="${DABETC}/pixar/config-${RMAN_VERSION}"
-export RDIR="${DABETC}/pixar/config"
+#export RDIR="${DABETC}/pixar/config"     ####  appeard to be obsolete
 #export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
 export RV_LICENSE_FILE="${DABETC}/tweak/license.gto"
 export TWEAK_LICENSE_FILE="${DABETC}/tweak/license.gto"
 export MU_MODULE_PATH="${DABUSR}/etc/tweak/mu"
 export SGTK_DESKTOP_CONFIG_LOCATION="${DABWORK}/shotgun/toolkit_configs"
+export SGTK_PREFERENCES_LOCATION="${DABWORK}/shotgun/toolkit_configs"
+export SHOTGUN_PATH_MAC="${DABWORK}/shotgun/shotgun_projects"
 export solidangle_LICENSE="/Applications/solidAngleLicense"
 
-
-# WORKAROUND for libMC3.so.8 error in Maya2016 (added by Chris Bell 10/9/15
-export MAYA_DISABLE_CIP=1
-export MAYA_MAC_SET_UMASK=0
-
 ##########################  PATH settings
-export PATH=${DABUSR}/bin:${PATH}
-export PATH=${DABSWW}/renderfarm/bin:${PATH}
-export PATH=${RMANTREE}/bin:${PATH}
-export PATH=${RMSTREE}/bin:${PATH}
-export PATH=${TRACTOR_LOCATION}/bin:${PATH}
-export PATH=${MAYA_LOCATION}/bin:${PATH}
-export PATH=${DABUSR}/etc/tractor:${PATH}
+export PATH="${DABUSR}/bin:${PATH}"
+export PATH="${DABUSR}/etc/tractor:${PATH}"
+export PATH="${DABSWW}/renderfarm/bin:${PATH}"
+export PATH="${RMANTREE}/bin:${PATH}"
+export PATH="${RMSTREE}/bin:${PATH}"
+export PATH="${TRACTOR_LOCATION}/bin:${PATH}"
+export PATH="${MAYA_LOCATION}/bin:${PATH}"
 
 ##########################  PYTHONPATH settings
-export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages":${PYTHONPATH}
-#export PYTHONPATH=${DABRENDER}:${DABSWW}:${PYTHONPATH}  - danger here - need to get "maya" out of SWW
-export PYTHONPATH=${DABRENDER}:${PYTHONPATH}
-export PYTHONPATH=${RMSTREE}/scripts:${PYTHONPATH}
-#     export PYTHONPATH=${DABSWW}/renderfarm:${PYTHONPATH}
-export PYTHONPATH=${DABUSR}/etc/tractor:${DABETC}:${PYTHONPATH}
-export PYTHONPATH=${TRACTOR_LOCATION}/lib/python2.7/site-packages:${PYTHONPATH}
+export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages:${PYTHONPATH}"
+export PYTHONPATH="${TRACTOR_LOCATION}/lib/python2.7/site-packages:${PYTHONPATH}"
+export PYTHONPATH="${RMSTREE}/scripts:${PYTHONPATH}"
+export PYTHONPATH="${RMANTREE}/bin:${PYTHONPATH}"
+
+#export PYTHONPATH="${DABRENDER}:${DABSWW}:${PYTHONPATH}"  - danger here - need to get "maya" out of SWW
+#export PYTHONPATH="${DABSWW}/renderfarm:${PYTHONPATH}"
+
+export PYTHONPATH="${DABRENDER}:${PYTHONPATH}"
+export PYTHONPATH="${DABETC}:${PYTHONPATH}"
+export PYTHONPATH="${DABUSR}/etc/tractor:${PYTHONPATH}"
+export PYTHONPATH="${DABUSR}/etc/maya/dab_scripts:${PYTHONPATH}"
+export PYTHONPATH="${DABUSR}/etc/maya/dab_plug-ins:${PYTHONPATH}"
 
 ##########################  NUKE settings
-#     export NUKE_PATH="${OCIO_EXECROOT}/lib/nuke:${NUKE_PATH}"
-#     export NUKE_PATH="${OCIO_ROOT}/share/nuke:${NUKE_PATH}";
-#     export NUKE_PATH="${DABUSR}/etc/nuke/tractorNuke:${NUKE_PATH}";
+#export NUKE_PATH="${OCIO_EXECROOT}/lib/nuke:${NUKE_PATH}"
+#export NUKE_PATH="${OCIO_ROOT}/share/nuke:${NUKE_PATH}";
+#export NUKE_PATH="${DABUSR}/etc/nuke/tractorNuke:${NUKE_PATH}";
+
+##########################  MAYA and RENDERMAN settings  also in the Maya.env
+export MAYA_PLUG_IN_PATH="${DABUSR}/etc/maya/dab_plug-ins:${MAYA_PLUG_IN_PATH}"
+export MAYA_PLUG_IN_PATH="${RMSTREE}/plug-ins:${MAYA_PLUG_IN_PATH}"
+export MAYA_PLUG_IN_PATH="${MAYA_APPLICATION_LOCATION}/plug-ins:${MAYA_PLUG_IN_PATH}"
+
+export MAYA_SCRIPT_PATH="${DABUSR}/etc/maya/dab_scripts:${MAYA_SCRIPT_PATH}"
+export MAYA_SCRIPT_PATH="${RMSTREE}/scripts:${MAYA_SCRIPT_PATH}"
+
+export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B${XBMLANGPATH}"
+export XBMLANGPATH="$RMSTREE/icons/%B:${XBMLANGPATH}"
+
+export MAYA_PRESET_PATH="${DABUSR}/etc/maya/dab_presets"
+export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
+export MAYA_MODULE_PATH="${DABUSR}/etc/maya/dab_modules"
+export MAYA_SHELF_PATH="${DABUSR}/etc/maya/dab_shelves"
+
+export MAYA_MAC_SET_UMASK=0
+export MAYA_DISABLE_CIP=1
 
 ###########################  ALIAS's
 alias nukex='Nuke${NUKE_VERSION} --nukex'
 alias nukestudio='Nuke${NUKE_VERSION} --studio'
-alias nukeassist='Nuke${NUKE_VERSION} --nukeassist'
-alias nukeple='Nuke${NUKE_VERSION} --PLE'
 alias nuke='Nuke${NUKE_VERSION}'
-     alias maya='maya'
+alias maya='maya'
 alias tqd='tq --engine tractor-engine:5600'
 alias myprefs='open `myprefs.py`'
 alias mywork='open `mywork.py`'
