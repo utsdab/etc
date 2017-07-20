@@ -170,7 +170,7 @@ export PYTHONPATH="${RMANTREE}/bin:${PYTHONPATH}"
 #export PYTHONPATH="${DABSWW}/renderfarm:${PYTHONPATH}"
 
 export PYTHONPATH="${DABRENDER}:${PYTHONPATH}"
-export PYTHONPATH="${DABETC}:${PYTHONPATH}"
+#export PYTHONPATH="${DABETC}:${PYTHONPATH}"
 export PYTHONPATH="${DABUSR}/etc/tractor:${PYTHONPATH}"
 export PYTHONPATH="${DABUSR}/etc/maya/dab_scripts:${PYTHONPATH}"
 export PYTHONPATH="${DABUSR}/etc/maya/dab_plug-ins:${PYTHONPATH}"
