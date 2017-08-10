@@ -12,8 +12,11 @@
 
             "MAYA_LOCATION": "$TR_ENV_MAYALOCATION",
             "LD_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/lib:$LD_LIBRARY_PATH",
-            "MAYA_MODULE_PATH": "$TR_ENV_MAYAVER/etc:$MAYA_MODULE_PATH",
-            "PATH": "$MAYA_LOCATION/bin:$PATH"
+            "MAYA_MODULE_PATH":  "$TR_ENV_MAYAVER/etc:$MAYA_MODULE_PATH:/$DABUSR/etc/maya/dab_modules",
+            "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_scripts",
+            "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_plug-ins",
+            "PYTHONPATH":        "$DABUSR/etc/maya/dab_scripts:$PYTHONPATH",
+            "PATH":              "$MAYA_LOCATION/bin:$PATH"
         },
         "envhandler": "mayahandler"
     }

@@ -140,7 +140,7 @@ esac
 #  Not entirely sure what the difference between RDIR and RMS_SCRIPT_PATHS is
 
 export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
-#export RDIR="${DABETC}/pixar/config"     ####  appeard to be obsolete
+export RDIR="${DABETC}/pixar/config"     ####  appeard to be obsolete
 #export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
 export RV_LICENSE_FILE="${DABETC}/tweak/license.gto"
@@ -150,6 +150,7 @@ export SGTK_DESKTOP_CONFIG_LOCATION="${DABWORK}/shotgun/toolkit_configs"
 export SGTK_PREFERENCES_LOCATION="${DABWORK}/shotgun/toolkit_configs"
 export SHOTGUN_PATH_MAC="${DABWORK}/shotgun/shotgun_projects"
 export solidangle_LICENSE="/Applications/solidAngleLicense"
+#export solidangle_LICENSE=solidangle_LICENSE=XXXX@SERVER
 
 ##########################  PATH settings
 export PATH="${DABUSR}/bin:${PATH}"

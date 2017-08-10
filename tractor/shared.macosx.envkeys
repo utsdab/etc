@@ -11,8 +11,8 @@
             "DABASSETS":         "$DABRENDER/assets",
             "DABUSERPREFS":      "$DABWORK/user_prefs",
 
-            "RMS_SCRIPT_PATHS":  "$DABETC/pixar/configs",
-            "RDIR":              "$DABETC/pixar/configs",
+            "RMS_SCRIPT_PATHS":  "$DABETC/pixar/config",
+            "RDIR":              "$DABETC/pixar/config",
             "PATH":              "$DABSWW/renderfarm/bin:/usr/local/bin:/Applications/Pixar/Tractor-2.2/bin:$DABUSR/bin:$PATH",
             "PIXAR_LICENSE_FILE":"$DABETC/pixar/pixar.license",
             "RV_LICENSE_FILE":   "$DABETC/tweak/license.gto",
