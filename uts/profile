@@ -100,7 +100,7 @@ fi
 ##########################
 export MAYA_VERSION="2017"
 echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-export RMAN_VERSION="21.4"
+export RMAN_VERSION="21.5"
 echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 export TRACTOR_VERSION="2.2"
 echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
@@ -170,8 +170,8 @@ export PYTHONPATH="${RMANTREE}/bin:${PYTHONPATH}"
 #export PYTHONPATH="${DABRENDER}:${DABSWW}:${PYTHONPATH}"  - danger here - need to get "maya" out of SWW
 #export PYTHONPATH="${DABSWW}/renderfarm:${PYTHONPATH}"
 
-export PYTHONPATH="${DABRENDER}:${PYTHONPATH}"
-#export PYTHONPATH="${DABETC}:${PYTHONPATH}"
+#export PYTHONPATH="${DABRENDER}:${PYTHONPATH}"
+export PYTHONPATH="${DABSWW}:${PYTHONPATH}"
 export PYTHONPATH="${DABUSR}/etc/tractor:${PYTHONPATH}"
 export PYTHONPATH="${DABUSR}/etc/maya/dab_scripts:${PYTHONPATH}"
 export PYTHONPATH="${DABUSR}/etc/maya/dab_plug-ins:${PYTHONPATH}"
@@ -211,5 +211,5 @@ alias mywork='open `mywork.py`'
 
 
 ##########################
-echo     "ENDING  : ${BASH_SOURCE}"
+echo "ENDING  : ${BASH_SOURCE}"
 echo ""
