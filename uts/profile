@@ -114,20 +114,24 @@ linux)
     export RMANTREE="/opt/pixar/RenderManProServer-${RMAN_VERSION}"
     export RMSTREE="/opt/pixar/RenderManStudio-${RMAN_VERSION}-maya${MAYA_VERSION}"
     export TRACTOR_LOCATION="/opt/pixar/Tractor-${TRACTOR_VERSION}"
+    export ARNOLD_LOCATION="/opt/solidangle/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/usr/autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}"
+    export NUKE_INSTALL_PATH="/opt/foundry/${NUKE_VERSION}"
+    export NUKE_LOCATION="/opt/foundry/${NUKE_VERSION}"
     ;;
 darwi)
     export RMANTREE="/Applications/Pixar/RenderManProServer-${RMAN_VERSION}"
     export RMSTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}-maya${MAYA_VERSION}"
     export TRACTOR_LOCATION="/Applications/Pixar/Tractor-${TRACTOR_VERSION}"
+    export ARNOLD_LOCATION="/Applications/solidangle/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/Applications/Autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}/Maya.app/Contents"
-    export MAYA_RENDER_DESC_PATH="/Applications/solidangle/mtoa/2017/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}"
+    export MAYA_RENDER_DESC_PATH="${ARNOLD_LOCATION}/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}"
     export NUKE_INSTALL_PATH="/Applications/Nuke${NUKE_VERSION}"
-    export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke$NUKE_VERSION.app"
+    export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app"
     export NUKE_TEMP_DIR="/var/tmp/nuke-${USER}"
-    export PATH="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app/Contents/MacOS:${PATH}"
+    export PATH="${NUKE_LOCATION}/Contents/MacOS:${PATH}"
     export PATH="/usr/aw/COM/bin:/usr/aw/COM/etc:${PATH}"
     export PATH="/Applications/RV64.app/Contents/MacOS:${PATH}"
     ;;
@@ -148,8 +152,9 @@ export TWEAK_LICENSE_FILE="${DABETC}/tweak/license.gto"
 export MU_MODULE_PATH="${DABUSR}/etc/tweak/mu"
 export SGTK_DESKTOP_CONFIG_LOCATION="${DABWORK}/shotgun/toolkit_configs"
 export SGTK_PREFERENCES_LOCATION="${DABWORK}/shotgun/toolkit_configs"
+export SHOTGUN_BUNDLE_CACHE_FALLBACK_PATHS="${DABWORK}/shotgun/toolkit_configs"
 export SHOTGUN_PATH_MAC="${DABWORK}/shotgun/shotgun_projects"
-export solidangle_LICENSE="/Applications/solidAngleLicense"
+export solidangle_LICENSE="${DABETC}/solidangle/solidangle_license.lic"
 #export solidangle_LICENSE=solidangle_LICENSE=XXXX@SERVER
 
 ##########################  PATH settings
