@@ -92,22 +92,6 @@
         "rewritedict": {}
     },
     {
-        "keys": ["maya*"],
-        "environment": {
-            "Envkey_maya":       "from_sharedlinux_handler_maya",
-            "MAYA_LOCATION":     "$TR_ENV_MAYALOCATION",
-            "LD_LIBRARY_PATH":   "$MAYA_LOCATION/lib",
-            "MAYA_PLUG_IN_PATH": "$MAYA_LOCATION/plug-ins",
-            "MAYA_MODULE_PATH":  "$DABETC/maya/mayaConfig/dab_modules",
-            "MAYA_SCRIPT_PATH":  "$DABETC/maya/mayaConfig/dab_scripts:$MAYA_LOCATION/scripts",
-            "PATH":              "$MAYA_LOCATION/bin:$DABUSR/bin:$PATH",
-            "MAYA_DISABLE_CIP" : "1",
-            "TMPDIR":            "/var/tmp"
-
-        },
-        "envhandler": "mayahandler"
-    },
-    {
         "keys": ["setenv *"],
         "envhandler": "setenvhandler"
     }

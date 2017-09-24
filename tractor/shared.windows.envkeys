@@ -64,14 +64,6 @@
         "rewritedict": {}
     },
     {
-        "keys": ["maya*"],
-        "environment": {
-            "MAYA_LOCATION": "$TR_ENV_MAYALOCATION",
-            "PATH": "$MAYA_LOCATION/bin;$PATH"
-        },
-        "envhandler": "mayahandler"
-    },
-    {
         "keys": ["setenv *"],
         "envhandler": "setenvhandler"
     }

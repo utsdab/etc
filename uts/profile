@@ -154,8 +154,15 @@ export SGTK_DESKTOP_CONFIG_LOCATION="${DABWORK}/shotgun/toolkit_configs"
 export SGTK_PREFERENCES_LOCATION="${DABWORK}/shotgun/toolkit_configs"
 export SHOTGUN_BUNDLE_CACHE_FALLBACK_PATHS="${DABWORK}/shotgun/toolkit_configs"
 export SHOTGUN_PATH_MAC="${DABWORK}/shotgun/shotgun_projects"
-export solidangle_LICENSE="${DABETC}/solidangle/solidangle_license.lic"
+#export solidangle_LICENSE="${DABETC}/solidangle/solidangle_license.lic"
 #export solidangle_LICENSE=solidangle_LICENSE=XXXX@SERVER
+
+export ARNOLD_PLUGIN_PATH="${ARNOLD_LOCATION}/shaders"
+export MTOA_TEMPLATES_PATH="" # is for the Attribute Editor (AE) templates of Arnold shaders.
+export MTOA_EXTENSIONS_PATH="" # is for MtoA extensions like Yeti.
+export MAYA_CUSTOM_TEMPLATE_PATH= "" # is for Node Editor templates for Arnold shaders.
+export MTOA_STARTUP_LOG_VERBOSITY=""  # sets the MtoA log verbosity during startup: 1 for Errors and Warnings, 2 for Errors, Warnings, and Info, 3 for all
+export MTOA_LOG_PATH="" # default location for Arnold log files.
 
 ##########################  PATH settings
 export PATH="${DABUSR}/bin:${PATH}"
@@ -165,6 +172,7 @@ export PATH="${RMANTREE}/bin:${PATH}"
 export PATH="${RMSTREE}/bin:${PATH}"
 export PATH="${TRACTOR_LOCATION}/bin:${PATH}"
 export PATH="${MAYA_LOCATION}/bin:${PATH}"
+export PATH="${ARNOLD_LOCATION}/bin:${PATH}"
 
 ##########################  PYTHONPATH settings
 export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages:${PYTHONPATH}"
