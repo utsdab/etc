@@ -155,7 +155,6 @@ export SGTK_PREFERENCES_LOCATION="${DABWORK}/shotgun/toolkit_configs"
 export SHOTGUN_BUNDLE_CACHE_FALLBACK_PATHS="${DABWORK}/shotgun/toolkit_configs"
 export SHOTGUN_PATH_MAC="${DABWORK}/shotgun/shotgun_projects"
 #export solidangle_LICENSE="${DABETC}/solidangle/solidangle_license.lic"
-#export solidangle_LICENSE=solidangle_LICENSE=XXXX@SERVER
 
 export ARNOLD_PLUGIN_PATH="${ARNOLD_LOCATION}/shaders"
 export MTOA_TEMPLATES_PATH="" # is for the Attribute Editor (AE) templates of Arnold shaders.
