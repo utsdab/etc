@@ -9,10 +9,10 @@
       "DABWORK": "$DABRENDER/work",
       "DABASSETS": "$DABRENDER/assets",
       "DABUSERPREFS": "$DABWORK/user_prefs",
-      "ENVKEY_DEBUG": "from_maya.macosx.envkeys",
+      "ENVKEY_maya": "from_maya.macosx.envkeys",
 
       "MAYA_LOCATION": "$TR_ENV_MAYALOCATION/Maya.app/Contents",
-      "MAYA_MODULE_PATH": "$TR_ENV_MAYAVER/etc:$DABUSR/etc/maya/dab_modules:$MAYA_MODULE_PATH",
+      "MAYA_MODULE_PATH": "$DABUSR/etc/maya/dab_modules:$MAYA_MODULE_PATH",
       "MAYA_SCRIPT_PATH": "$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_scripts",
       "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_plug-ins",
       "MAYA_DISABLE_CIP": "1",
@@ -28,7 +28,7 @@
       "DYLD_FRAMEWORK_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/Frameworks",
 
       "PYTHONPATH": "$DABUSR/etc/maya/mayaConfig/dab_scripts:$PYTHONPATH",
-      "PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:/Applications/solidangle/mtoa/$TR_ENV_MAYAVERSION/bin:$PATH",
+      "PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/bin:$PATH",
       "TMPDIR": "/var/tmp"
     },
     "envhandler": "mayahandler"

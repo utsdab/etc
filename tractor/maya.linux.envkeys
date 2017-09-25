@@ -9,7 +9,7 @@
             "DABWORK": "$DABRENDER/work",
             "DABASSETS": "$DABRENDER/assets",
             "DABUSERPREFS": "$DABWORK/user_prefs",
-            "ENVKEY_DEBUG": "from_maya.linux.envkeys",
+            "ENVKEY_maya": "from_maya.linux.envkeys",
 
             "MAYA_LOCATION": "$TR_ENV_MAYALOCATION",
             "MAYA_MODULE_PATH": "$TR_ENV_MAYAVER/etc:$DABUSR/etc/maya/dab_modules:$MAYA_MODULE_PATH",
