@@ -143,6 +143,7 @@ esac
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
 #  Not entirely sure what the difference between RDIR and RMS_SCRIPT_PATHS is
 
+
 export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
 export RDIR="${DABETC}/pixar/config"     ####  appeard to be obsolete
 #export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
@@ -159,9 +160,10 @@ export SHOTGUN_PATH_MAC="${DABWORK}/shotgun/shotgun_projects"
 export ARNOLD_PLUGIN_PATH="${ARNOLD_LOCATION}/shaders"
 export MTOA_TEMPLATES_PATH="" # is for the Attribute Editor (AE) templates of Arnold shaders.
 export MTOA_EXTENSIONS_PATH="" # is for MtoA extensions like Yeti.
-export MAYA_CUSTOM_TEMPLATE_PATH= "" # is for Node Editor templates for Arnold shaders.
+export MAYA_CUSTOM_TEMPLATE_PATH="" # is for Node Editor templates for Arnold shaders.
 export MTOA_STARTUP_LOG_VERBOSITY=""  # sets the MtoA log verbosity during startup: 1 for Errors and Warnings, 2 for Errors, Warnings, and Info, 3 for all
 export MTOA_LOG_PATH="" # default location for Arnold log files.
+
 
 ##########################  PATH settings
 export PATH="${DABUSR}/bin:${PATH}"
@@ -216,7 +218,7 @@ export MAYA_DISABLE_CIP=1
 alias nukex='Nuke${NUKE_VERSION} --nukex'
 alias nukestudio='Nuke${NUKE_VERSION} --studio'
 alias nuke='Nuke${NUKE_VERSION}'
-alias maya='maya'
+#alias maya='maya'
 alias tqd='tq --engine tractor-engine:5600'
 alias myprefs='open `myprefs.py`'
 alias mywork='open `mywork.py`'
