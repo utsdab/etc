@@ -21,7 +21,8 @@ if [ ${DABDEV} ]; then
     _dabsww="${DABDEV}/sww"
     _dabwork="${DABRENDER}/work"
     _dabassets="${DABRENDER}/assets"
-    _dabuserprefs="${_dabwork}/user_prefs"
+    _dabprefs="${DABRENDER}/prefs"
+    _dabuserprefs="${DABRENDER}/prefs/user_prefs"
 else
     echo "PRODUCTION: Using the studio paths"
     _dabusr="${DABRENDER}/usr"
@@ -29,7 +30,8 @@ else
     _dabsww="${DABRENDER}/sww"
     _dabwork="${DABRENDER}/work"
     _dabassets="${DABRENDER}/assets"
-    _dabuserprefs="${DABRENDER}/work/user_prefs"
+    _dabprefs="${DABRENDER}/prefs"
+    _dabuserprefs="${DABRENDER}/prefs/user_prefs"
 fi
 
 ######### DABUSR - plugins and scripts and tool extension
@@ -77,6 +79,15 @@ else
     unset DABASSETS
 fi
 
+######### DABPREFS  this is a place for general preferences to be centrally (in lieu of a home directory)
+if [ -d ${_dabprefs} ]; then
+    export DABPREFS="${_dabprefs}"
+    echo "INFO    : DABPREFS = ${DABPREFS}"
+else
+    echo "CRITICAL: Cant set DABPREFS correctly ${_dabprefs}"
+    unset DABPREFS
+fi
+
 ######### DABUSERPREFS  this is a place for user preferences to be centrally (in lieu of a home directory)
 if [ -d ${_dabuserprefs} ]; then
     export DABUSERPREFS="${_dabuserprefs}"
@@ -100,11 +111,11 @@ fi
 ##########################
 export MAYA_VERSION="2017"
 echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-export RMAN_VERSION="21.5"
+export RMAN_VERSION="21.6"
 echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 export TRACTOR_VERSION="2.2"
 echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-export NUKE_VERSION="10.5v4"
+export NUKE_VERSION="11.0v2"
 echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
 echo "INFO    : OS             : ${OSTYPE:0:5}"
 ##########################
@@ -151,10 +162,10 @@ export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
 export RV_LICENSE_FILE="${DABETC}/tweak/license.gto"
 export TWEAK_LICENSE_FILE="${DABETC}/tweak/license.gto"
 export MU_MODULE_PATH="${DABUSR}/etc/tweak/mu"
-export SGTK_DESKTOP_CONFIG_LOCATION="${DABWORK}/shotgun/toolkit_configs"
-export SGTK_PREFERENCES_LOCATION="${DABWORK}/shotgun/toolkit_configs"
-export SHOTGUN_BUNDLE_CACHE_FALLBACK_PATHS="${DABWORK}/shotgun/toolkit_configs"
-export SHOTGUN_PATH_MAC="${DABWORK}/shotgun/shotgun_projects"
+export SGTK_DESKTOP_CONFIG_LOCATION="${DABPREFS}/shotgun/toolkit_configs"
+export SGTK_PREFERENCES_LOCATION="${DABPREFS}/shotgun/toolkit_configs"
+export SHOTGUN_BUNDLE_CACHE_FALLBACK_PATHS="${DABPREFS}/shotgun/toolkit_configs"
+export SHOTGUN_PATH_MAC="${DABWORK}/shotgun_work"
 #export solidangle_LICENSE="${DABETC}/solidangle/solidangle_license.lic"
 
 export ARNOLD_PLUGIN_PATH="${ARNOLD_LOCATION}/shaders"
@@ -204,7 +215,7 @@ export MAYA_SCRIPT_PATH="${DABUSR}/etc/maya/dab_scripts:${MAYA_SCRIPT_PATH}"
 export MAYA_SCRIPT_PATH="${RMSTREE}/scripts:${MAYA_SCRIPT_PATH}"
 
 export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B${XBMLANGPATH}"
-export XBMLANGPATH="$RMSTREE/icons/%B:${XBMLANGPATH}"
+export XBMLANGPATH="${RMSTREE}/icons/%B:${XBMLANGPATH}"
 
 export MAYA_PRESET_PATH="${DABUSR}/etc/maya/dab_presets"
 export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
