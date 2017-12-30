@@ -1,7 +1,7 @@
 #!/bin/bash
 echo ""
 echo "STARTING: ${BASH_SOURCE}"
-echo "VERSION: 2017-05-29"
+echo "VERSION: 2018-01-01"
 echo "USER: ${USER}"
 export PATH="/usr/X11R6/bin:${PATH}"
 
@@ -109,7 +109,7 @@ else
 fi
 
 ##########################
-export MAYA_VERSION="2017"
+export MAYA_VERSION="2018"
 echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
 export RMAN_VERSION="21.6"
 echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
