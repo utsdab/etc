@@ -115,7 +115,7 @@ export RMAN_VERSION="21.6"
 echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 export TRACTOR_VERSION="2.2"
 echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-export NUKE_VERSION="11.0v2"
+export NUKE_VERSION="11.1v1"
 echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
 echo "INFO    : OS             : ${OSTYPE:0:5}"
 ##########################
