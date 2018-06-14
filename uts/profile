@@ -5,12 +5,39 @@ echo "VERSION: 2018-01-01"
 echo "USER: ${USER}"
 export PATH="/usr/X11R6/bin:${PATH}"
 
+
+###### functions
+checkpath () {
+    # check to see if a string is a valid directory of file
+    # exxpect a path as a string
+#    echo $1
+    if [ -d ${1#$} ]; then
+        echo "CHECK   : ${1} SEEMS TO BE THERE"
+        return 0
+    else
+        echo "CRITICAL: Cant see ${1}"
+        return 1
+    fi
+}
+
+isvariable () {
+# test to see if a string is an envar
+    echo test
+}
+
+
 ########################## SETUP STUDIO WIDE ENVIRONMENT HOOKS
-if [ -d ${DABRENDER} ]; then
-    echo "CHECK   : DABRENDER SEEMS TO BE THERE ${DABRENDER}"
+#if [ -d ${DABRENDER} ]; then
+#    echo "CHECK   : DABRENDER SEEMS TO BE THERE ${DABRENDER}"
+#else
+#    echo "CRITICAL: Cant see DABRENDER ${DEBRENDER}"
+#    unset DABRENDER
+#fi
+isvariable "DABRENDER"
+if checkpath ${DABRENDER} ; then
+    echo "yay"
 else
-    echo "CRITICAL: Cant see DABRENDER ${DEBRENDER}"
-    unset DABRENDER
+    echo "nooo"
 fi
 
 ##########################  DEV or PRODUCTION
@@ -109,13 +136,14 @@ else
 fi
 
 ##########################
+echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
 export MAYA_VERSION="2018"
 echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-export RMAN_VERSION="21.6"
+export RMAN_VERSION="21.7"
 echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 export TRACTOR_VERSION="2.2"
 echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-export NUKE_VERSION="11.1v1"
+export NUKE_VERSION="11.1v3"
 echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
 echo "INFO    : OS             : ${OSTYPE:0:5}"
 ##########################
@@ -175,55 +203,129 @@ export MAYA_CUSTOM_TEMPLATE_PATH="" # is for Node Editor templates for Arnold sh
 export MTOA_STARTUP_LOG_VERBOSITY=""  # sets the MtoA log verbosity during startup: 1 for Errors and Warnings, 2 for Errors, Warnings, and Info, 3 for all
 export MTOA_LOG_PATH="" # default location for Arnold log files.
 
+######################### BUILDING PATH
+echo "PATH    : appending....."
+_paths=( \
+            "${DABUSR}/bin" \
+            "${MAYA_LOCATION}/bin" \
+            "${DABUSR}/etc/tractor" \
+            "${DABSWW}/renderfarm/bin" \
+            "${RMANTREE}/bin" \
+            "${RMSTREE}/bin" \
+            "${TRACTOR_LOCATION}/bin" \
+             )
+for i in "${_paths[@]}"
+do
+    if [ -d ${i} ]; then
+        export PATH="${i}:${PATH}"
+        echo "        : ${i}"
+    else
+        echo "WARNING: Cant add ${i} to PATH"
+    fi
+done
 
-##########################  PATH settings
-export PATH="${DABUSR}/bin:${PATH}"
-export PATH="${DABUSR}/etc/tractor:${PATH}"
-export PATH="${DABSWW}/renderfarm/bin:${PATH}"
-export PATH="${RMANTREE}/bin:${PATH}"
-export PATH="${RMSTREE}/bin:${PATH}"
-export PATH="${TRACTOR_LOCATION}/bin:${PATH}"
-export PATH="${MAYA_LOCATION}/bin:${PATH}"
-export PATH="${ARNOLD_LOCATION}/bin:${PATH}"
+########################### BUILDING PYTHONPATH
+echo "PYTHONPATH: appending....."
+_paths=( \
+            "${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages" \
+            "${TRACTOR_LOCATION}/lib/python2.7/site-packages" \
+            "${RMSTREE}/scripts" \
+            "${RMSTREE}/bin" \
+            "${DABSWW}" \
+            "${DABUSR}/etc/tractor" \
+            "${DABUSR}/etc/maya/dab_scripts" \
+            "${DABUSR}/etc/maya/dab_plug-ins" \
+            )
+for i in "${_paths[@]}"
+do
+    if [ -d ${i} ]; then
+        export PYTHONPATH="${i}:${PYTHONPATH}"
+        echo "        : ${i}"
+    else
+        echo "WARNING: Cant add ${i} to PYTHONPATH"
+    fi
+done
 
-##########################  PYTHONPATH settings
-export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages:${PYTHONPATH}"
-export PYTHONPATH="${TRACTOR_LOCATION}/lib/python2.7/site-packages:${PYTHONPATH}"
-export PYTHONPATH="${RMSTREE}/scripts:${PYTHONPATH}"
-export PYTHONPATH="${RMANTREE}/bin:${PYTHONPATH}"
 
-#export PYTHONPATH="${DABRENDER}:${DABSWW}:${PYTHONPATH}"  - danger here - need to get "maya" out of SWW
-#export PYTHONPATH="${DABSWW}/renderfarm:${PYTHONPATH}"
+########################### BUILDING NUKE_PATH
+echo "NUKE_PATH: appending....."
+_paths=( \
+            "${DABUSR}/etc/nuke/tractorNuke" \
+            )
+for i in "${_paths[@]}"
+do
+    if [ -d ${i} ]; then
+        export NUKE_PATH="${i}:${NUKE_PATH}"
+        echo "         : ${i}"
+    else
+        echo "WARNING: Cant add ${i} to NUKE_PATH"
+    fi
+done
 
-#export PYTHONPATH="${DABRENDER}:${PYTHONPATH}"
-export PYTHONPATH="${DABSWW}:${PYTHONPATH}"
-export PYTHONPATH="${DABUSR}/etc/tractor:${PYTHONPATH}"
-export PYTHONPATH="${DABUSR}/etc/maya/dab_scripts:${PYTHONPATH}"
-export PYTHONPATH="${DABUSR}/etc/maya/dab_plug-ins:${PYTHONPATH}"
+########################### BUILDING MAYA_PLUG_IN_PATH
+echo "MAYA_PLUG_IN_PATH: appending....."
+_paths=( \
+            "${DABUSR}/etc/maya/dab_plug-ins" \
+            "${RMSTREE}/plug-ins" \
+            "${MAYA_APPLICATION_LOCATION}/plug-ins" \
+            )
+for i in "${_paths[@]}"
+do
+    if [ -d ${i} ]; then
+        export MAYA_PLUG_IN_PATH="${i}:${MAYA_PLUG_IN_PATH}"
+        echo "        : ${i}"
+    else
+        echo "WARNING: Cant add ${i} to MAYA_PLUG_IN_PATH"
+    fi
+done
 
-##########################  NUKE settings
-#export NUKE_PATH="${OCIO_EXECROOT}/lib/nuke:${NUKE_PATH}"
-#export NUKE_PATH="${OCIO_ROOT}/share/nuke:${NUKE_PATH}";
-#export NUKE_PATH="${DABUSR}/etc/nuke/tractorNuke:${NUKE_PATH}";
+########################### BUILDING MAYA_SCRIPT_PATH
+echo "MAYA_SCRIPT_PATH: appending....."
+_paths=( \
+            "${DABUSR}/etc/maya/dab_scripts" \
+            "${RMSTREE}/scripts" \
+            )
+for i in "${_paths[@]}"
+do
+    if [ -d ${i} ]; then
+        export MAYA_SCRIPT_PATH="${i}:${MAYA_SCRIPT_PATH}"
+        echo "        : ${i}"
+    else
+        echo "WARNING: Cant add ${i} to MAYA_SCRIPT_PATH"
+    fi
+done
 
-##########################  MAYA and RENDERMAN settings  also in the Maya.env
-export MAYA_PLUG_IN_PATH="${DABUSR}/etc/maya/dab_plug-ins:${MAYA_PLUG_IN_PATH}"
-export MAYA_PLUG_IN_PATH="${RMSTREE}/plug-ins:${MAYA_PLUG_IN_PATH}"
-export MAYA_PLUG_IN_PATH="${MAYA_APPLICATION_LOCATION}/plug-ins:${MAYA_PLUG_IN_PATH}"
-
-export MAYA_SCRIPT_PATH="${DABUSR}/etc/maya/dab_scripts:${MAYA_SCRIPT_PATH}"
-export MAYA_SCRIPT_PATH="${RMSTREE}/scripts:${MAYA_SCRIPT_PATH}"
+########################### BUILDING MAYA_MODULE_PATH
+echo "MAYA_MODULE_PATH: appending....."
+_paths=( \
+            "${DABUSR}/etc/maya/dab_modules" \
+            "${RMSTREE}/etc" \
+            )
+for i in "${_paths[@]}"
+do
+    if [ -d ${i} ]; then
+        export MAYA_MODULE_PATH="${i}:${MAYA_MODULE_PATH}"
+        echo "        : ${i}"
+    else
+        echo "WARNING: Cant add ${i} to MAYA_MODULE_PATH"
+    fi
+done
 
 export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B${XBMLANGPATH}"
 export XBMLANGPATH="${RMSTREE}/icons/%B:${XBMLANGPATH}"
 
 export MAYA_PRESET_PATH="${DABUSR}/etc/maya/dab_presets"
 export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
-export MAYA_MODULE_PATH="${DABUSR}/etc/maya/dab_modules"
 export MAYA_SHELF_PATH="${DABUSR}/etc/maya/dab_shelves"
 
 export MAYA_MAC_SET_UMASK=0
 export MAYA_DISABLE_CIP=1
+
+## removes duplicates
+#export PATH="$(echo "$PATH" |gawk 'BEGIN{RS=":";}
+#{sub(sprintf("%c$",10),"");if(A[$0]){}else{A[$0]=1;
+#printf(((NR==1)?"":":")$0)}}')";
+
 
 ###########################  ALIAS's
 alias nukex='Nuke${NUKE_VERSION} --nukex'
