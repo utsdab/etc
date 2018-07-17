@@ -2,6 +2,15 @@
     {
         "keys": ["maya*"],
         "environment": {
+            "DABRENDER": "/Volumes/dabrender",
+            "DABUSR": "$DABRENDER/usr",
+            "DABETC": "$DABRENDER/etc",
+            "DABSWW": "$DABRENDER/sww",
+            "DABWORK": "$DABRENDER/work",
+            "DABASSETS": "$DABRENDER/assets",
+            "DABUSERPREFS": "$DABWORK/user_prefs",
+            "ENVKEY_DEBUG": "from_maya.windows.envkeys",
+
             "MAYA_LOCATION": "$TR_ENV_MAYALOCATION",
             "MAYA_MODULE_PATH": "$TR_ENV_MAYAVER/etc:$MAYA_MODULE_PATH",
             "PATH": "$MAYA_LOCATION/bin:$PATH"

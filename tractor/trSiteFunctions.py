@@ -23,7 +23,7 @@
 # documentation for a detailed discussion of the steps required to
 # integrate the Tractor login scheme with site security policies.
 #
-# 
+#
 
 def trSitePasswordHash (passwd, challenge):
     # By default, Tractor ignores passwords completely,
@@ -37,7 +37,7 @@ def trSitePasswordHash (passwd, challenge):
     # possibly also incorporating the given server-supplied one-time
     # random challenge string.  The matching site-specific server-side
     # handling of this encoded string MUST be implemented in the login
-    # validator file as defined in the crews.config file.
+    # validator file as defined in the crews.site file.
 
     # return None   # passwords are ignored (default factory setting)
     # or

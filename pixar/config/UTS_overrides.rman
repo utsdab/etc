@@ -1,6 +1,6 @@
-# 
+#
 #  uts_overrides.rman
-#      used by renderman_maya.ini
+#      used by RenderMan_for_Maya.ini
 #
 rman "-version 1" {
     NodeTypeOverrides settings:display:Primary {
@@ -22,7 +22,7 @@ rman "-version 1" {
     }
 }
 
- 
+
 rman "-version 1" {
     NodeTypeOverrides settings:display:Secondary {
         riopt Display:type {

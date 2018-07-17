@@ -1,20 +1,36 @@
 [
-    {
-        "keys": ["maya*"],
-        "environment": {
-            "DABRENDER":         "/Volumes/dabrender",
-            "DABUSR":            "$DABRENDER/usr",
-            "DABETC":            "$DABRENDER/etc",
-            "DABSWW":            "$DABRENDER/sww",
-            "DABWORK":           "$DABRENDER/work",
-            "DABASSETS":         "$DABRENDER/assets",
-            "DABUSERPREFS":      "$DABWORK/user_prefs",
+  {
+    "keys": ["maya*"],
+    "environment": {
+      "DABRENDER": "/Volumes/dabrender",
+      "DABUSR": "$DABRENDER/usr",
+      "DABETC": "$DABRENDER/etc",
+      "DABSWW": "$DABRENDER/sww",
+      "DABWORK": "$DABRENDER/work",
+      "DABASSETS": "$DABRENDER/assets",
+      "DABUSERPREFS": "$DABWORK/user_prefs",
+      "ENVKEY_maya": "from_maya.macosx.envkeys",
 
-            "MAYA_LOCATION": "$TR_ENV_MAYALOCATION/Maya.app/Contents",
-            "DYLD_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS:$DYLD_LIBRARY_PATH",
-            "MAYA_MODULE_PATH": "$TR_ENV_MAYAVER/etc:$MAYA_MODULE_PATH",
-            "PATH": "$MAYA_LOCATION/bin:$PATH"
-        },
-        "envhandler": "mayahandler"
-    }
+      "MAYA_LOCATION": "$TR_ENV_MAYALOCATION/Maya.app/Contents",
+      "MAYA_MODULE_PATH": "$DABUSR/etc/maya/dab_modules:$MAYA_MODULE_PATH",
+      "MAYA_SCRIPT_PATH": "$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_scripts",
+      "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_plug-ins",
+      "MAYA_DISABLE_CIP": "1",
+
+      "ARNOLD_PLUGIN_PATH": "/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",
+      "MTOA_EXTENSIONS_PATH": "",
+      "MAYA_CUSTOM_TEMPLATE_PATH": "",
+      "MTOA_STARTUP_LOG_VERBOSITY": "",
+      "MTOA_LOG_PATH": "",
+
+      "DYLD_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS:$TR_ENV_MAYALOCATION/plug-ins/xgen/lib:$DYLD_LIBRARY_PATH",
+      "DYLD_FALLBACK_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS:$DYLD_FALLBACK_LIBRARY_PATH",
+      "DYLD_FRAMEWORK_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/Frameworks",
+
+      "PYTHONPATH": "$DABUSR/etc/maya/mayaConfig/dab_scripts:$PYTHONPATH",
+      "PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/bin:$PATH",
+      "TMPDIR": "/var/tmp"
+    },
+    "envhandler": "mayahandler"
+  }
 ]

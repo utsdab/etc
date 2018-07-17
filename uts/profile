@@ -1,16 +1,43 @@
 #!/bin/bash
 echo ""
 echo "STARTING: ${BASH_SOURCE}"
-echo "VERSION: 2017-05-29"
+echo "VERSION: 2018-01-01"
 echo "USER: ${USER}"
 export PATH="/usr/X11R6/bin:${PATH}"
 
+
+###### functions
+checkpath () {
+    # check to see if a string is a valid directory of file
+    # exxpect a path as a string
+#    echo $1
+    if [ -d ${1#$} ]; then
+        echo "CHECK   : ${1} SEEMS TO BE THERE"
+        return 0
+    else
+        echo "CRITICAL: Cant see ${1}"
+        return 1
+    fi
+}
+
+isvariable () {
+# test to see if a string is an envar
+    echo test
+}
+
+
 ########################## SETUP STUDIO WIDE ENVIRONMENT HOOKS
-if [ -d ${DABRENDER} ]; then
-    echo "CHECK   : DABRENDER SEEMS TO BE THERE ${DABRENDER}"
+#if [ -d ${DABRENDER} ]; then
+#    echo "CHECK   : DABRENDER SEEMS TO BE THERE ${DABRENDER}"
+#else
+#    echo "CRITICAL: Cant see DABRENDER ${DEBRENDER}"
+#    unset DABRENDER
+#fi
+isvariable "DABRENDER"
+if checkpath ${DABRENDER} ; then
+    echo "yay"
 else
-    echo "CRITICAL: Cant see DABRENDER ${DEBRENDER}"
-    unset DABRENDER
+    echo "nooo"
 fi
 
 ##########################  DEV or PRODUCTION
@@ -21,7 +48,8 @@ if [ ${DABDEV} ]; then
     _dabsww="${DABDEV}/sww"
     _dabwork="${DABRENDER}/work"
     _dabassets="${DABRENDER}/assets"
-    _dabuserprefs="${_dabwork}/user_prefs"
+    _dabprefs="${DABRENDER}/prefs"
+    _dabuserprefs="${DABRENDER}/prefs/user_prefs"
 else
     echo "PRODUCTION: Using the studio paths"
     _dabusr="${DABRENDER}/usr"
@@ -29,7 +57,8 @@ else
     _dabsww="${DABRENDER}/sww"
     _dabwork="${DABRENDER}/work"
     _dabassets="${DABRENDER}/assets"
-    _dabuserprefs="${DABRENDER}/work/user_prefs"
+    _dabprefs="${DABRENDER}/prefs"
+    _dabuserprefs="${DABRENDER}/prefs/user_prefs"
 fi
 
 ######### DABUSR - plugins and scripts and tool extension
@@ -77,6 +106,15 @@ else
     unset DABASSETS
 fi
 
+######### DABPREFS  this is a place for general preferences to be centrally (in lieu of a home directory)
+if [ -d ${_dabprefs} ]; then
+    export DABPREFS="${_dabprefs}"
+    echo "INFO    : DABPREFS = ${DABPREFS}"
+else
+    echo "CRITICAL: Cant set DABPREFS correctly ${_dabprefs}"
+    unset DABPREFS
+fi
+
 ######### DABUSERPREFS  this is a place for user preferences to be centrally (in lieu of a home directory)
 if [ -d ${_dabuserprefs} ]; then
     export DABUSERPREFS="${_dabuserprefs}"
@@ -98,13 +136,14 @@ else
 fi
 
 ##########################
-export MAYA_VERSION="2017"
+echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
+export MAYA_VERSION="2018"
 echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-export RMAN_VERSION="21.2"
+export RMAN_VERSION="21.7"
 echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 export TRACTOR_VERSION="2.2"
 echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-export NUKE_VERSION="10.5v4"
+export NUKE_VERSION="11.1v3"
 echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
 echo "INFO    : OS             : ${OSTYPE:0:5}"
 ##########################
@@ -114,22 +153,26 @@ linux)
     export RMANTREE="/opt/pixar/RenderManProServer-${RMAN_VERSION}"
     export RMSTREE="/opt/pixar/RenderManStudio-${RMAN_VERSION}-maya${MAYA_VERSION}"
     export TRACTOR_LOCATION="/opt/pixar/Tractor-${TRACTOR_VERSION}"
+    export ARNOLD_LOCATION="/opt/solidangle/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/usr/autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}"
+    export NUKE_INSTALL_PATH="/opt/foundry/${NUKE_VERSION}"
+    export NUKE_LOCATION="/opt/foundry/${NUKE_VERSION}"
     ;;
 darwi)
     export RMANTREE="/Applications/Pixar/RenderManProServer-${RMAN_VERSION}"
     export RMSTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}-maya${MAYA_VERSION}"
     export TRACTOR_LOCATION="/Applications/Pixar/Tractor-${TRACTOR_VERSION}"
+    export ARNOLD_LOCATION="/Applications/solidangle/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/Applications/Autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}/Maya.app/Contents"
+    export MAYA_RENDER_DESC_PATH="${ARNOLD_LOCATION}/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}"
     export NUKE_INSTALL_PATH="/Applications/Nuke${NUKE_VERSION}"
-    export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke$NUKE_VERSION.app"
+    export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app"
     export NUKE_TEMP_DIR="/var/tmp/nuke-${USER}"
-    export PATH="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app/Contents/MacOS:${PATH}"
+    export PATH="${NUKE_LOCATION}/Contents/MacOS:${PATH}"
     export PATH="/usr/aw/COM/bin:/usr/aw/COM/etc:${PATH}"
     export PATH="/Applications/RV64.app/Contents/MacOS:${PATH}"
-    export MAYA_RENDER_DESC_PATH="/Applications/solidangle/mtoa/2017/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}":${MAYA_RENDER_DESC_PATH}
     ;;
 *)
     echo "WARNING:   LIBRARY_PATH and base environment NOT set in profile.d/dabanim.sh"
@@ -137,58 +180,163 @@ darwi)
 esac
 
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
-#  These are locations for central scripts and python scripts common to osx and linux eg perl, shell, python:wq
-#  Not entirely sure what the dirrernce between RDIR and RMS_SCRIPT_PATHS is
-export RMS_SCRIPT_PATHS="${DABETC}/pixar/config-${RMAN_VERSION}"
-export RDIR="${DABETC}/pixar/config-${RMAN_VERSION}"
-export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
+#  Not entirely sure what the difference between RDIR and RMS_SCRIPT_PATHS is
+
+
+export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
+export RDIR="${DABETC}/pixar/config"     ####  appeard to be obsolete
+#export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
 export RV_LICENSE_FILE="${DABETC}/tweak/license.gto"
 export TWEAK_LICENSE_FILE="${DABETC}/tweak/license.gto"
 export MU_MODULE_PATH="${DABUSR}/etc/tweak/mu"
-export SGTK_DESKTOP_CONFIG_LOCATION="${DABWORK}/shotgun/toolkit_configs"
-export solidangle_LICENSE="/Applications/solidAngleLicense"
+export SGTK_DESKTOP_CONFIG_LOCATION="${DABPREFS}/shotgun/toolkit_configs"
+export SGTK_PREFERENCES_LOCATION="${DABPREFS}/shotgun/toolkit_configs"
+export SHOTGUN_BUNDLE_CACHE_FALLBACK_PATHS="${DABPREFS}/shotgun/toolkit_configs"
+export SHOTGUN_PATH_MAC="${DABWORK}/shotgun_work"
+#export solidangle_LICENSE="${DABETC}/solidangle/solidangle_license.lic"
+
+export ARNOLD_PLUGIN_PATH="${ARNOLD_LOCATION}/shaders"
+export MTOA_TEMPLATES_PATH="" # is for the Attribute Editor (AE) templates of Arnold shaders.
+export MTOA_EXTENSIONS_PATH="" # is for MtoA extensions like Yeti.
+export MAYA_CUSTOM_TEMPLATE_PATH="" # is for Node Editor templates for Arnold shaders.
+export MTOA_STARTUP_LOG_VERBOSITY=""  # sets the MtoA log verbosity during startup: 1 for Errors and Warnings, 2 for Errors, Warnings, and Info, 3 for all
+export MTOA_LOG_PATH="" # default location for Arnold log files.
+
+######################### BUILDING PATH
+echo "PATH    : appending....."
+_paths=( \
+            "${DABUSR}/bin" \
+            "${MAYA_LOCATION}/bin" \
+            "${DABUSR}/etc/tractor" \
+            "${DABSWW}/renderfarm/bin" \
+            "${RMANTREE}/bin" \
+            "${RMSTREE}/bin" \
+            "${TRACTOR_LOCATION}/bin" \
+             )
+for i in "${_paths[@]}"
+do
+    if [ -d ${i} ]; then
+        export PATH="${i}:${PATH}"
+        echo "        : ${i}"
+    else
+        echo "WARNING: Cant add ${i} to PATH"
+    fi
+done
+
+########################### BUILDING PYTHONPATH
+echo "PYTHONPATH: appending....."
+_paths=( \
+            "${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages" \
+            "${TRACTOR_LOCATION}/lib/python2.7/site-packages" \
+            "${RMSTREE}/scripts" \
+            "${RMSTREE}/bin" \
+            "${DABSWW}" \
+            "${DABUSR}/etc/tractor" \
+            "${DABUSR}/etc/maya/dab_scripts" \
+            "${DABUSR}/etc/maya/dab_plug-ins" \
+            )
+for i in "${_paths[@]}"
+do
+    if [ -d ${i} ]; then
+        export PYTHONPATH="${i}:${PYTHONPATH}"
+        echo "        : ${i}"
+    else
+        echo "WARNING: Cant add ${i} to PYTHONPATH"
+    fi
+done
 
 
-# WORKAROUND for libMC3.so.8 error in Maya2016 (added by Chris Bell 10/9/15
-export MAYA_DISABLE_CIP=1
+########################### BUILDING NUKE_PATH
+echo "NUKE_PATH: appending....."
+_paths=( \
+            "${DABUSR}/etc/nuke/tractorNuke" \
+            )
+for i in "${_paths[@]}"
+do
+    if [ -d ${i} ]; then
+        export NUKE_PATH="${i}:${NUKE_PATH}"
+        echo "         : ${i}"
+    else
+        echo "WARNING: Cant add ${i} to NUKE_PATH"
+    fi
+done
+
+########################### BUILDING MAYA_PLUG_IN_PATH
+echo "MAYA_PLUG_IN_PATH: appending....."
+_paths=( \
+            "${DABUSR}/etc/maya/dab_plug-ins" \
+            "${RMSTREE}/plug-ins" \
+            "${MAYA_APPLICATION_LOCATION}/plug-ins" \
+            )
+for i in "${_paths[@]}"
+do
+    if [ -d ${i} ]; then
+        export MAYA_PLUG_IN_PATH="${i}:${MAYA_PLUG_IN_PATH}"
+        echo "        : ${i}"
+    else
+        echo "WARNING: Cant add ${i} to MAYA_PLUG_IN_PATH"
+    fi
+done
+
+########################### BUILDING MAYA_SCRIPT_PATH
+echo "MAYA_SCRIPT_PATH: appending....."
+_paths=( \
+            "${DABUSR}/etc/maya/dab_scripts" \
+            "${RMSTREE}/scripts" \
+            )
+for i in "${_paths[@]}"
+do
+    if [ -d ${i} ]; then
+        export MAYA_SCRIPT_PATH="${i}:${MAYA_SCRIPT_PATH}"
+        echo "        : ${i}"
+    else
+        echo "WARNING: Cant add ${i} to MAYA_SCRIPT_PATH"
+    fi
+done
+
+########################### BUILDING MAYA_MODULE_PATH
+echo "MAYA_MODULE_PATH: appending....."
+_paths=( \
+            "${DABUSR}/etc/maya/dab_modules" \
+            "${RMSTREE}/etc" \
+            )
+for i in "${_paths[@]}"
+do
+    if [ -d ${i} ]; then
+        export MAYA_MODULE_PATH="${i}:${MAYA_MODULE_PATH}"
+        echo "        : ${i}"
+    else
+        echo "WARNING: Cant add ${i} to MAYA_MODULE_PATH"
+    fi
+done
+
+export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B${XBMLANGPATH}"
+export XBMLANGPATH="${RMSTREE}/icons/%B:${XBMLANGPATH}"
+
+export MAYA_PRESET_PATH="${DABUSR}/etc/maya/dab_presets"
+export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
+export MAYA_SHELF_PATH="${DABUSR}/etc/maya/dab_shelves"
+
 export MAYA_MAC_SET_UMASK=0
+export MAYA_DISABLE_CIP=1
 
-##########################  PATH settings
-export PATH=${DABUSR}/bin:${PATH}
-export PATH=${DABSWW}/renderfarm/bin:${PATH}
-export PATH=${RMANTREE}/bin:${PATH}
-export PATH=${RMSTREE}/bin:${PATH}
-export PATH=${TRACTOR_LOCATION}/bin:${PATH}
-export PATH=${MAYA_LOCATION}/bin:${PATH}
-export PATH=${DABUSR}/etc/tractor:${PATH}
+## removes duplicates
+#export PATH="$(echo "$PATH" |gawk 'BEGIN{RS=":";}
+#{sub(sprintf("%c$",10),"");if(A[$0]){}else{A[$0]=1;
+#printf(((NR==1)?"":":")$0)}}')";
 
-##########################  PYTHONPATH settings
-export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages":${PYTHONPATH}
-#export PYTHONPATH=${DABRENDER}:${DABSWW}:${PYTHONPATH}  - danger here - need to get "maya" out of SWW
-export PYTHONPATH=${DABRENDER}:${PYTHONPATH}
-export PYTHONPATH=${RMSTREE}/scripts:${PYTHONPATH}
-#     export PYTHONPATH=${DABSWW}/renderfarm:${PYTHONPATH}
-export PYTHONPATH=${DABUSR}/etc/tractor:${PYTHONPATH}
-export PYTHONPATH=${TRACTOR_LOCATION}/lib/python2.7/site-packages:${PYTHONPATH}
-
-##########################  NUKE settings
-#     export NUKE_PATH="${OCIO_EXECROOT}/lib/nuke:${NUKE_PATH}"
-#     export NUKE_PATH="${OCIO_ROOT}/share/nuke:${NUKE_PATH}";
-#     export NUKE_PATH="${DABUSR}/etc/nuke/tractorNuke:${NUKE_PATH}";
 
 ###########################  ALIAS's
 alias nukex='Nuke${NUKE_VERSION} --nukex'
 alias nukestudio='Nuke${NUKE_VERSION} --studio'
-alias nukeassist='Nuke${NUKE_VERSION} --nukeassist'
-alias nukeple='Nuke${NUKE_VERSION} --PLE'
 alias nuke='Nuke${NUKE_VERSION}'
-     alias maya='maya'
+#alias maya='maya'
 alias tqd='tq --engine tractor-engine:5600'
 alias myprefs='open `myprefs.py`'
 alias mywork='open `mywork.py`'
 
 
 ##########################
-echo     "ENDING  : ${BASH_SOURCE}"
+echo "ENDING  : ${BASH_SOURCE}"
 echo ""

@@ -1,6 +1,5 @@
 from TrEnvHandler import TrEnvHandler
 import logging
-import os
 import platform
 
 class mayahandler(TrEnvHandler):
@@ -23,13 +22,13 @@ class mayahandler(TrEnvHandler):
         plat = platform.system()
         if plat == 'Darwin':
             if not env.has_key("DYLD_LIBRARY_PATH"):
-                env['DYLD_LIBRARY_PATH'] = "" 
+                env['DYLD_LIBRARY_PATH'] = ""
         elif plat == 'Linux':
             if not env.has_key("LD_LIBRARY_PATH"):
-                env['LD_LIBRARY_PATH'] = "" 
-            
+                env['LD_LIBRARY_PATH'] = ""
+
         if not env.has_key("MAYA_MODULE_PATH"):
-            env['MAYA_MODULE_PATH'] = "" 
+            env['MAYA_MODULE_PATH'] = ""
 
         return TrEnvHandler.updateEnvironment(self, cmd, env, envkeys)
 

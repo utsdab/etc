@@ -2,18 +2,31 @@
     {
         "keys": ["maya*"],
         "environment": {
-            "DABRENDER":         "/Volumes/dabrender",
-            "DABUSR":            "$DABRENDER/usr",
-            "DABETC":            "$DABRENDER/etc",
-            "DABSWW":            "$DABRENDER/sww",
-            "DABWORK":           "$DABRENDER/work",
-            "DABASSETS":         "$DABRENDER/assets",
-            "DABUSERPREFS":      "$DABWORK/user_prefs",
+            "DABRENDER": "/Volumes/dabrender",
+            "DABUSR": "$DABRENDER/usr",
+            "DABETC": "$DABRENDER/etc",
+            "DABSWW": "$DABRENDER/sww",
+            "DABWORK": "$DABRENDER/work",
+            "DABASSETS": "$DABRENDER/assets",
+            "DABUSERPREFS": "$DABWORK/user_prefs",
+            "ENVKEY_maya": "from_maya.linux.envkeys",
 
             "MAYA_LOCATION": "$TR_ENV_MAYALOCATION",
-            "LD_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/lib:$LD_LIBRARY_PATH",
-            "MAYA_MODULE_PATH": "$TR_ENV_MAYAVER/etc:$MAYA_MODULE_PATH",
-            "PATH": "$MAYA_LOCATION/bin:$PATH"
+            "MAYA_MODULE_PATH": "$TR_ENV_MAYAVER/etc:$DABUSR/etc/maya/dab_modules:$MAYA_MODULE_PATH",
+            "MAYA_SCRIPT_PATH": "$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_scripts",
+            "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_plug-ins",
+            "MAYA_DISABLE_CIP": "1",
+
+            "ARNOLD_PLUGIN_PATH": "/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",
+            "MTOA_EXTENSIONS_PATH": "",
+            "MAYA_CUSTOM_TEMPLATE_PATH": "",
+            "MTOA_STARTUP_LOG_VERBOSITY": "",
+            "MTOA_LOG_PATH": "",
+
+            "LD_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/lib:$TR_ENV_MAYALOCATION/plug-ins/xgen/lib:$LD_LIBRARY_PATH",
+            "PYTHONPATH": "$DABUSR/etc/maya/mayaConfig/dab_scripts:$PYTHONPATH",
+            "PATH": "$TR_ENV_MAYALOCATION/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:/opt/solidangle/mtoa/$TR_ENV_MAYAVERSION/bin:$PATH",
+            "TMPDIR": "/var/tmp"
         },
         "envhandler": "mayahandler"
     }
