@@ -31,7 +31,7 @@ isvariable () {
 #    echo "CHECK   : DABRENDER SEEMS TO BE THERE ${DABRENDER}"
 #else
 #    echo "CRITICAL: Cant see DABRENDER ${DEBRENDER}"
-#    unset DABRENDER
+#    exit 1
 #fi
 isvariable "DABRENDER"
 if checkpath ${DABRENDER} ; then
@@ -139,7 +139,7 @@ fi
 echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
 export MAYA_VERSION="2018"
 echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-export RMAN_VERSION="21.7"
+export RMAN_VERSION="22.0"
 echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 export TRACTOR_VERSION="2.2"
 echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
@@ -151,6 +151,11 @@ echo "INFO    : OS             : ${OSTYPE:0:5}"
 case ${OSTYPE:0:5} in
 linux)
     export RMANTREE="/opt/pixar/RenderManProServer-${RMAN_VERSION}"
+    if [ ${RMAN_VERSION} = "22.0" ] ; then
+        export RMSTREE="/opt/pixar/RenderManStudio-${RMAN_VERSION}"
+    else
+        export RMSTREE="/opt/pixar/RenderManStudio-${RMAN_VERSION}-maya${MAYA_VERSION}"
+    fi
     export RMSTREE="/opt/pixar/RenderManStudio-${RMAN_VERSION}-maya${MAYA_VERSION}"
     export TRACTOR_LOCATION="/opt/pixar/Tractor-${TRACTOR_VERSION}"
     export ARNOLD_LOCATION="/opt/solidangle/mtoa/${MAYA_VERSION}"
@@ -162,6 +167,11 @@ linux)
 darwi)
     export RMANTREE="/Applications/Pixar/RenderManProServer-${RMAN_VERSION}"
     export RMSTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}-maya${MAYA_VERSION}"
+    if [ ${RMAN_VERSION} = "22.0" ] ; then
+        export RMSTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}"
+    else
+        export RMSTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}-maya${MAYA_VERSION}"
+    fi
     export TRACTOR_LOCATION="/Applications/Pixar/Tractor-${TRACTOR_VERSION}"
     export ARNOLD_LOCATION="/Applications/solidangle/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/Applications/Autodesk/maya${MAYA_VERSION}"
