@@ -17,7 +17,8 @@
             "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_plug-ins",
             "MAYA_DISABLE_CIP": "1",
 
-            "ARNOLD_PLUGIN_PATH": "/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",
+            "ARNOLD_PLUGIN_PATH": "/opt/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",
+            "ARNOLD_PROCEDURAL_PATH": "/opt/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
             "MTOA_EXTENSIONS_PATH": "",
             "MAYA_CUSTOM_TEMPLATE_PATH": "",
             "MTOA_STARTUP_LOG_VERBOSITY": "",
