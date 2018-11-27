@@ -223,6 +223,7 @@ _paths=( \
             "${RMANTREE}/bin" \
             "${RMSTREE}/bin" \
             "${TRACTOR_LOCATION}/bin" \
+            "${ARNOLD_LOCATION}/bin" \
              )
 for i in "${_paths[@]}"
 do

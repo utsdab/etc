@@ -18,11 +18,11 @@
             "MAYA_DISABLE_CIP": "1",
 
             "ARNOLD_PLUGIN_PATH": "/opt/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",
-            "ARNOLD_PROCEDURAL_PATH": "/opt/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
+            "ARNOLD_PROCEDURAL_PATH": "/opt/solidangle/mtoa/$TR_ENV_MAYAVER/procedurals",
             "MTOA_EXTENSIONS_PATH": "",
             "MAYA_CUSTOM_TEMPLATE_PATH": "",
             "MTOA_STARTUP_LOG_VERBOSITY": "",
-            "MTOA_LOG_PATH": "",
+            "MTOA_LOG_PATH": "/var/tmp",
 
             "LD_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/lib:$TR_ENV_MAYALOCATION/plug-ins/xgen/lib:$LD_LIBRARY_PATH",
             "PYTHONPATH": "$DABUSR/etc/maya/mayaConfig/dab_scripts:$PYTHONPATH",
