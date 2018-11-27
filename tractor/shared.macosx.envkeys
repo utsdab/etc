@@ -49,7 +49,7 @@
             "MAYA_MODULE_PATH":   "$RMSTREE/etc:$DABUSR/etc/maya/dab_modules",
             "MAYA_PLUG_IN_PATH":  "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_plug-ins:$RMSTREE/plug-ins",
             "MAYA_SCRIPT_PATH":   "$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_scripts:$RMSTREE/scripts",
-            "PYTHONPATH":         "$DABUSR/etc/maya/dab_scripts:$PYTHONPATH",
+            "PYTHONPATH":         "$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$DABUSR/etc/maya/dab_scripts:$DABUSR/etc/maya/dab_scripts:$PYTHONPATH",
             "PATH":               "$RMSTREE/bin:$TR_ENV_MAYALOCATION/Maya.app/Contents/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:$RMANTREE/bin:$PATH",
             "DYLD_LIBRARY_PATH":  "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS"
         },

@@ -33,8 +33,7 @@
             "MAYA_PLUG_IN_PATH":"$RMSTREE/plug-ins:$MAYA_LOCATION/plug-ins",
             "MAYA_SCRIPT_PATH": "$DABETC/maya/dab_scripts:$RMSTREE/scripts:$MAYA_LOCATION/scripts",
             "PATH":             "$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:$PATH",
-            "PYTHONPATH":       "$DABUSR/etc/maya/dab_scripts:$PYTHONPATH",
-            "PYTHONPATH":       "$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$PYTHONPATH",
+            "PYTHONPATH":       "$DABUSR/etc/maya/dab_scripts:$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$PYTHONPATH",
             "MAYA_DISABLE_CIP" :"1"
         },
         "envhandler": "rmshandler"
@@ -49,8 +48,7 @@
             "MAYA_PLUG_IN_PATH": "$RMSTREE/plug-ins:$MAYA_LOCATION/plug-ins:$DABUSR/etc/maya/dab_plug-ins",
             "MAYA_SCRIPT_PATH":  "$DABUSR/etc/maya/dab_scripts:$RMSTREE/scripts:$MAYA_LOCATION/scripts",
             "PATH":              "$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:$PATH",
-            "PYTHONPATH":         "$DABUSR/etc/maya/dab_scripts:$PYTHONPATH",
-            "PYTHONPATH":        "$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$PYTHONPATH",
+            "PYTHONPATH":        "$DABUSR/etc/maya/dab_scripts:$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$PYTHONPATH",
             "LD_LIBRARY_PATH":   "@+:/usr/autodesk/maya$TR_ENV_MAYAVER-x64/plug-ins/xgen/lib/:/usr/autodesk/maya$TR_ENV_MAYAVER-x64/lib"
         },
         "envhandler": "rfmhandler"
