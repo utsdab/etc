@@ -141,9 +141,9 @@ if [ ${DABDEV} ]; then
     echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
     export MAYA_VERSION="2018"
     echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-    export RMAN_VERSION="22.2"
+    export RMAN_VERSION="22.3"
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
-    export TRACTOR_VERSION="2.2"
+    export TRACTOR_VERSION="2.3"
     echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
     export NUKE_VERSION="11.2v4"
     echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
@@ -153,11 +153,11 @@ else
 	echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
 	export MAYA_VERSION="2018"
 	echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-	export RMAN_VERSION="21.7"
+	export RMAN_VERSION="22.3"
 	echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
-	export TRACTOR_VERSION="2.2"
+	export TRACTOR_VERSION="2.3"
 	echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-	export NUKE_VERSION="11.1v1"
+	export NUKE_VERSION="11.2v4"
 	echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
 	echo "INFO    : OS             : ${OSTYPE:0:5}"
 fi
@@ -227,6 +227,7 @@ export MTOA_EXTENSIONS_PATH="" # is for MtoA extensions like Yeti.
 export MAYA_CUSTOM_TEMPLATE_PATH="" # is for Node Editor templates for Arnold shaders.
 export MTOA_STARTUP_LOG_VERBOSITY=""  # sets the MtoA log verbosity during startup: 1 for Errors and Warnings, 2 for Errors, Warnings, and Info, 3 for all
 export MTOA_LOG_PATH="" # default location for Arnold log files.
+export NUKE_PLUGIN_PATH=""
 
 ######################### BUILDING PATH
 echo "PATH    : appending....."
