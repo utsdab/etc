@@ -115,7 +115,7 @@ else
     unset DABSWW
 fi
 
-######### DABWORK - the main work area 
+######### DABWORK - the main work area
 if [ -d ${_dabwork} ]; then
     export DABWORK="${_dabwork}"
     echo "INFO    : DABWORK = ${DABWORK}"
