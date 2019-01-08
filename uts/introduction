@@ -1,17 +1,12 @@
 #!/bin/bash
-echo "                                          ";
-echo " ____    _    ____    ____   ___  _  ___  ";
-echo "|  _ \  / \  | __ )  |___ \ / _ \/ |( _ ) ";
-echo "| | | |/ _ \ |  _ \    __) | | | | |/ _ \ ";
-echo "| |_| / ___ \| |_) |  / __/| |_| | | (_) |";
-echo "|____/_/   \_\____/  |_____|\___/|_|\___/ ";
-echo "                                          ";
-echo "  ____ ___  _   _ _____ ___ ____   ____   ";
-echo " / ___/ _ \| \ | |  ___|_ _/ ___| | ___|  ";
-echo "| |  | | | |  \| | |_   | | |  _  |___ \  ";
-echo "| |__| |_| | |\  |  _|  | | |_| |  ___) | ";
-echo " \____\___/|_| \_|_|   |___\____| |____/  ";
-echo "                                          ";
+echo "                                                         ";
+echo "██████╗  █████╗ ██████╗     ██████╗  ██████╗  ██╗ █████╗ ";
+echo "██╔══██╗██╔══██╗██╔══██╗    ╚════██╗██╔═████╗███║██╔══██╗";
+echo "██║  ██║███████║██████╔╝     █████╔╝██║██╔██║╚██║╚██████║";
+echo "██║  ██║██╔══██║██╔══██╗    ██╔═══╝ ████╔╝██║ ██║ ╚═══██║";
+echo "██████╔╝██║  ██║██████╔╝    ███████╗╚██████╔╝ ██║ █████╔╝";
+echo "╚═════╝ ╚═╝  ╚═╝╚═════╝     ╚══════╝ ╚═════╝  ╚═╝ ╚════╝ ";
+echo "                                                         ";
 echo "Some more general purpose linux shell commands:"
 echo "  ls     - list files"
 echo "  cd     - change directory"
@@ -20,8 +15,9 @@ echo '  find   - a powerful searching tool eg. find . -name "*something*" -print
 echo "  tree   - a tree style listing use -L 2 to restrict the levels to 2"
 echo "  cp     - copy"
 echo "  mv     - move or rename - they are really the same thing"
-echo "  open . - opens the current directory in finder on a mac"
-echo "         - you can also drag a path from the finder into the shell!!"
+echo "  open . - opens the current directory in finder on osx "
+echo "         - where . is the current directory and .. the parent directory"
+echo "         - you can also drag a path from the finder into the shell"
 echo ""
 echo "Some more powerful and useful commands: "
 echo "  maya   -  launches maya with all the right tools and set ups"
@@ -29,7 +25,10 @@ echo "  lsq    -  similar to ls but collapses sequences of files to a single ent
 echo "  renseq -  renaming sequences of files"
 echo "  mved   -  general purpose pattern renamer"
 echo "  farm_submit_rfm.py - submit a renderman for maya job to the renderfarm"
+echo "  farm_submit_arnold.py - submit a renderman for maya job to the renderfarm"
+echo "  farm_submit_nuke.py - submit a renderman for maya job to the renderfarm"
+echo "  farm_submit_houdini.py - submit a renderman for maya job to the renderfarm"
 echo ""
 echo "Google and learn about linux shell commands and directory path names ...... try it!"
-echo "*** Remember that [tab][tab] tries to complete the line or command in a shell!" 
+echo "*** Remember that [tab][tab] auto completes the line or command where possible!!"
 echo "**********************************************************************************"

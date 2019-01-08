@@ -1,4 +1,16 @@
 #!/bin/bash
+#
+# This profile is the second step in a bootstrap for the environment needed in a shell
+# This script is sources at the end of /etc/profile.d/dabanim.sh
+# It requires some initial vairables to be set.
+
+
+
+
+
+
+
+
 echo ""
 echo "STARTING: ${BASH_SOURCE}"
 echo "VERSION: 2018-01-01"
@@ -135,6 +147,9 @@ else
     unset MAYA_APP_DIR
 fi
 
+
+
+
 ##########################
 if [ ${DABDEV} ]; then
     echo ">>>>>>>>> DEVELOPMENT: Using the development paths"
@@ -166,36 +181,29 @@ fi
 case ${OSTYPE:0:5} in
 linux)
     export RMANTREE="/opt/pixar/RenderManProServer-${RMAN_VERSION}"
-    export RMSTREE="/opt/pixar/RenderManForMaya-${RMAN_VERSION}-maya${MAYA_VERSION}"
+    export RFMTREE="/opt/pixar/RenderManForMaya-${RMAN_VERSION}"
     export TRACTOR_LOCATION="/opt/pixar/Tractor-${TRACTOR_VERSION}"
     export ARNOLD_LOCATION="/opt/solidangle/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/usr/autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}"
-    export NUKE_INSTALL_PATH="/opt/foundry/${NUKE_VERSION}"
-    export NUKE_LOCATION="/opt/foundry/${NUKE_VERSION}"
+    export HOUDINI_LOCATION=""
+#    export NUKE_INSTALL_PATH="/opt/foundry/${NUKE_VERSION}"
+#    export NUKE_LOCATION="/opt/foundry/${NUKE_VERSION}"
     ;;
 darwi)
     export RMANTREE="/Applications/Pixar/RenderManProServer-${RMAN_VERSION}"
-    case ${RMAN_VERSION:0:2} in
-    22)
-        export RMSTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}"
-        ;;
-    21)
-        export RMSTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}-maya${MAYA_VERSION}"
-        ;;
-    *)
-        export RMSTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}-maya${MAYA_VERSION}"
-        ;;
-    esac
+    export RFMTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}"
     export TRACTOR_LOCATION="/Applications/Pixar/Tractor-${TRACTOR_VERSION}"
     export ARNOLD_LOCATION="/Applications/solidangle/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/Applications/Autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}/Maya.app/Contents"
     export MAYA_RENDER_DESC_PATH="${ARNOLD_LOCATION}/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}"
-    export NUKE_INSTALL_PATH="/Applications/Nuke${NUKE_VERSION}"
-    export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app"
-    export NUKE_TEMP_DIR="/var/tmp/nuke-${USER}"
-    export PATH="${NUKE_LOCATION}/Contents/MacOS:${PATH}"
+    export HOUDINI_LOCATION="Applications/Houdini"
+    export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Current/Resources"
+#    export NUKE_INSTALL_PATH="/Applications/Nuke${NUKE_VERSION}"
+#    export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app"
+#    export NUKE_TEMP_DIR="/var/tmp/nuke-${USER}"
+#    export PATH="${NUKE_LOCATION}/Contents/MacOS:${PATH}"
     export PATH="/usr/aw/COM/bin:/usr/aw/COM/etc:${PATH}"
     export PATH="/Applications/RV64.app/Contents/MacOS:${PATH}"
     ;;
@@ -226,8 +234,12 @@ export MTOA_TEMPLATES_PATH="" # is for the Attribute Editor (AE) templates of Ar
 export MTOA_EXTENSIONS_PATH="" # is for MtoA extensions like Yeti.
 export MAYA_CUSTOM_TEMPLATE_PATH="" # is for Node Editor templates for Arnold shaders.
 export MTOA_STARTUP_LOG_VERBOSITY=""  # sets the MtoA log verbosity during startup: 1 for Errors and Warnings, 2 for Errors, Warnings, and Info, 3 for all
-export MTOA_LOG_PATH="" # default location for Arnold log files.
+export MTOA_LOG_PATH="/var/tmp" # default location for Arnold log files.
 export NUKE_PLUGIN_PATH=""
+
+
+
+
 
 ######################### BUILDING PATH
 echo "PATH    : appending....."
@@ -237,7 +249,6 @@ _paths=( \
             "${DABUSR}/etc/tractor" \
             "${DABSWW}/renderfarm/bin" \
             "${RMANTREE}/bin" \
-            "${RMSTREE}/bin" \
             "${TRACTOR_LOCATION}/bin" \
             "${ARNOLD_LOCATION}/bin" \
              )
@@ -256,8 +267,7 @@ echo "PYTHONPATH: appending....."
 _paths=( \
             "${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages" \
             "${TRACTOR_LOCATION}/lib/python2.7/site-packages" \
-            "${RMSTREE}/scripts" \
-            "${RMSTREE}/bin" \
+            "${RFMTREE}/scripts" \
             "${DABSWW}" \
             "${DABUSR}/etc/tractor" \
             "${DABUSR}/etc/maya/dab_scripts" \
@@ -293,7 +303,7 @@ done
 echo "MAYA_PLUG_IN_PATH: appending....."
 _paths=( \
             "${DABUSR}/etc/maya/dab_plug-ins" \
-            "${RMSTREE}/plug-ins" \
+            "${RFMTREE}/plug-ins" \
             "${MAYA_APPLICATION_LOCATION}/plug-ins" \
             )
 for i in "${_paths[@]}"
@@ -310,7 +320,7 @@ done
 echo "MAYA_SCRIPT_PATH: appending....."
 _paths=( \
             "${DABUSR}/etc/maya/dab_scripts" \
-            "${RMSTREE}/scripts" \
+            "${RFMTREE}/scripts" \
             )
 for i in "${_paths[@]}"
 do
@@ -326,7 +336,7 @@ done
 echo "MAYA_MODULE_PATH: appending....."
 _paths=( \
             "${DABUSR}/etc/maya/dab_modules" \
-            "${RMSTREE}/etc" \
+            "${RFMTREE}/etc" \
             )
 for i in "${_paths[@]}"
 do
@@ -339,7 +349,7 @@ do
 done
 
 export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B${XBMLANGPATH}"
-export XBMLANGPATH="${RMSTREE}/icons/%B:${XBMLANGPATH}"
+export XBMLANGPATH="${RFMTREE}/icons/%B:${XBMLANGPATH}"
 
 export MAYA_PRESET_PATH="${DABUSR}/etc/maya/dab_presets"
 export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
