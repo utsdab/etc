@@ -17,8 +17,11 @@ echo "VERSION: 2018-01-01"
 echo "USER: ${USER}"
 export PATH="/usr/X11R6/bin:${PATH}"
 
+#
+# Function helper
+#
+#
 
-###### functions
 checkpath () {
     # check to see if a string is a valid directory of file
     # exxpect a path as a string
@@ -32,10 +35,22 @@ checkpath () {
     fi
 }
 
-isvariable () {
+
+#
+# Function helper
+#
+#
+isvariable ( _variable ) {
 # test to see if a string is an envar
-    echo test
-}
+#if [ -d ${_variable} ]; then
+#    export DABASSETS="${_variable}"
+#    echo "INFO    : DABASSETS = ${DABASSETS}"
+#else
+#    echo "CRITICAL: Cant set DABASSETS correctly ${_dabassets}"
+#    unset DABASSETS
+#fi
+#}
+
 
 
 ########################## SETUP STUDIO WIDE ENVIRONMENT HOOKS
@@ -47,9 +62,9 @@ isvariable () {
 #fi
 isvariable "DABRENDER"
 if checkpath ${DABRENDER} ; then
-    echo "yay"
+    echo "Dabrender seems to be there"
 else
-    echo "nooo"
+    echo "Stop, cant see dabrender"
 fi
 
 ##########################  DEV or PRODUCTION
@@ -91,7 +106,7 @@ else
     unset DABETC
 fi
 
-######## DABSWW - software developed as glue
+######## DABSWW - software and scripts
 if [ -d ${_dabsww} ]; then
     export DABSWW="${_dabsww}"
     echo "INFO    : DABSWW = ${DABSWW}"
@@ -100,7 +115,7 @@ else
     unset DABSWW
 fi
 
-######### DABWORK - the main work area hook
+######### DABWORK - the main work area 
 if [ -d ${_dabwork} ]; then
     export DABWORK="${_dabwork}"
     echo "INFO    : DABWORK = ${DABWORK}"
