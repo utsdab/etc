@@ -5,12 +5,6 @@
 # It requires some initial vairables to be set.
 
 
-
-
-
-
-
-
 echo ""
 echo "STARTING: ${BASH_SOURCE}"
 echo "VERSION: 2018-01-01"
@@ -40,7 +34,7 @@ checkpath () {
 # Function helper
 #
 #
-isvariable ( _variable ) {
+#isvariable ( _variable ) {
 # test to see if a string is an envar
 #if [ -d ${_variable} ]; then
 #    export DABASSETS="${_variable}"
