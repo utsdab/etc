@@ -3,6 +3,8 @@ import logging
 import os
 import platform
 
+
+# /Applications/Houdini/Houdini17.0.416/Frameworks/Houdini.framework/Versions/Current/Resources
 class houdinihandler(TrEnvHandler):
     def __init__(self, name, envkeydict, envkeys):
         self.logger = logging.getLogger('tractor-blade')

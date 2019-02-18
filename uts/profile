@@ -195,7 +195,7 @@ linux)
     export ARNOLD_LOCATION="/opt/solidangle/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/usr/autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}"
-    export HOUDINI_LOCATION=""
+    export HOUDINI_LOCATION="/opt/sidefx"
 #    export NUKE_INSTALL_PATH="/opt/foundry/${NUKE_VERSION}"
 #    export NUKE_LOCATION="/opt/foundry/${NUKE_VERSION}"
     ;;
@@ -208,7 +208,7 @@ darwi)
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}/Maya.app/Contents"
     export MAYA_RENDER_DESC_PATH="${ARNOLD_LOCATION}/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}"
     export HOUDINI_LOCATION="Applications/Houdini"
-    export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Current/Resources"
+#    export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Current/Resources"
 #    export NUKE_INSTALL_PATH="/Applications/Nuke${NUKE_VERSION}"
 #    export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app"
 #    export NUKE_TEMP_DIR="/var/tmp/nuke-${USER}"
@@ -223,6 +223,10 @@ esac
 
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
 #  Not entirely sure what the difference between RDIR and RMS_SCRIPT_PATHS is
+export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Current/Resources"
+ cd $HFS
+ source houdini_setup
+ cd ~
 
 
 export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
@@ -237,6 +241,7 @@ export SGTK_PREFERENCES_LOCATION="${DABPREFS}/shotgun/toolkit_configs"
 export SHOTGUN_BUNDLE_CACHE_FALLBACK_PATHS="${DABPREFS}/shotgun/toolkit_configs"
 export SHOTGUN_PATH_MAC="${DABWORK}/shotgun_work"
 #export solidangle_LICENSE="${DABETC}/solidangle/solidangle_license.lic"
+#export JOB=
 
 export ARNOLD_PLUGIN_PATH="${ARNOLD_LOCATION}/shaders"
 export MTOA_TEMPLATES_PATH="" # is for the Attribute Editor (AE) templates of Arnold shaders.
@@ -245,9 +250,6 @@ export MAYA_CUSTOM_TEMPLATE_PATH="" # is for Node Editor templates for Arnold sh
 export MTOA_STARTUP_LOG_VERBOSITY=""  # sets the MtoA log verbosity during startup: 1 for Errors and Warnings, 2 for Errors, Warnings, and Info, 3 for all
 export MTOA_LOG_PATH="/var/tmp" # default location for Arnold log files.
 export NUKE_PLUGIN_PATH=""
-
-
-
 
 
 ######################### BUILDING PATH
