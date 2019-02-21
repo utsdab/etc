@@ -359,13 +359,10 @@ do
     fi
 done
 
-export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B${XBMLANGPATH}"
-export XBMLANGPATH="${RFMTREE}/icons/%B:${XBMLANGPATH}"
-
+export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B:${RFMTREE}/icons/%B:${XBMLANGPATH}"
 export MAYA_PRESET_PATH="${DABUSR}/etc/maya/dab_presets"
 export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
 export MAYA_SHELF_PATH="${DABUSR}/etc/maya/dab_shelves"
-
 export MAYA_MAC_SET_UMASK=0
 export MAYA_DISABLE_CIP=1
 
