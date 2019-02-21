@@ -46,7 +46,6 @@ checkpath () {
 #}
 
 
-
 ########################## SETUP STUDIO WIDE ENVIRONMENT HOOKS
 #if [ -d ${DABRENDER} ]; then
 #    echo "CHECK   : DABRENDER SEEMS TO BE THERE ${DABRENDER}"
@@ -54,14 +53,16 @@ checkpath () {
 #    echo "CRITICAL: Cant see DABRENDER ${DEBRENDER}"
 #    exit 1
 #fi
-isvariable "DABRENDER"
+#isvariable "DABRENDER"
+
 if checkpath ${DABRENDER} ; then
-    echo "Dabrender seems to be there"
+    echo "CHECK   : DABRENDER SEEMS TO BE THERE ${DABRENDER}"
 else
-    echo "Stop, cant see dabrender"
+    echo "CRITICAL: Cant see DABRENDER ${DEBRENDER}"
+    exit 1
 fi
 
-##########################  DEV or PRODUCTION
+# DEV or PRODUCTION #####################
 if [ ${DABDEV} ]; then
     echo ">>>>>>>>> DEVELOPMENT: Using the development paths"
     _dabusr="${DABDEV}/usr"
@@ -157,9 +158,7 @@ else
 fi
 
 
-
-
-##########################
+#  DEV OR PRODUCTION  VERSIONS   #########################
 if [ ${DABDEV} ]; then
     echo ">>>>>>>>> DEVELOPMENT: Using the development paths"
     echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
@@ -186,7 +185,7 @@ else
 	echo "INFO    : OS             : ${OSTYPE:0:5}"
 fi
 
-############  manage dev scenario here  ##############
+############  OS TYPE  ##############
 case ${OSTYPE:0:5} in
 linux)
     export RMANTREE="/opt/pixar/RenderManProServer-${RMAN_VERSION}"
@@ -196,6 +195,7 @@ linux)
     export MAYA_APPLICATION_LOCATION="/usr/autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}"
     export HOUDINI_LOCATION="/opt/sidefx"
+    export HFS="${HOUDINI_LOCATION}"
 #    export NUKE_INSTALL_PATH="/opt/foundry/${NUKE_VERSION}"
 #    export NUKE_LOCATION="/opt/foundry/${NUKE_VERSION}"
     ;;
@@ -207,8 +207,8 @@ darwi)
     export MAYA_APPLICATION_LOCATION="/Applications/Autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}/Maya.app/Contents"
     export MAYA_RENDER_DESC_PATH="${ARNOLD_LOCATION}/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}"
-    export HOUDINI_LOCATION="Applications/Houdini"
-#    export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Current/Resources"
+    export HOUDINI_LOCATION="/Applications/Houdini"
+    export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Current/Resources"
 #    export NUKE_INSTALL_PATH="/Applications/Nuke${NUKE_VERSION}"
 #    export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app"
 #    export NUKE_TEMP_DIR="/var/tmp/nuke-${USER}"
@@ -221,18 +221,25 @@ darwi)
     ;;
 esac
 
-#  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
-#  Not entirely sure what the difference between RDIR and RMS_SCRIPT_PATHS is
+# SIDEFX SETUP ###################
 export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Current/Resources"
  cd $HFS
  source houdini_setup
  cd ~
 
-
+# PIXAR SETUP ####################
+#  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
+#  Not entirely sure what the difference between RDIR and RMS_SCRIPT_PATHS is
 export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
 export RDIR="${DABETC}/pixar/config"     ####  appeard to be obsolete
 #export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
+export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
+
+# FOUNDRY SETUP ##################
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
+export NUKE_PLUGIN_PATH=""
+
+# AUTODESK SETUP #################
 export RV_LICENSE_FILE="${DABETC}/tweak/license.gto"
 export TWEAK_LICENSE_FILE="${DABETC}/tweak/license.gto"
 export MU_MODULE_PATH="${DABUSR}/etc/tweak/mu"
@@ -241,18 +248,21 @@ export SGTK_PREFERENCES_LOCATION="${DABPREFS}/shotgun/toolkit_configs"
 export SHOTGUN_BUNDLE_CACHE_FALLBACK_PATHS="${DABPREFS}/shotgun/toolkit_configs"
 export SHOTGUN_PATH_MAC="${DABWORK}/shotgun_work"
 #export solidangle_LICENSE="${DABETC}/solidangle/solidangle_license.lic"
-#export JOB=
-
 export ARNOLD_PLUGIN_PATH="${ARNOLD_LOCATION}/shaders"
 export MTOA_TEMPLATES_PATH="" # is for the Attribute Editor (AE) templates of Arnold shaders.
 export MTOA_EXTENSIONS_PATH="" # is for MtoA extensions like Yeti.
 export MAYA_CUSTOM_TEMPLATE_PATH="" # is for Node Editor templates for Arnold shaders.
 export MTOA_STARTUP_LOG_VERBOSITY=""  # sets the MtoA log verbosity during startup: 1 for Errors and Warnings, 2 for Errors, Warnings, and Info, 3 for all
 export MTOA_LOG_PATH="/var/tmp" # default location for Arnold log files.
-export NUKE_PLUGIN_PATH=""
+export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B${XBMLANGPATH}"
+export XBMLANGPATH="${RFMTREE}/icons/%B:${XBMLANGPATH}"
+export MAYA_PRESET_PATH="${DABUSR}/etc/maya/dab_presets"
+export MAYA_SHELF_PATH="${DABUSR}/etc/maya/dab_shelves"
+export MAYA_MAC_SET_UMASK=0
+export MAYA_DISABLE_CIP=1
 
 
-######################### BUILDING PATH
+######################## BUILDING PATHS #########################
 echo "PATH    : appending....."
 _paths=( \
             "${DABUSR}/bin" \
@@ -273,7 +283,8 @@ do
     fi
 done
 
-########################### BUILDING PYTHONPATH
+
+# BUILDING PYTHONPATH ####################
 echo "PYTHONPATH: appending....."
 _paths=( \
             "${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages" \
@@ -295,7 +306,7 @@ do
 done
 
 
-########################### BUILDING NUKE_PATH
+# BUILDING NUKE_PATH ########################
 echo "NUKE_PATH: appending....."
 _paths=( \
             "${DABUSR}/etc/nuke/tractorNuke" \
@@ -310,7 +321,8 @@ do
     fi
 done
 
-########################### BUILDING MAYA_PLUG_IN_PATH
+
+# BUILDING MAYA_PLUG_IN_PATH #################
 echo "MAYA_PLUG_IN_PATH: appending....."
 _paths=( \
             "${DABUSR}/etc/maya/dab_plug-ins" \
@@ -327,7 +339,8 @@ do
     fi
 done
 
-########################### BUILDING MAYA_SCRIPT_PATH
+
+# BUILDING MAYA_SCRIPT_PATH ###################
 echo "MAYA_SCRIPT_PATH: appending....."
 _paths=( \
             "${DABUSR}/etc/maya/dab_scripts" \
@@ -343,7 +356,8 @@ do
     fi
 done
 
-########################### BUILDING MAYA_MODULE_PATH
+
+# BUILDING MAYA_MODULE_PATH #####################
 echo "MAYA_MODULE_PATH: appending....."
 _paths=( \
             "${DABUSR}/etc/maya/dab_modules" \
@@ -359,15 +373,6 @@ do
     fi
 done
 
-export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B${XBMLANGPATH}"
-export XBMLANGPATH="${RFMTREE}/icons/%B:${XBMLANGPATH}"
-
-export MAYA_PRESET_PATH="${DABUSR}/etc/maya/dab_presets"
-export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
-export MAYA_SHELF_PATH="${DABUSR}/etc/maya/dab_shelves"
-
-export MAYA_MAC_SET_UMASK=0
-export MAYA_DISABLE_CIP=1
 
 ## removes duplicates
 #export PATH="$(echo "$PATH" |gawk 'BEGIN{RS=":";}
