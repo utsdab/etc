@@ -273,7 +273,8 @@ do
     fi
 done
 
-########################### BUILDING PYTHONPATH
+
+# BUILDING PYTHONPATH ####################
 echo "PYTHONPATH: appending....."
 _paths=( \
             "${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages" \
@@ -295,7 +296,7 @@ do
 done
 
 
-########################### BUILDING NUKE_PATH
+# BUILDING NUKE_PATH ########################
 echo "NUKE_PATH: appending....."
 _paths=( \
             "${DABUSR}/etc/nuke/tractorNuke" \
