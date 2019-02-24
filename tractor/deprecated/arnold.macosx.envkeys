@@ -1,6 +1,6 @@
 [
   {
-    "keys": ["maya*"],
+    "keys": ["arnold*"],
     "environment": {
       "DABRENDER": "/Volumes/dabrender",
       "DABUSR": "$DABRENDER/usr",
@@ -9,7 +9,7 @@
       "DABWORK": "$DABRENDER/work",
       "DABASSETS": "$DABRENDER/assets",
       "DABUSERPREFS": "$DABWORK/user_prefs",
-      "ENVKEY_maya": "from_maya.macosx.envkeys",
+      "ENVKEY_maya": "from_arnold.macosx.envkeys",
 
       "MAYA_LOCATION": "$TR_ENV_MAYALOCATION/Maya.app/Contents",
       "MAYA_MODULE_PATH": "$DABUSR/etc/maya/dab_modules:$MAYA_MODULE_PATH",
@@ -32,6 +32,6 @@
       "PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/bin:$PATH",
       "TMPDIR": "/var/tmp"
     },
-    "envhandler": "mayahandler"
+    "envhandler": "arnoldhandler"
   }
 ]

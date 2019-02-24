@@ -2,6 +2,7 @@
     {
         "keys": ["default"],
         "environment": {
+            "ENVKEY":            "default.shared.linux.envkeys:$ENVKEY",
             "DABRENDER":         "/Volumes/dabrender",
             "DABUSR":            "$DABRENDER/usr",
             "DABETC":            "$DABRENDER/etc",
@@ -9,39 +10,42 @@
             "DABWORK":           "$DABRENDER/work",
             "DABASSETS":         "$DABRENDER/assets",
             "DABUSERPREFS":      "$DABWORK/user_prefs",
-            "RMS_SCRIPT_PATHS":   "$DABETC/pixar/config",
-            "RDIR":               "$DABETC/pixar/config",
-            "PATH":               "/usr/local/bin:$DABUSR/bin:$PATH",
+
             "PIXAR_LICENSE_FILE": "$DABETC/pixar/pixar.license",
             "RV_LICENSE_FILE":    "$DABETC/tweak/license.gto",
             "TWEAK_LICENSE_FILE": "$DABETC/tweak/license.gto",
-            "EnvKey_linux":       "from_shared.linux.envkeys",
-            "MAYA_DISABLE_CIP":   "1",
-            "PYTHONPATH" :        "$DABRENDER"
+
+            "RMS_SCRIPT_PATHS":   "$DABETC/pixar/config",
+            "RDIR":               "$DABETC/pixar/config",
+
+            "PATH":               "/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin:$PATH",
+            "PYTHONPATH" :        "$DABRENDER:$DABSWW:$PYTHONPATH"
         },
-        "envhandler": "default"
+        "envhandler":    "default"
     },
-
-
     {
         "keys": ["rms-*-maya-*"],
         "environment": {
+            "ENVKEY":           "rms-maya.shared.linux.envkeys:$ENVKEY",
             "RMSTREE":          "/opt/pixar/RenderManStudio-$TR_ENV_RMSVER-maya$TR_ENV_MAYAVER",
             "RMANTREE":         "$RMSTREE/rmantree",
             "MAYA_LOCATION":    "$TR_ENV_MAYALOCATION",
+            "XGEN_LOCATION":     "$TR_ENV_MAYALOCATION/plug-ins/xgen",
             "MAYA_MODULE_PATH": "$RMSTREE/etc:$DABUSR/etc/maya/dab_modules",
             "MAYA_PLUG_IN_PATH":"$RMSTREE/plug-ins:$MAYA_LOCATION/plug-ins",
             "MAYA_SCRIPT_PATH": "$DABETC/maya/dab_scripts:$RMSTREE/scripts:$MAYA_LOCATION/scripts",
+
             "PATH":             "$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:$PATH",
             "PYTHONPATH":       "$DABUSR/etc/maya/dab_scripts:$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$PYTHONPATH",
             "MAYA_DISABLE_CIP" :"1"
         },
-        "envhandler": "rmshandler"
+        "envhandler":    "rmshandler"
     },
     {
         "keys": ["rfm-*-maya-*"],
         "environment": {
-            "RMSTREE":           "/opt/pixar/RenderManForMaya-$TR_ENV_RFMVER-maya$TR_ENV_MAYAVER",
+            "ENVKEY":            "rfm-maya.shared.linux.envkeys:$ENVKEY",
+            "RMSTREE":           "/opt/pixar/RenderManForMaya-$TR_ENV_RFMVER",
             "RMANTREE":          "/opt/pixar/RenderManProServer-$TR_ENV_RFMVER",
             "MAYA_LOCATION":     "$TR_ENV_MAYALOCATION",
             "MAYA_MODULE_PATH":  "$RMSTREE/etc:$DABUSR/etc/maya/dab_modules",
@@ -51,46 +55,133 @@
             "PYTHONPATH":        "$DABUSR/etc/maya/dab_scripts:$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$PYTHONPATH",
             "LD_LIBRARY_PATH":   "@+:/usr/autodesk/maya$TR_ENV_MAYAVER-x64/plug-ins/xgen/lib/:/usr/autodesk/maya$TR_ENV_MAYAVER-x64/lib"
         },
-        "envhandler": "rfmhandler"
+        "envhandler":    "rfmhandler"
+    },
+    {
+        "keys": ["rfm-*"],
+        "environment": {
+            "ENVKEY":             "rfm.shared.linux.envkeys:$ENVKEY",
+            "RFMTREE":            "/opt/pixar/RenderManForMaya-$TR_ENV_RFMVER",
+            "RMANTREE":           "/opt/pixar/RenderManProServer-$TR_ENV_RFMVER",
+            "MAYA_MODULE_PATH":   "$RFMTREE/etc:$DABUSR/etc/maya/dab_modules",
+            "MAYA_RENDER_DESC_PATH": "$RFMTREE/etc",
+            "MAYA_SCRIPT_PATH":   "$DABUSR/etc/maya/dab_scripts:$RFMTREE/scripts:$MAYA_LOCATION/scripts",
+            "MAYA_PLUG_IN_PATH":  "$RFMTREE/plug-ins:$MAYA_LOCATION/plug-ins:$DABUSR/etc/maya/dab_plug-ins",
+            "PYTHONPATH":         "$RFMTREE/scripts:$PYTHONPATH",
+            "RFM_SCRIPTS":        "scripts",
+            "PATH":               "$RFMTREE/bin:$RMANTREE/bin:$PATH"
+        },
+        "envhandler":    "rfmhandler2"
     },
     {
         "keys": ["prman-*"],
         "environment": {
+            "ENVKEY":           "prman.shared.linux.envkeys:$ENVKEY",
             "APPBASEDIR":       "/opt/pixar",
             "RMANTREE":         "$TR_ENV_RMANTREE",
             "PATH":             "$RMANTREE/bin:$PATH"
         },
-        "envhandler": "rmanhandler"
+        "envhandler":     "rmanhandler"
     },
     {
         "keys": ["rmantree=*"],
         "environment": {
-            "RMANTREE":         "$TR_ENV_RMANTREE",
-            "PATH":             "$RMANTREE/bin:$PATH"
+            "ENVKEY":     "rmantree.shared.linux.envkeys:$ENVKEY",
+            "RMANTREE":   "$TR_ENV_RMANTREE",
+            "PATH":       "$RMANTREE/bin:$PATH"
         },
-        "envhandler": "rmantreehandler",
+        "envhandler":     "rmantreehandler",
         "rewritedict": {}
     },
     {
         "keys": ["rmstree=*"],
         "environment": {
-            "RMSTREE":          "$TR_ENV_RMSTREE",
-            "PATH":             "$RMSTREE/bin:$PATH"
+            "ENVKEY":     "rmstree.shared.linux.envkeys:$ENVKEY",
+            "RMSTREE":    "$TR_ENV_RMSTREE",
+            "PATH":       "$RMSTREE/bin:$PATH"
         },
-        "envhandler": "rmstreehandler",
+        "envhandler":     "rmstreehandler",
         "rewritedict": {}
     },
     {
         "keys": ["rfmtree=*"],
         "environment": {
-            "RMSTREE":           "$TR_ENV_RFMTREE",
-            "PATH":              "$RMSTREE/bin:$PATH"
+            "ENVKEY":     "rfmtree.shared.linux.envkeys:$ENVKEY",
+            "RMSTREE":    "$TR_ENV_RFMTREE",
+            "PATH":       "$RMSTREE/bin:$PATH"
         },
-        "envhandler":             "rfmtreehandler",
+        "envhandler":     "rfmtreehandler",
         "rewritedict": {}
     },
     {
+        "keys": ["maya*"],
+        "environment": {
+            "ENVKEY":              "maya.shared.linux.envkeys:$ENVKEY",
+            "MAYA_LOCATION":       "$TR_ENV_MAYALOCATION",
+            "RFM_MAYA_VERSION":    "$TR_ENV_MAYAVER",
+            "XGEN_LOCATION":       "$TR_ENV_MAYALOCATION/plug-ins/xgen",
+            "PATH":                "$MAYA_LOCATION/bin:$PATH",
+            "LD_LIBRARY_PATH":     "@+:/usr/autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib/:/usr/autodesk/maya$TR_ENV_MAYAVER/lib",
+
+            "ARNOLD_PLUGIN_PATH":     "/opt/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",
+            "ARNOLD_PROCEDURAL_PATH": "/opt/solidangle/mtoa/$TR_ENV_MAYAVER/procedurals",
+            "MTOA_EXTENSIONS_PATH":   "",
+            "MAYA_CUSTOM_TEMPLATE_PATH":  "",
+            "MTOA_STARTUP_LOG_VERBOSITY": "",
+            "MTOA_LOG_PATH":       "/var/tmp",
+            "TMPDIR":              "/var/tmp"
+
+        },
+        "envhandler":     "mayahandler"
+    },
+    {
+        "keys": ["houdini*"],
+        "environment": {
+            "ENVKEY":            "houdini.shared.linux.envkeys:$ENVKEY",
+            "HOUDINI_LOCATION":  "$TR_ENV_HOUDINILOCATION",
+            "DYLD_LIBRARY_PATH": "$TR_ENV_HOUDINILOCATION",
+            "PATH":              "$TR_ENV_HOUDINILOCATION",
+            "TMPDIR":            "/var/tmp"
+        },
+        "envhandler":      "houdinihandler"
+    },
+    {
+        "keys": ["nuke*"],
+        "environment": {
+            "ENVKEY":            "nuke.linux.envkeys:$ENVKEY",
+            "NUKE_LOCATION":     "/opt/foundry/Nuke$TR_ENV_NUKEVER",
+            "DYLD_LIBRARY_PATH": "$NUKE_LOCATION",
+            "foundry_LICENSE":   "$DABETC/foundry/foundry_license.lic",
+            "PATH":              "$NUKE_LOCATION:$DABSWW/renderfarm/bin:$PATH"
+        },
+        "envhandler":      "nukehandler"
+    },
+    {
+        "keys": ["ProjectX", "TYPE=*", "SHOW=*", "PROJECT=*", "SCENE=*", "SCENENAME=*" ],
+        "environment": {
+            "CURRENT_TYPE":      "$TYPE",
+            "CURRENT_SHOW":      "$SHOW",
+            "CURRENT_PROJECT":   "$PROJECT",
+            "CURRENT_SCENE":     "$SCENE",
+            "CURRENT_SCENENAME": "$SCENENAME",
+            "ENVKEY":            "project.shared.linux.envkeys:$ENVKEY"
+        },
+        "envhandler":      "projecthandler"
+    },
+    {
+        "keys": ["rvio*"],
+        "environment": {
+            "ENVKEY":            "rvio.linux.envkeys:$ENVKEY",
+            "PATH":              "$DABSWW/renderfarm/bin:/opt/tweak/rv-latest/bin:$PATH",
+            "PYTHONPATH":        "$DABRENDER/usr/renderfarm",
+            "RV_LICENSE_FILE":   "$DABETC/tweak/license.gto",
+            "TWEAK_LICENSE_PATH":"$DABETC/tweak/license.gto",
+            "MU_MODULE_PATH":    "$DABUSR/etc/tweak/mu"
+        },
+        "envhandler": "proxyhandler"
+    },
+    {
         "keys": ["setenv *"],
-        "envhandler": "setenvhandler"
+        "envhandler":     "setenvhandler"
     }
 ]

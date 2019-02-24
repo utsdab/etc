@@ -1,6 +1,6 @@
 [
     {
-        "keys": ["maya*"],
+        "keys": ["arnold*"],
         "environment": {
             "DABRENDER": "/Volumes/dabrender",
             "DABUSR": "$DABRENDER/usr",
@@ -15,6 +15,6 @@
             "MAYA_MODULE_PATH": "$TR_ENV_MAYAVER/etc:$MAYA_MODULE_PATH",
             "PATH": "$MAYA_LOCATION/bin:$PATH"
         },
-        "envhandler": "mayahandler"
+        "envhandler": "arnoldhandler"
     }
 ]

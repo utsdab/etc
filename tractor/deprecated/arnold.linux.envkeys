@@ -1,6 +1,6 @@
 [
     {
-        "keys": ["maya*"],
+        "keys": ["arnold*"],
         "environment": {
             "DABRENDER": "/Volumes/dabrender",
             "DABUSR": "$DABRENDER/usr",
@@ -29,6 +29,6 @@
             "PATH": "$TR_ENV_MAYALOCATION/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:/opt/solidangle/mtoa/$TR_ENV_MAYAVERSION/bin:$PATH",
             "TMPDIR": "/var/tmp"
         },
-        "envhandler": "mayahandler"
+        "envhandler": "arnoldhandler"
     }
 ]

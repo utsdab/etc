@@ -64,6 +64,16 @@
         "rewritedict": {}
     },
     {
+        "keys": ["maya*"],
+        "environment": {
+            "MAYA_LOCATION": "$TR_ENV_MAYALOCATION",
+            "RFM_MAYA_VERSION": "$TR_ENV_MAYAVER",
+            "XGEN_LOCATION": "$TR_ENV_MAYALOCATION/plug-ins/xgen",
+            "PATH": "$MAYA_LOCATION/bin;$MAYA_LOCATION/plug-ins/xgen/bin;$MAYA_LOCATION/bin;$PATH"
+        },
+        "envhandler": "mayahandler"
+    },
+    {
         "keys": ["setenv *"],
         "envhandler": "setenvhandler"
     }

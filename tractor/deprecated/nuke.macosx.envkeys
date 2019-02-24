@@ -1,0 +1,13 @@
+[
+    {
+        "keys": ["nuke*"],
+        "environment": {
+            "ENVKEY":           "nuke.macosx.envkeys:$ENVKEY",
+            "NUKE_LOCATION": "/Applications/Nuke$TR_ENV_NUKEVER/Nuke$TR_ENV_NUKEVER.app/Contents",
+            "DYLD_LIBRARY_PATH": "$NUKE_LOCATION/MacOS",
+	        "foundry_LICENSE": "$DABETC/foundry/foundry_license.lic",
+            "PATH": "$NUKE_LOCATION/MacOS:$DABSWW/renderfarm/bin:$PATH"
+        },
+        "envhandler": "nukehandler"
+    }
+]

@@ -2,15 +2,6 @@
   {
     "keys": ["houdini*"],
     "environment": {
-      "DABRENDER": "/Volumes/dabrender",
-      "DABUSR": "$DABRENDER/usr",
-      "DABETC": "$DABRENDER/etc",
-      "DABSWW": "$DABRENDER/sww",
-      "DABWORK": "$DABRENDER/work",
-      "DABASSETS": "$DABRENDER/assets",
-      "DABUSERPREFS": "$DABWORK/user_prefs",
-      "ENVKEY_houdini": "from_houdini.macosx.envkeys",
-
       "HOUDINI_LOCATION": "$TR_ENV_HOUDINILOCATION",
       "DYLD_LIBRARY_PATH": "$TR_ENV_HOUDINILOCATION",
 //      "DYLD_FALLBACK_LIBRARY_PATH": "$TR_ENV_HOUDINILOCATION:$TR_ENV_HOUDINILOCATION/plug-ins/xgen/lib:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
