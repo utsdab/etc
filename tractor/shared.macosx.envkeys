@@ -70,6 +70,7 @@
             "MAYA_RENDER_DESC_PATH": "$RFMTREE/etc",
             "MAYA_PLUG_IN_PATH": "$RFMTREE/plug-ins:/$DABUSR/etc/maya/dab_plug-ins",
             "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_scripts:$RFMTREE/scripts",
+            "MAYA_RENDER_DESC_PATH": "$RFMTREE/etc",
             "PYTHONPATH":        "$RFMTREE/scripts:$PYTHONPATH",
             "RFM_SCRIPTS":       "scripts",
             "PATH":              "$RFMTREE/bin:$RMANTREE/bin:$PATH"
@@ -134,7 +135,7 @@
 
             "MAYA_MODULE_PATH":  "$DABUSR/etc/maya/dab_modules:$MAYA_MODULE_PATH",
             "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_scripts",
-            "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_plug-ins",
+            "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_plug-ins",
             "MAYA_DISABLE_CIP":  "1",
 
             "ARNOLD_PLUGIN_PATH":     "/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",

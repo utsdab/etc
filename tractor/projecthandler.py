@@ -51,7 +51,6 @@ class projecthandler(TrEnvHandler):
                         #fj["TASK"] = self.task
                 except:
                     self.logger.warn("failed to split envkey {}".format(envkey))
-
         return TrEnvHandler.updateEnvironment(self, cmd, env, envkeys)
 
     def remapCmdArgs(self, cmdinfo, launchenv, thisHost):
@@ -59,14 +58,11 @@ class projecthandler(TrEnvHandler):
         argv = TrEnvHandler.remapCmdArgs(self, cmdinfo, launchenv, thisHost)
         self.logger.info("type: %s, show: %s, proj: %s, scene: %s, scenename: %s" %
             (self.type, self.show, self.project, self.scene, self.scenename ))
-
         # indicate command was launched by tractor
         launchenv["TRACTOR"] = "1"
-
         if argv[0] == "render" and "RMANTREE" in launchenv:
             argv[0] = os.path.join(launchenv["RMANTREE"],"bin","prman")
             argv[1:1] = ["-statsfile", "%s-%s-%s-%s" % (self.type,self.show, self.project, self.scene)]
-
         # on windows for add the Visual Studio default libs and includes
         p = platform.platform()
         if p.find("Windows") != -1:
@@ -79,7 +75,6 @@ class projecthandler(TrEnvHandler):
                 launchenv["LIB"] += ";" + launchenv["VCLIB"]
             else:
                 launchenv["LIB"] = launchenv["VCLIB"]
-
         return argv
 
     def debug(self):
