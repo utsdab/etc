@@ -1,8 +1,15 @@
 [
     {
+        # Tractor convention: if the new value starts with "@+" then that
+        # special notation means "append this value to the existing such
+        # variable, if it exists, otherwise just use this value" which is
+        # to handle cases like LD_LIBRARY_PATH that may not be set at all
+        # by default. For cases like extending PATH we can just use a
+        # self reference "PATH": "$PATH:new_stuff" since PATH always exists.
+,
         "keys": ["default"],
         "environment": {
-            "ENVKEY":            "default.shared.macosx.envkeys:$ENVKEY",
+            "ENVKEY":            "@+:default.shared.macosx.envkeys",
             "DABRENDER":         "/Volumes/dabrender",
             "DABUSR":            "$DABRENDER/usr",
             "DABETC":            "$DABRENDER/etc",
@@ -18,7 +25,7 @@
             "RMS_SCRIPT_PATHS":  "$DABETC/pixar/config",
             "RDIR":              "$DABETC/pixar/config",
 
-            "PATH":              "/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin:$PATH",
+            "PATH":              "@+:/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin",
             "PYTHONPATH":        "$DABRENDER:$DABSWW:$PYTHONPATH"
         },
        "envhandler": "default"
@@ -26,7 +33,7 @@
     {
         "keys": ["rms-*-maya-*"],
         "environment": {
-            "ENVKEY":            "rms-maya.shared.macosx.envkeys:$ENVKEY",
+            "ENVKEY":            "@+:rms-maya.shared.macosx.envkeys",
             "RMSTREE":           "/Applications/Pixar/RenderManStudio-$TR_ENV_RMSVER-maya$TR_ENV_MAYAVER",
             "RMANTREE":          "$RMSTREE/rmantree",
             "MAYA_LOCATION":     "$TR_ENV_MAYALOCATION/Maya.app/Contents",
@@ -34,10 +41,10 @@
             "MAYA_MODULE_PATH":  "$DABUSR/etc/maya/dab_modules:$RMSTREE/etc",
             "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:$RMSTREE/plug-ins",
             "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:/$DABETC/maya/mayaConfig/dab_scripts:$RMSTREE/scripts",
-            "PATH":              "$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:$PATH",
-            "PYTHONPATH":        "$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$DABUSR/etc/maya/dab_scripts:$PYTHONPATH",
-            "DYLD_LIBRARY_PATH":          "$RMANTREE/lib:$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS:$TR_ENV_MAYALOCATION/plug-ins/xgen/lib:$DYLD_LIBRARY_PATH",
-            "DYLD_FALLBACK_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS:$DYLD_FALLBACK_LIBRARY_PATH",
+            "PATH":              "@+:$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:/usr/aw/COM/bin:/usr/aw/COM/etc",
+            "PYTHONPATH":        "@+:$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$DABUSR/etc/maya/dab_scripts",
+            "DYLD_LIBRARY_PATH":          "@+:$RMANTREE/lib:$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS:$TR_ENV_MAYALOCATION/plug-ins/xgen/lib",
+            "DYLD_FALLBACK_LIBRARY_PATH": "@+:$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS",
             "MAYA_DISABLE_CIP" : "1",
             "TMPDIR":            "/var/tmp"
         },
@@ -46,41 +53,40 @@
     {
         "keys": ["rfm-*-maya-*"],
         "environment": {
-            "ENVKEY":            "rfm-maya.shared.macosx.envkeys:$ENVKEY",
+            "ENVKEY":            "@+:rfm-maya.shared.macosx.envkeys",
             "RMSTREE":           "/Applications/Pixar/RenderManForMaya-$TR_ENV_RFMVER-maya$TR_ENV_MAYAVER",
             "RMANTREE":          "/Applications/Pixar/RenderManProServer-$TR_ENV_RFMVER",
             "MAYA_LOCATION":     "$TR_ENV_MAYALOCATION/Maya.app/Contents",
             "XGEN_LOCATION":     "$TR_ENV_MAYALOCATION/plug-ins/xgen",
             "MAYA_MODULE_PATH":  "$RMSTREE/etc:$DABUSR/etc/maya/dab_modules",
-            "PATH":              "$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:$PATH",
+            "PATH":              "@+:$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:/usr/aw/COM/bin:/usr/aw/COM/etc",
             "DYLD_LIBRARY_PATH": "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS",
-            "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_plug-ins:$RMSTREE/plug-ins",
-            "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_scripts:$RMSTREE/scripts",
-            "PYTHONPATH":"$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$DABUSR/etc/maya/dab_scripts:$DABUSR/etc/maya/dab_scripts:$PYTHONPATH"
+            "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_plug-ins:$RMSTREE/plug-ins",
+            "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_scripts:$RMSTREE/scripts",
+            "PYTHONPATH":        "@+:$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$DABUSR/etc/maya/dab_scripts:$DABUSR/etc/maya/dab_scripts"
         },
         "envhandler": "rfmhandler"
     },
     {
         "keys": ["rfm-*"],
         "environment": {
-            "ENVKEY":            "rfm.shared.macosx.envkeys:$ENVKEY",
-            "RFMTREE":           "/Applications/Pixar/RenderManForMaya-$TR_ENV_RFMVER",
-            "RMANTREE":          "/Applications/Pixar/RenderManProServer-$TR_ENV_RFMVER",
-            "MAYA_MODULE_PATH":  "$RFMTREE/etc:$DABUSR/etc/maya/dab_modules",
+            "ENVKEY":                "@+:rfm.shared.macosx.envkeys",
+            "RFMTREE":               "/Applications/Pixar/RenderManForMaya-$TR_ENV_RFMVER",
+            "RMANTREE":              "/Applications/Pixar/RenderManProServer-$TR_ENV_RFMVER",
+            "MAYA_MODULE_PATH":      "$RFMTREE/etc:$DABUSR/etc/maya/dab_modules:$MAYA_MODULE_PATH",
             "MAYA_RENDER_DESC_PATH": "$RFMTREE/etc",
-            "MAYA_PLUG_IN_PATH": "$RFMTREE/plug-ins:/$DABUSR/etc/maya/dab_plug-ins",
-            "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:/$DABUSR/etc/maya/dab_scripts:$RFMTREE/scripts",
-            "MAYA_RENDER_DESC_PATH": "$RFMTREE/etc",
-            "PYTHONPATH":        "$RFMTREE/scripts:$PYTHONPATH",
-            "RFM_SCRIPTS":       "scripts",
-            "PATH":              "$RFMTREE/bin:$RMANTREE/bin:$PATH"
+            "MAYA_PLUG_IN_PATH":     "$RFMTREE/plug-ins:$DABUSR/etc/maya/dab_plug-ins",
+            "MAYA_SCRIPT_PATH":      "$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_scripts:$RFMTREE/scripts",
+            "PYTHONPATH":            "@+:$RFMTREE/scripts",
+            "RFM_SCRIPTS":           "scripts",
+            "PATH":                  "$RFMTREE/bin:$RMANTREE/bin:$PATH"
         },
         "envhandler": "rfmhandler2"
     },
     {
         "keys": ["prman-*"],
         "environment": {
-            "ENVKEY":            "prman.shared.macosx.envkeys:$ENVKEY",
+            "ENVKEY":            "@+:prman.shared.macosx.envkeys",
             "APPBASEDIR":        "/Applications/Pixar:/Applications/Pixar/RenderMan.app/Versions",
             "RMANTREE":          "$TR_ENV_RMANTREE",
             "PATH":              "$RMANTREE/bin:$PATH"
@@ -90,7 +96,7 @@
     {
         "keys": ["rmantree=*"],
         "environment": {
-            "ENVKEY":            "rmantree.shared.macosx.envkeys:$ENVKEY",
+            "ENVKEY":            "@+:rmantree.shared.macosx.envkeys",
             "RMANTREE":          "$TR_ENV_RMANTREE",
             "PATH":              "$RMANTREE/bin:$PATH"
        },
@@ -100,7 +106,7 @@
     {
         "keys": ["rmstree=*"],
         "environment": {
-            "ENVKEY":            "rmstree.shared.macosx.envkeys:$ENVKEY",
+            "ENVKEY":            "@+:rmstree.shared.macosx.envkeys",
             "RMSTREE":           "$TR_ENV_RMSTREE",
             "PATH":              "$RMSTREE/bin:$PATH"
         },
@@ -110,7 +116,7 @@
     {
         "keys": ["rfmtree=*"],
         "environment": {
-            "ENVKEY":           "rfmtree.shared.macosx.envkeys:$ENVKEY",
+            "ENVKEY":           "@+:rfmtree.shared.macosx.envkeys",
             "RMSTREE":          "$TR_ENV_RFMTREE",
             "RFMTREE":          "$TR_ENV_RFMTREE",
             "PATH":             "$RMSTREE/bin:$PATH"
@@ -121,17 +127,17 @@
     {
         "keys": ["maya*"],
         "environment": {
-            "ENVKEY":           "maya.shared.macosx.envkeys:$ENVKEY",
+            "ENVKEY":           "@+:maya.shared.macosx.envkeys",
             "MAYA_LOCATION":    "$TR_ENV_MAYALOCATION/Maya.app/Contents",
             "RFM_MAYA_VERSION": "$TR_ENV_MAYAVER",
             "XGEN_LOCATION":    "$TR_ENV_MAYALOCATION/plug-ins/xgen",
             "PATH":             "$MAYA_LOCATION/bin:$TR_ENV_MAYALOCATION/Maya.app/Contents/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/bin:$PATH\":$PATH",
-            "PYTHONPATH":       "$DABUSR/etc/maya/mayaConfig/dab_scripts:$PYTHONPATH",
+            "PYTHONPATH":       "@+:$DABUSR/etc/maya/mayaConfig/dab_scripts",
             "TMPDIR":           "/var/tmp",
 
-            "DYLD_LIBRARY_PATH":          "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
+            "DYLD_LIBRARY_PATH":   "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
             "DYLD_FALLBACK_LIBRARY_PATH": "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
-            "DYLD_FRAMEWORK_PATH":        "$TR_ENV_MAYALOCATION/Maya.app/Contents/Frameworks",
+            "DYLD_FRAMEWORK_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/Frameworks",
 
             "MAYA_MODULE_PATH":  "$DABUSR/etc/maya/dab_modules:$MAYA_MODULE_PATH",
             "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_scripts",
@@ -178,14 +184,14 @@
             "CURRENT_PROJECT":   "$PROJECT",
             "CURRENT_SCENE":     "$SCENE",
             "CURRENT_SCENENAME": "$SCENENAME",
-            "ENVKEY":            "project.shared.macosx.envkeys:$ENVKEY"
+            "ENVKEY":            "@+:project.shared.macosx.envkeys"
         },
         "envhandler": "projecthandler"
     },
     {
         "keys": ["rvio*"],
         "environment": {
-            "ENVKEY":             "rvio.shared.macosx.envkeys:$ENVKEY",
+            "ENVKEY":             "@+:rvio.shared.macosx.envkeys",
             "PATH":               "$DABSWW/renderfarm/bin:/Applications/Pixar/Tractor-2.3/bin:/Applications/RV64.app/Contents/MacOS:$PATH",
             "PYTHONPATH":         "$DABSWW/renderfarm/:/Applications/Pixar/Tractor-2.3/bin",
             "RV_LICENSE_FILE":    "$DABRENDER/etc/tweak/license.gto",

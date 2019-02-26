@@ -17,6 +17,8 @@
 
             "RMS_SCRIPT_PATHS":   "$DABETC/pixar/config",
             "RDIR":               "$DABETC/pixar/config",
+            "RFM_DO_NOT_CREATE_MODULE_FILE": "1",
+
 
             "PATH":               "/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin:$PATH",
             "PYTHONPATH" :        "$DABRENDER:$DABSWW:$PYTHONPATH"
@@ -37,7 +39,7 @@
 
             "PATH":             "$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:$PATH",
             "PYTHONPATH":       "$DABUSR/etc/maya/dab_scripts:$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$PYTHONPATH",
-            "MAYA_DISABLE_CIP" :"1"
+            "MAYA_DISABLE_CIP" :"1",
         },
         "envhandler":    "rmshandler"
     },
@@ -67,7 +69,8 @@
             "MAYA_RENDER_DESC_PATH": "$RFMTREE/etc",
             "PYTHONPATH":         "$RFMTREE/scripts:$PYTHONPATH",
             "RFM_SCRIPTS":        "scripts",
-            "PATH":               "$RFMTREE/bin:$RMANTREE/bin:$PATH"
+            "PATH":               "$RFMTREE/bin:$RMANTREE/bin:$PATH",
+            "RFM_DO_NOT_CREATE_MODULE_FILE": "1"
         },
         "envhandler":    "rfmhandler2"
     },

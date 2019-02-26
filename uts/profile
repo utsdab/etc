@@ -261,6 +261,7 @@ export MAYA_PLUG_IN_PATH="${DABUSR}/etc/maya/dab_plug-ins"
 export MAYA_RENDER_DESC_PATH="$RFMTREE/etc"
 export MAYA_MAC_SET_UMASK=0
 export MAYA_DISABLE_CIP=1
+export RFM_DO_NOT_CREATE_MODULE_FILE=1
 export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B:${RFMTREE}/icons/%B:${XBMLANGPATH}"
 
 
@@ -383,6 +384,8 @@ export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
 export MAYA_SHELF_PATH="${DABUSR}/etc/maya/dab_shelves"
 export MAYA_MAC_SET_UMASK=0
 export MAYA_DISABLE_CIP=1
+export MAYA_RENDER_DESC_PATH="${RFMTREE}/etc"
+
 
 ## removes duplicates
 #export PATH="$(echo "$PATH" |gawk 'BEGIN{RS=":";}
