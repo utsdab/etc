@@ -65,9 +65,6 @@
             "RMANTREE":           "/opt/pixar/RenderManProServer-$TR_ENV_RFMVER",
             "MAYA_MODULE_PATH":   "$RFMTREE/etc:$DABUSR/etc/maya/dab_modules",
             "MAYA_RENDER_DESC_PATH": "$RFMTREE/etc",
-            "MAYA_SCRIPT_PATH":   "$DABUSR/etc/maya/dab_scripts:$RFMTREE/scripts:$MAYA_LOCATION/scripts",
-            "MAYA_PLUG_IN_PATH":  "$RFMTREE/plug-ins:$MAYA_LOCATION/plug-ins:$DABUSR/etc/maya/dab_plug-ins",
-            "MAYA_RENDER_DESC_PATH": "$RFMTREE/etc",
             "PYTHONPATH":         "$RFMTREE/scripts:$PYTHONPATH",
             "RFM_SCRIPTS":        "scripts",
             "PATH":               "$RFMTREE/bin:$RMANTREE/bin:$PATH"
@@ -120,10 +117,13 @@
             "ENVKEY":              "maya.shared.linux.envkeys:$ENVKEY",
             "MAYA_LOCATION":       "$TR_ENV_MAYALOCATION",
             "RFM_MAYA_VERSION":    "$TR_ENV_MAYAVER",
+            "MAYA_MODULE_PATH":    "$RFMTREE/etc:$DABUSR/etc/maya/dab_modules",
+            "MAYA_SCRIPT_PATH":    "$DABUSR/etc/maya/dab_scripts:$RFMTREE/scripts:$MAYA_LOCATION/scripts",
+            "MAYA_PLUG_IN_PATH":   "$RFMTREE/plug-ins:$MAYA_LOCATION/plug-ins:$DABUSR/etc/maya/dab_plug-ins",
             "XGEN_LOCATION":       "$TR_ENV_MAYALOCATION/plug-ins/xgen",
             "PATH":                "$MAYA_LOCATION/bin:/opt/solidangle/mtoa/$TR_ENV_MAYAVER/bin:$PATH",
             "LD_LIBRARY_PATH":     "@+:/usr/autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib/:/usr/autodesk/maya$TR_ENV_MAYAVER/lib",
-
+            "SYNCOLOR":            "$DABETC/linux/synColorConfig.xml"
             "ARNOLD_PLUGIN_PATH":     "/opt/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",
             "ARNOLD_PROCEDURAL_PATH": "/opt/solidangle/mtoa/$TR_ENV_MAYAVER/procedurals",
             "MTOA_EXTENSIONS_PATH":   "",
@@ -140,7 +140,7 @@
         "environment": {
             "ENVKEY":            "houdini.shared.linux.envkeys:$ENVKEY",
             "HOUDINI_LOCATION":  "$TR_ENV_HOUDINILOCATION",
-            "DYLD_LIBRARY_PATH": "$TR_ENV_HOUDINILOCATION",
+            "LD_LIBRARY_PATH":   "$TR_ENV_HOUDINILOCATION",
             "PATH":              "$TR_ENV_HOUDINILOCATION",
             "TMPDIR":            "/var/tmp"
         },

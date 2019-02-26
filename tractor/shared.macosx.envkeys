@@ -137,7 +137,7 @@
             "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_scripts",
             "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_plug-ins",
             "MAYA_DISABLE_CIP":  "1",
-
+            "SYNCOLOR":          "$DABETC/macosx/synColorConfig.xml"
             "ARNOLD_PLUGIN_PATH":     "/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",
             "ARNOLD_PROCEDURAL_PATH": "/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/procedurals",
             "MTOA_EXTENSIONS_PATH":       "",
