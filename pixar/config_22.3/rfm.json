@@ -1,0 +1,116 @@
+{
+    "paths": {
+        "RMANTREE": null, 
+        "RFM_SITE_PATH": null, 
+        "RFM_SHOW_PATH": null, 
+        "RFMTREE": null
+    }, 
+    "maya compatibility": [
+        2017, 
+        2018, 
+        2019
+    ], 
+    "dirmaps": {
+        "myserver_to_z": {
+            "to": "Z:/", 
+            "from": "/myserver/", 
+            "zone": "UNC"
+        }
+    }, 
+    "versions": {
+        "rman": "22.3", 
+        "rfm": "22.3"
+    }, 
+    "rman search paths": {
+        "shader": [
+            "${HOME}/rfm", 
+            "${RFM_SHOW_PATH}", 
+            "${RFM_SITE_PATH}", 
+            "${RMANTREE}/lib/shaders", 
+            "@"
+        ], 
+        "rixplugin": [
+            "${HOME}/rfm", 
+            "${RFM_SHOW_PATH}", 
+            "${RFM_SITE_PATH}", 
+            "${RFMTREE}/lib/plugins", 
+            "@"
+        ], 
+        "texture": [
+            "@"
+        ], 
+        "procedural": [
+            "${HOME}/rfm", 
+            "${RFM_SHOW_PATH}", 
+            "${RFM_SITE_PATH}", 
+            "${RFMTREE}/lib/${RFM_MAYA_VERSION}", 
+            "@"
+        ]
+    }, 
+    "user tokens": [], 
+    "$schema": "./rfmSchema.json", 
+    "woffs": [
+        "R90007"
+    ], 
+    "lpe": {
+        "lobe ids": {
+            "specular8": "Glass", 
+            "user6": "", 
+            "user4": "", 
+            "user5": "", 
+            "user2": "Albedo,DiffuseAlbedo,SubsurfaceAlbedo,HairAlbedo", 
+            "user8": "", 
+            "user7": "", 
+            "specular2": "Specular,HairSpecularR", 
+            "specular3": "RoughSpecular,HairSpecularTRT", 
+            "specular4": "Clearcoat", 
+            "specular5": "Iridescence", 
+            "specular6": "Fuzz,HairSpecularGLINTS", 
+            "specular7": "SingleScatter,HairSpecularTT", 
+            "user10": "", 
+            "user11": "", 
+            "user12": "", 
+            "diffuse2": "Diffuse,HairDiffuse", 
+            "diffuse3": "Subsurface", 
+            "user9": ""
+        }
+    }, 
+    "resources": {
+        "core": {
+            "icons": "${RFMTREE}/icons", 
+            "nodes": {
+                "node_exclusion_list": [
+                    "PxrHair", 
+                    "PxrLMDiffuse", 
+                    "PxrLMGlass", 
+                    "PxrLMMetal", 
+                    "PxrLMPlastic", 
+                    "PxrLMSubsurface", 
+                    "PxrSkin", 
+                    "PxrUPBP", 
+                    "PxrValidateBxdf", 
+                    "PxrDebugShadingContext"
+                ], 
+                "search_paths": [
+                    "${RMANTREE}/lib/plugins/Args", 
+                    "${RMANTREE}/lib/shaders", 
+                    "${RFMTREE}/lib/plugins/Args", 
+                    "${RFMTREE}/nodes", 
+                    "${RFMTREE}/test_files"
+                ]
+            }, 
+            "scripts": "${RFMTREE}/scripts", 
+            "adapters": [
+                "$RFMTREE/adapters"
+            ], 
+            "plugins": "${RFMTREE}/plugins"
+        }, 
+        "user": {
+            "nodes": {
+                "search_paths": []
+            }, 
+            "adapters": [], 
+            "icons": []
+        }
+    }
+}
