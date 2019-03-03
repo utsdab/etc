@@ -233,7 +233,8 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
 export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
 export RDIR="${DABETC}/pixar/config"     ####  appeard to be obsolete
 #export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
-export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
+#export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
+export RMAN_ASSET_LIBRARY=$RMANTREE/lib/RenderManAssetLibrary
 
 # FOUNDRY SETUP ##################
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"

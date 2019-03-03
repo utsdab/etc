@@ -7,6 +7,7 @@
         # by default. For cases like extending PATH we can just use a
         # self reference "PATH": "$PATH:new_stuff" since PATH always exists.
 ,
+
         "keys": ["default"],
         "environment": {
             "ENVKEY":            "@+:default.shared.macosx.envkeys",
@@ -40,7 +41,7 @@
             "XGEN_LOCATION":     "$TR_ENV_MAYALOCATION/plug-ins/xgen",
             "MAYA_MODULE_PATH":  "$DABUSR/etc/maya/dab_modules:$RMSTREE/etc",
             "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:$RMSTREE/plug-ins",
-            "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:/$DABETC/maya/mayaConfig/dab_scripts:$RMSTREE/scripts",
+            "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:/$DABETC/maya/dab_scripts:$RMSTREE/scripts",
             "PATH":              "@+:$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:/usr/aw/COM/bin:/usr/aw/COM/etc",
             "PYTHONPATH":        "@+:$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python:$DABUSR/etc/maya/dab_scripts",
             "DYLD_LIBRARY_PATH":          "@+:$RMANTREE/lib:$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS:$TR_ENV_MAYALOCATION/plug-ins/xgen/lib",
@@ -132,18 +133,15 @@
             "RFM_MAYA_VERSION": "$TR_ENV_MAYAVER",
             "XGEN_LOCATION":    "$TR_ENV_MAYALOCATION/plug-ins/xgen",
             "PATH":             "$MAYA_LOCATION/bin:$TR_ENV_MAYALOCATION/Maya.app/Contents/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/bin:$PATH\":$PATH",
-            "PYTHONPATH":       "@+:$DABUSR/etc/maya/mayaConfig/dab_scripts",
             "TMPDIR":           "/var/tmp",
 
             "DYLD_LIBRARY_PATH":   "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
             "DYLD_FALLBACK_LIBRARY_PATH": "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
             "DYLD_FRAMEWORK_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/Frameworks",
 
-            "MAYA_MODULE_PATH":  "$DABUSR/etc/maya/dab_modules:$MAYA_MODULE_PATH",
             "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_scripts",
-            "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_plug-ins",
+            "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_plug-ins:$DABUSR/etc/maya/dab_scripts",
             "MAYA_DISABLE_CIP":  "1",
-            "SYNCOLOR":          "$DABETC/macosx/synColorConfig.xml"
             "ARNOLD_PLUGIN_PATH":     "/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",
             "ARNOLD_PROCEDURAL_PATH": "/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/procedurals",
             "MTOA_EXTENSIONS_PATH":       "",
