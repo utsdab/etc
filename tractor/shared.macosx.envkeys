@@ -6,7 +6,6 @@
         # to handle cases like LD_LIBRARY_PATH that may not be set at all
         # by default. For cases like extending PATH we can just use a
         # self reference "PATH": "$PATH:new_stuff" since PATH always exists.
-,
 
         "keys": ["default"],
         "environment": {
