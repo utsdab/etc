@@ -21,7 +21,7 @@
             "PIXAR_LICENSE_FILE":"$DABETC/pixar/pixar.license",
             "RV_LICENSE_FILE":   "$DABETC/tweak/license.gto",
             "TWEAK_LICENSE_FILE":"$DABETC/tweak/license.gto",
-            "SESI_LMHOST":       "dab-license",
+            "SESI_LMHOST":        "dab-license",
             "RMS_SCRIPT_PATHS":  "$DABETC/pixar/config",
             "RDIR":              "$DABETC/pixar/config",
 
@@ -157,18 +157,28 @@
     {
         "keys": ["houdini*"],
         "environment": {
-            "ENVKEY":            "houdini.shared.macosx.envkeys:$ENVKEY",
-            "HOUDINI_LOCATION":  "$TR_ENV_HOUDINILOCATION",
-            "DYLD_LIBRARY_PATH": "$TR_ENV_HOUDINILOCATION",
-            "PATH":              "$TR_ENV_HOUDINILOCATION",
-            "TMPDIR":            "/var/tmp"
+            "ENVKEY":            "@+:houdini.shared.macosx.envkeys",
+            "HOUDINI_LOCATION":  "/Applications/Houdini/Houdini$TR_ENV_HOUDINIVER/",
+            "HFS" :              "${TR_ENV_HFS}",
+            "H":                 "${HFS}",
+            "HB":       "${H}/bin",
+            "HDSO":     "${H}/../Libraries",
+            "HD":       "${H}/demo",
+            "HH":       "${H}/houdini",
+            "HHC":      "${HH}/config",
+            "HT":       "${H}/toolkit",
+            "HSB":      "${HH}/sbin",
+            "TEMP":     "/var/tmp",
+            "JAVA_HOME": "/Library/Java/Home",
+            "PATH":     "${HB}:${HSB}:$PATH"
+
         },
         "envhandler": "houdinihandler"
     },
     {
         "keys": ["nuke*"],
         "environment": {
-            "ENVKEY":            "nuke.macosx.envkeys:$ENVKEY",
+            "ENVKEY":            "@+:nuke.macosx.envkeys",
             "NUKE_LOCATION":     "/Applications/Nuke$TR_ENV_NUKEVER/Nuke$TR_ENV_NUKEVER.app/Contents",
             "DYLD_LIBRARY_PATH": "$NUKE_LOCATION/MacOS",
 	        "foundry_LICENSE":   "$DABETC/foundry/foundry_license.lic",
