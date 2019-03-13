@@ -40,6 +40,8 @@ class houdinihandler(TrEnvHandler):
             ## Mac OSX
             else:
                 self.environmentdict['TR_ENV_HFS'] = "/Applications/Houdini/Houdini{}.{}.{}/Frameworks/Houdini.framework/Versions/Current/Resources".format(maj,min,build)
+                self.environmentdict['TR_ENV_CURRENT_HFS'] = "/Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources".format(maj,min,build)
+
 
         return TrEnvHandler.updateEnvironment(self, cmd, env, envkeys)
 

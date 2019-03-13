@@ -21,7 +21,7 @@
             "PIXAR_LICENSE_FILE":"$DABETC/pixar/pixar.license",
             "RV_LICENSE_FILE":   "$DABETC/tweak/license.gto",
             "TWEAK_LICENSE_FILE":"$DABETC/tweak/license.gto",
-            "SESI_LMHOST":        "138.25.185.34",
+            "SESI_LMHOST":        "dab-license",
             "RMS_SCRIPT_PATHS":  "$DABETC/pixar/config",
             "RDIR":              "$DABETC/pixar/config",
 
@@ -158,7 +158,6 @@
         "keys": ["houdini*"],
         "environment": {
             "ENVKEY":            "@+:houdini.shared.macosx.envkeys",
-
             "HOUDINI_LOCATION":  "/Applications/Houdini/Houdini$TR_ENV_HOUDINIVER/",
             "HFS" :              "${TR_ENV_HFS}",
             "H":                 "${HFS}",

@@ -14,6 +14,7 @@
             "PIXAR_LICENSE_FILE": "$DABETC/pixar/pixar.license",
             "RV_LICENSE_FILE":    "$DABETC/tweak/license.gto",
             "TWEAK_LICENSE_FILE": "$DABETC/tweak/license.gto",
+            "SESI_LMHOST":        "dab-license",
 
             "RMS_SCRIPT_PATHS":   "$DABETC/pixar/config",
             "RDIR":               "$DABETC/pixar/config",
@@ -153,9 +154,11 @@
             "HT":       "${H}/toolkit",
             "HSB":      "${HH}/sbin",
             "TEMP":     "/var/tmp",
+            "JAVA_HOME": "/Library/Java/Home",
             "PATH":     "${HB}:${HSB}:$PATH"
+
         },
-        "envhandler":      "houdinihandler"
+        "envhandler": "houdinihandler"
     },
     {
         "keys": ["nuke*"],
