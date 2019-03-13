@@ -162,9 +162,9 @@ fi
 if [ ${DABDEV} ]; then
     echo ">>>>>>>>> DEVELOPMENT: Using the development paths"
     echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
-    export MAYA_VERSION="2018"
+    export MAYA_VERSION="2019"
     echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-    export RMAN_VERSION="22.3"
+    export RMAN_VERSION="22.4"
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
     export TRACTOR_VERSION="2.3"
     echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
@@ -264,6 +264,9 @@ export MAYA_MAC_SET_UMASK=0
 export MAYA_DISABLE_CIP=1
 export RFM_DO_NOT_CREATE_MODULE_FILE=1
 export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B:${RFMTREE}/icons/%B:${XBMLANGPATH}"
+
+# SIDEFX ###################
+export SESI_LMHOST = 138.25.185.34  # according to side fx - need to open ports 1714 and 1715
 
 
 
