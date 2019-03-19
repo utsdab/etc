@@ -298,7 +298,7 @@
                     },
                     "rmanConvert21Scene": {
                         "label": "Migrate 21.x scene to 22",
-                        "help": "Update the preset files that were created when the plugin was first loaded",
+                        "help": "Update an older 21.x scene",
                         "command": "import rfm2.utils.scene_updater; rfm2.utils.scene_updater.update_scene()"
                     }
                 }

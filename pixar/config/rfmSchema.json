@@ -47,6 +47,20 @@
                 "zone"
             ]
         },
+        "tractor_cfg": {
+            "type": "object",
+            "properties": {
+                "engine": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "string"
+                },
+                "user": {
+                    "type": "string"
+                }
+            }
+        },
         "adapters": {
             "description": "A list directory paths containing adapter modules.",
             "type": "array",

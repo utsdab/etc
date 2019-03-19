@@ -17,6 +17,7 @@
                     "widget": "mapper",
                     "options": "Inherit:-1|Yes:1|No:0",
                     "default": -1,
+                    "channelBox": true,
                     "page": "Shading",
                     "help": "This object is rendered as a black hole"
                 },
@@ -28,6 +29,7 @@
                     "widget": "mapper",
                     "options": "Inherit:-1|Yes:1|No:0",
                     "default": -1,
+                    "channelBox": true,
                     "page": "Shading",
                     "help": "Useful in holdout workflow. These objects collect reflections, shadows, and transmission."
                 },
@@ -37,6 +39,7 @@
                     "type": "int",
                     "widget": "checkBox",
                     "default": 0,
+                    "channelBox": true,
                     "page": "Instancing",
                     "help": "Instances are typically flattened, which allows for shading overrides at leaf nodes.  However, nested instances can be more efficient."
                 },
@@ -55,6 +58,7 @@
                     "label": "Max Diffuse Depth",
                     "type": "int",
                     "default": -1,
+                    "channelBox": true,
                     "page": "Trace",
                     "help": "Maximum diffuse light bounces"
                 },
@@ -64,6 +68,7 @@
                     "label": "Max Specular Depth",
                     "type": "int",
                     "default": -1,
+                    "channelBox": true,
                     "page": "Trace",
                     "help": "Maximum specular light bounces"
                 },
@@ -73,6 +78,7 @@
                     "label": "Relative Pixel Variance",
                     "type": "float",
                     "default": 1,
+                    "channelBox": true,
                     "page": "Trace",
                     "help": "This multiplier allows changing quality relative to the global pixel variance."
                 },
@@ -82,6 +88,7 @@
                     "label": "Reflect Exclude Subset",
                     "type": "string",
                     "default": "",
+                    "channelBox": true,
                     "page": "Trace",
                     "help": "Exclude object groups from reflections"
                 },
@@ -136,6 +143,7 @@
                     "label": "Intersection Priority",
                     "type": "int",
                     "default": -1,
+                    "channelBox": true,
                     "page": "Nested Dielectrics",
                     "help": "Raytrace intersection priority for nested dielectrics"
                 },
@@ -147,6 +155,7 @@
                     "default": -1,
                     "widget": "mapper",
                     "options": "Inherit:-1|Yes:1|No:0",
+                    "channelBox": true,
                     "page": "Visibility",
                     "help": "Indicates if object is visible to indrect (reflection and specular refraction) rays"
                 },
@@ -158,6 +167,7 @@
                     "default": -1,
                     "widget": "mapper",
                     "options": "Inherit:-1|Yes:1|No:0",
+                    "channelBox": true,
                     "page": "Visibility",
                     "help": "Indicates if object is visible to shadow rays"
                 },
@@ -180,6 +190,7 @@
                     "label": "MicroPolygon Length",
                     "type": "float",
                     "default": -1.0,
+                    "channelBox": true,
                     "page": "Geometry"
                 },
                 {
@@ -210,6 +221,7 @@
                     "default": -1,
                     "widget": "mapper",
                     "options": "Inherit:-1|Yes:1|No:0",
+                    "channelBox": true,
                     "page": "Trace/Bias"
                 },
                 {
@@ -218,6 +230,7 @@
                     "label": "Trace Bias",
                     "type": "float",
                     "default": 0.01,
+                    "channelBox": true,
                     "page": "Trace/Bias",
                     "conditionalVisOps": {
                         "conditionalVisOp": "notEqualTo",
@@ -231,6 +244,7 @@
                     "label": "Displacement Bound",
                     "type": "float",
                     "default": 0.1,
+                    "channelBox": true,
                     "page": "Displacement"
                 },
                 {
@@ -241,6 +255,7 @@
                     "default": "object",
                     "widget": "popup",
                     "options": "world|object",
+                    "channelBox": true,
                     "page": "Displacement",
                     "help": "Coordinate system of the displacement bound.  For example, a scaled up ground plane may want the displacement bound in world space, while a character would typically specify the value in object space."
                 },
@@ -275,6 +290,7 @@
                     "type": "int",
                     "default": 0,
                     "widget": "mapper",
+                    "channelBox": true,
                     "options": "None:0|Catmull-Clark:1|Loop:2|Bilinear:3",
                     "page": "Subdivision Surface"
                 },
@@ -341,6 +357,17 @@
                     "widget": "checkBox",
                     "page": "Reference Object",
                     "help": "A primvar called __WNref will be emitted for this shape if a texture reference object has been created."
+                },
+                {
+                    "name": "rman_preventPolyCracks",
+                    "primvar": "polygon:smoothdisplacement",
+                    "label": "Prevent polygon cracking",
+                    "type": "int",
+                    "default": 0,
+                    "widget": "checkBox",
+                    "channelBox": true,
+                    "page": "Displacement",
+                    "help": "Prevent polygon cracks on sharp edges, as long as both sides of the edge have similar displacement values, at the cost of slightly warping your displacement."
                 }
             ]
         },
@@ -355,6 +382,7 @@
                     "label": "Motion Samples",
                     "type": "int",
                     "default": -1,
+                    "channelBox": true,
                     "page": "Motion Blur"
                 }
             ]
@@ -384,18 +412,21 @@
                     "label": "Render Curve",
                     "type": "int",
                     "widget": "checkBox",
+                    "channelBox": true,
                     "default": 0
                 },
                 {
                     "name": "rman_curveBaseWidth",
                     "label": "Base Width",
                     "type": "float",
+                    "channelBox": true,
                     "default": 0.1
                 },
                 {
                     "name": "rman_curveTipWidth",
                     "label": "Tip Width",
                     "type": "float",
+                    "channelBox": true,
                     "default": 0.1
                 }
             ]
@@ -692,6 +723,7 @@
                     "label": "MicroPolygon Length",
                     "type": "float",
                     "default": 10,
+                    "channelBox": true,
                     "page": "Geometry"
                 },
                 {

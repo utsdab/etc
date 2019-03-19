@@ -29,32 +29,6 @@ checkpath () {
     fi
 }
 
-
-#
-# Function helper
-#
-#
-#isvariable ( _variable ) {
-# test to see if a string is an envar
-#if [ -d ${_variable} ]; then
-#    export DABASSETS="${_variable}"
-#    echo "INFO    : DABASSETS = ${DABASSETS}"
-#else
-#    echo "CRITICAL: Cant set DABASSETS correctly ${_dabassets}"
-#    unset DABASSETS
-#fi
-#}
-
-
-########################## SETUP STUDIO WIDE ENVIRONMENT HOOKS
-#if [ -d ${DABRENDER} ]; then
-#    echo "CHECK   : DABRENDER SEEMS TO BE THERE ${DABRENDER}"
-#else
-#    echo "CRITICAL: Cant see DABRENDER ${DEBRENDER}"
-#    exit 1
-#fi
-#isvariable "DABRENDER"
-
 if checkpath ${DABRENDER} ; then
     echo "CHECK   : DABRENDER SEEMS TO BE THERE ${DABRENDER}"
 else
@@ -230,11 +204,13 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
 # PIXAR SETUP ####################
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
 #  Not entirely sure what the difference between RDIR and RMS_SCRIPT_PATHS is
-export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
-export RDIR="${DABETC}/pixar/config"     ####  appeard to be obsolete
+#export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
+#export RDIR="${DABETC}/pixar/config"     ####  appeard to be obsolete
 #export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
 #export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
-export RMAN_ASSET_LIBRARY=$RMANTREE/lib/RenderManAssetLibrary
+#export RMAN_ASSET_LIBRARY=$RMANTREE/lib/RenderManAssetLibrary
+export RFM_SITE_PATH="${DABETC}/pixar"
+#export RFM_SHOW_PATH=
 
 # FOUNDRY SETUP ##################
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"

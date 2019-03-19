@@ -22,11 +22,11 @@
             "RV_LICENSE_FILE":   "$DABETC/tweak/license.gto",
             "TWEAK_LICENSE_FILE":"$DABETC/tweak/license.gto",
             "SESI_LMHOST":        "dab-license",
-            "RMS_SCRIPT_PATHS":  "$DABETC/pixar/config",
-            "RDIR":              "$DABETC/pixar/config",
+//            "RMS_SCRIPT_PATHS":  "$DABETC/pixar/config",
+//            "RDIR":              "$DABETC/pixar/config",
 
             "PATH":              "@+:/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin",
-            "PYTHONPATH":        "$DABRENDER:$DABSWW:$PYTHONPATH"
+            "PYTHONPATH":        "@+:$DABRENDER:$DABSWW:$RFMTREE/bin:$RMANTREE/bin"
         },
        "envhandler": "default"
     },
