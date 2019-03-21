@@ -7,7 +7,7 @@
 
 echo ""
 echo "STARTING: ${BASH_SOURCE}"
-echo "VERSION: 2018-01-01"
+echo "VERSION: 2018-03-19"
 echo "USER: ${USER}"
 export PATH="/usr/X11R6/bin:${PATH}"
 
@@ -162,7 +162,7 @@ fi
 if [ ${DABDEV} ]; then
     echo ">>>>>>>>> DEVELOPMENT: Using the development paths"
     echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
-    export MAYA_VERSION="2019"
+    export MAYA_VERSION="2018"
     echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
     export RMAN_VERSION="22.4"
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
@@ -180,7 +180,7 @@ else
 	echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 	export TRACTOR_VERSION="2.3"
 	echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-	export NUKE_VERSION="11.2v4"
+	export NUKE_VERSION="11.3v1"
 	echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
 	echo "INFO    : OS             : ${OSTYPE:0:5}"
 fi
@@ -230,11 +230,12 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
 # PIXAR SETUP ####################
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
 #  Not entirely sure what the difference between RDIR and RMS_SCRIPT_PATHS is
-export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
-export RDIR="${DABETC}/pixar/config"     ####  appeard to be obsolete
+#export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
+#export RDIR="${DABETC}/pixar/config"     ####  appeard to be obsolete
 #export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
 #export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
-export RMAN_ASSET_LIBRARY=$RMANTREE/lib/RenderManAssetLibrary
+#export RMAN_ASSET_LIBRARY=$RMANTREE/lib/RenderManAssetLibrary
+export RFM_SITE_PATH="${DABETC}/pixar"
 
 # FOUNDRY SETUP ##################
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
