@@ -2,7 +2,7 @@
 #
 # This profile is the second step in a bootstrap for the environment needed in a shell
 # This script is sources at the end of /etc/profile.d/dabanim.sh
-# It requires some initial vairables to be set.
+# It requires some initial vairables to be set DABRENDER AND DABDEV
 
 
 echo ""
@@ -28,32 +28,6 @@ checkpath () {
         return 1
     fi
 }
-
-
-#
-# Function helper
-#
-#
-#isvariable ( _variable ) {
-# test to see if a string is an envar
-#if [ -d ${_variable} ]; then
-#    export DABASSETS="${_variable}"
-#    echo "INFO    : DABASSETS = ${DABASSETS}"
-#else
-#    echo "CRITICAL: Cant set DABASSETS correctly ${_dabassets}"
-#    unset DABASSETS
-#fi
-#}
-
-
-########################## SETUP STUDIO WIDE ENVIRONMENT HOOKS
-#if [ -d ${DABRENDER} ]; then
-#    echo "CHECK   : DABRENDER SEEMS TO BE THERE ${DABRENDER}"
-#else
-#    echo "CRITICAL: Cant see DABRENDER ${DEBRENDER}"
-#    exit 1
-#fi
-#isvariable "DABRENDER"
 
 if checkpath ${DABRENDER} ; then
     echo "CHECK   : DABRENDER SEEMS TO BE THERE ${DABRENDER}"
@@ -168,7 +142,7 @@ if [ ${DABDEV} ]; then
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
     export TRACTOR_VERSION="2.3"
     echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-    export NUKE_VERSION="11.2v4"
+    export NUKE_VERSION="11.3v1"
     echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
     echo "INFO    : OS             : ${OSTYPE:0:5}"
 else
@@ -176,7 +150,7 @@ else
 	echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
 	export MAYA_VERSION="2018"
 	echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-	export RMAN_VERSION="22.3"
+	export RMAN_VERSION="22.4"
 	echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 	export TRACTOR_VERSION="2.3"
 	echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
@@ -236,6 +210,7 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
 #export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
 #export RMAN_ASSET_LIBRARY=$RMANTREE/lib/RenderManAssetLibrary
 export RFM_SITE_PATH="${DABETC}/pixar"
+#export RFM_SHOW_PATH=
 
 # FOUNDRY SETUP ##################
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"

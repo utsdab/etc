@@ -35,7 +35,7 @@
             "${RFM_SITE_PATH}",
             "${RFMTREE}/lib/plugins",
             "@"
-        ], 
+        ],
         "texture": [
             "@"
         ],
