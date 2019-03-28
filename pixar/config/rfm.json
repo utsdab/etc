@@ -50,7 +50,7 @@
     "tractor_cfg": {
         "engine": "tractor-engine",
         "port": 5600,
-        "user": "pixar"
+        "user": ""
     },
     "user tokens": [],
     "$schema": "./rfmSchema.json",
