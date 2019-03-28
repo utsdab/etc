@@ -2,20 +2,20 @@ from TrEnvHandler import TrEnvHandler
 import logging
 import platform
 
-class mayahandler(TrEnvHandler):
+class arnoldhandler(TrEnvHandler):
     def __init__(self, name, envkeydict, envkeys):
         self.logger = logging.getLogger('tractor-blade')
         self.logger.debug("initializing mayahandler: %s" % (name))
         TrEnvHandler.__init__(self, name, envkeydict, envkeys)
 
     def updateEnvironment(self, cmd, env, envkeys):
-        self.logger.debug("mayahandler.updateEnvironment: %s" % self.name)
+        self.logger.debug("arnoldhandler.updateEnvironment: %s" % self.name)
         for key in envkeys:
             val = key[4:]
-            self.environmentdict['TR_ENV_MAYAVER'] = val
+            self.environmentdict['TR_ENV_ARNOLDVER'] = val
             ml = TrEnvHandler.locateMayaDirectory(self, val)
             if ml:
-                self.environmentdict['TR_ENV_MAYALOCATION'] = ml
+                self.environmentdict['TR_ENV_ARNOLDLOCATION'] = ml
 
         # The mayahandler environment expects these vars to be set
         # preset to "" if they don't exist in the blade environment

@@ -1,6 +1,6 @@
 [
   {
-    "keys": ["maya*"],
+    "keys": ["arnold*"],
     "environment": {
       "DABRENDER": "/Volumes/dabrender",
       "DABUSR": "$DABRENDER/usr",
@@ -9,7 +9,7 @@
       "DABWORK": "$DABRENDER/work",
       "DABASSETS": "$DABRENDER/assets",
       "DABUSERPREFS": "$DABWORK/user_prefs",
-      "ENVKEY_maya": "from_maya.macosx.envkeys",
+      "ENVKEY_maya": "from_arnold.macosx.envkeys",
 
       "MAYA_LOCATION": "$TR_ENV_MAYALOCATION/Maya.app/Contents",
       "MAYA_MODULE_PATH": "$DABUSR/etc/maya/dab_modules:$MAYA_MODULE_PATH",
@@ -18,19 +18,20 @@
       "MAYA_DISABLE_CIP": "1",
 
       "ARNOLD_PLUGIN_PATH": "/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",
+      "ARNOLD_PROCEDURAL_PATH": "/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/procedurals",
       "MTOA_EXTENSIONS_PATH": "",
       "MAYA_CUSTOM_TEMPLATE_PATH": "",
       "MTOA_STARTUP_LOG_VERBOSITY": "",
-      "MTOA_LOG_PATH": "",
+      "MTOA_LOG_PATH": "/var/tmp",
 
-      "DYLD_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS:$TR_ENV_MAYALOCATION/plug-ins/xgen/lib:$DYLD_LIBRARY_PATH",
-      "DYLD_FALLBACK_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS:$DYLD_FALLBACK_LIBRARY_PATH",
+      "DYLD_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS:$TR_ENV_MAYALOCATION/plug-ins/xgen/lib:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
+      "DYLD_FALLBACK_LIBRARY_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/MacOS:$TR_ENV_MAYALOCATION/plug-ins/xgen/lib:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
       "DYLD_FRAMEWORK_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/Frameworks",
 
       "PYTHONPATH": "$DABUSR/etc/maya/mayaConfig/dab_scripts:$PYTHONPATH",
       "PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/bin:$PATH",
       "TMPDIR": "/var/tmp"
     },
-    "envhandler": "mayahandler"
+    "envhandler": "arnoldhandler"
   }
 ]

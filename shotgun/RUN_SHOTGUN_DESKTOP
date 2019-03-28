@@ -1,0 +1,4 @@
+#!/bin/bash
+echo “Launching dektop from a shell.”
+open -a /Applications/Shotgun.app
+echo "Done!"

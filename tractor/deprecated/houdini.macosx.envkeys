@@ -1,0 +1,15 @@
+[
+  {
+    "keys": ["houdini*"],
+    "environment": {
+      "HOUDINI_LOCATION": "$TR_ENV_HOUDINILOCATION",
+      "DYLD_LIBRARY_PATH": "$TR_ENV_HOUDINILOCATION",
+//      "DYLD_FALLBACK_LIBRARY_PATH": "$TR_ENV_HOUDINILOCATION:$TR_ENV_HOUDINILOCATION/plug-ins/xgen/lib:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
+//      "DYLD_FRAMEWORK_PATH": "$TR_ENV_HOUDINILOCATION/Maya.app/Contents/Frameworks",
+      "PYTHONPATH": "$DABUSR/etc/maya/mayaConfig/dab_scripts:$PYTHONPATH",
+      "PATH": "$TR_ENV_HOUDINILOCATION"
+      "TMPDIR": "/var/tmp"
+    },
+    "envhandler": "houdinihandler"
+  }
+]

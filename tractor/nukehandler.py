@@ -24,6 +24,9 @@ class nukehandler(TrEnvHandler):
         nuke_ver = launchenv['TR_ENV_NUKEVER']
 
         p = platform.system()
+
+        #TODO needs to do nothing if not nuke
+
         if p == 'Linux' or p == 'Window':
             v = nuke_ver.split('v')
             argv[0] = 'Nuke' + v[0]

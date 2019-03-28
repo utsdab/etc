@@ -1,6 +1,6 @@
 [
     {
-        "keys": ["maya*"],
+        "keys": ["houdini*"],
         "environment": {
             "DABRENDER": "/Volumes/dabrender",
             "DABUSR": "$DABRENDER/usr",
@@ -9,12 +9,11 @@
             "DABWORK": "$DABRENDER/work",
             "DABASSETS": "$DABRENDER/assets",
             "DABUSERPREFS": "$DABWORK/user_prefs",
-            "ENVKEY_DEBUG": "from_maya.windows.envkeys",
+            "ENVKEY_houdini": "from_houdini.windows.envkeys",
 
-            "MAYA_LOCATION": "$TR_ENV_MAYALOCATION",
-            "MAYA_MODULE_PATH": "$TR_ENV_MAYAVER/etc:$MAYA_MODULE_PATH",
+            "HOUDINI_LOCATION": "$TR_ENV_HOUDINILOCATION",
             "PATH": "$MAYA_LOCATION/bin:$PATH"
         },
-        "envhandler": "mayahandler"
+        "envhandler": "houdinihandler"
     }
 ]
