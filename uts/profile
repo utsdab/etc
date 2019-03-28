@@ -210,7 +210,9 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
 #export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
 #export RMAN_ASSET_LIBRARY=$RMANTREE/lib/RenderManAssetLibrary
 export RFM_SITE_PATH="${DABETC}/pixar"
-#export RFM_SHOW_PATH=
+export RFM_SHOW_PATH="${DABETC}/pixar"
+export TRACTOR_USER="${USER}"
+export TRACTOR_ENGINE="tractor-engine:5600"
 
 # FOUNDRY SETUP ##################
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
