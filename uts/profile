@@ -2,7 +2,7 @@
 #
 # This profile is the second step in a bootstrap for the environment needed in a shell
 # This script is sources at the end of /etc/profile.d/dabanim.sh
-# It requires some initial vairables to be set.
+# It requires some initial vairables to be set DABRENDER AND DABDEV
 
 
 echo ""
@@ -209,9 +209,9 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
 #export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
 #export RMAN_ASSET_LIBRARY=$RMANTREE/lib/RenderManAssetLibrary
 export RFM_SITE_PATH="${DABETC}/pixar"
-export TRACTOR_USER=${USER}
+export RFM_SHOW_PATH="${DABETC}/pixar"
+export TRACTOR_USER="${USER}"
 export TRACTOR_ENGINE="tractor-engine:5600"
-#export RFM_SHOW_PATH=
 
 # FOUNDRY SETUP ##################
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
