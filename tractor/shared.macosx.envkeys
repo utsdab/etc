@@ -25,8 +25,8 @@
 //            "RMS_SCRIPT_PATHS":  "$DABETC/pixar/config",
 //            "RDIR":              "$DABETC/pixar/config",
 
-            "PATH":              "@+:/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin",
-            "PYTHONPATH":        "@+:$DABRENDER:$DABSWW:$RFMTREE/bin:$RMANTREE/bin"
+            "PATH":              "@+:/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin:/Applications/Pixar/Tractor-2.3/bin",
+            "PYTHONPATH":        "@+:$DABRENDER:$DABSWW:$RFMTREE/bin:$RMANTREE/bin:/Applications/Pixar/Tractor-2.3/lib/python2.7/site-packages/tractor"
         },
        "envhandler": "default"
     },
