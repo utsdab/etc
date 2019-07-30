@@ -1,25 +1,24 @@
 {
     "$schema": "./shelfSchema.json",
-    "imports": ["rfm2", "rfm2.api.nodes", "rfm2.api.ui_helpers"],
     "shelf": {
         "shelfID": "standard",
         "buttons": {
             "rfmShelfRender": {
                 "help": "Render Current Frame",
                 "image": "rm22_render.png",
-                "command": "load_rfm(\"22.6\", \"mel:setCurrentRenderer \\\"renderman\\\";rmanPreviewStartCmd();\");",
+                "command": "load_rfm(\"22.4\", \"mel:setCurrentRenderer \\\"renderman\\\";rmanPreviewStartCmd();\");",
                 "commandType": "mel",
                 "popup": {
                     "items": {
                         "rfmShelfPreviewRender": {
                             "label": "Preview Render",
-                            "command": "load_rfm(\"22.6\", \"mel:setCurrentRenderer \\\"renderman\\\";rmanPreviewStartCmd();\");",
+                            "command": "load_rfm(\"22.4\", \"mel:setCurrentRenderer \\\"renderman\\\";rmanPreviewStartCmd();\");",
                             "commandType": "mel",
                             "icon": "rm22_R_logo_small.png"
                         },
                         "rfmShelfBatchPreviewRender": {
                             "label": "Batch Preview Render",
-                            "command": "load_rfm(\"22.6\", \"rfm2.spool.rfm_tractor.batch_preview()\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.spool.rfm_tractor.batch_preview()\")",
                             "commandType": "mel",
                             "icon": "rm22_R_logo_small.png"
                         }
@@ -29,19 +28,19 @@
             "rfmShelfIPRStart": {
                 "help": "Start IPR - Right Click for Options",
                 "image": "rm22_IPR.png",
-                "command": "load_rfm(\"22.6\", \"mel:rmanIprStartCmd()\");",
+                "command": "load_rfm(\"22.4\", \"mel:rmanIprStartCmd()\");",
                 "commandType": "mel",
                 "popup": {
                     "items": {
                         "rfmShelfIPRStop": {
                             "label": "Stop IPR",
-                            "command": "load_rfm(\"22.6\", \"mel:stopIprRendering(`rmanGetRenderWindowPanel`)\");",
+                            "command": "load_rfm(\"22.4\", \"mel:stopIprRendering(`rmanGetRenderWindowPanel`)\");",
                             "commandType": "mel",
                             "icon": "rm22_IPRStop.png"
                         },
                         "rfmShelfFlushTextureCache": {
                             "label": "Flush Texture Cache",
-                            "command": "load_rfm(\"22.6\", \"rfm2.txmanager_maya.invalidate_all_textures()\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.txmanager_maya.invalidate_all_textures()\")",
                             "commandType": "mel",
                             "icon": "rm22_lightning_grey.png"
                         },
@@ -81,7 +80,7 @@
                 "help": "Open \"it\" - The Image Tool",
                 "image": "rm22_it.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.render.show_it()\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.render.show_it()\")",
                 "popup": {
                 }
             },
@@ -89,7 +88,7 @@
                 "help": "Open \"localqueue\" - Local Maya job queuing system",
                 "image": "rm22_localqueue.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.render.show_localqueue()\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.render.show_localqueue()\")",
                 "popup": {
                 }
             },
@@ -101,52 +100,43 @@
                 "help": "Light - Right Click for Options",
                 "image": "rm22_areaLight.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_select('PxrRectLight')\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_select('PxrRectLight')\")",
                 "popup": {
                     "items": {
-                        "rfmShelfAutoPlaceLights": {
-                            "label": "Auto-Place Lights",
-                            "command": "rfm2.api.ui_helpers.toggle_autoplace('lights')",
-                            "checkbox": "rfm2.api.ui_helpers.autoplace_state('lights')",
-                            "help": "Position the light based on the current selection. If nothing is selected and a viewport has focus, place the light at the camera's position. If an object is selected, place light at center of object. If faces are selected, place a light at the center of the shell they belong to."
-                        },
-                        "rfmDivAutoplaceLights": {
-                            "divider": true
-                        },
                         "rfmShelfRect": {
                             "label": "PxrRectLight",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_select('PxrRectLight')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_select('PxrRectLight')\")",
                             "icon": "render_PxrRectLight.png"
                         },
                         "rfmShelfDisk": {
                             "label": "PxrDiskLight",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_select('PxrDiskLight')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_select('PxrDiskLight')\")",
                             "icon": "render_PxrDiskLight.png"
                         },
                         "rfmShelfDistant": {
                             "label": "PxrDistantLight",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_select('PxrDistantLight')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_select('PxrDistantLight')\")",
                             "icon": "render_PxrDistantLight.png"
                         },
                         "rfmShelfSphere": {
                             "label": "PxrSphereLight",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_select('PxrSphereLight')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_select('PxrSphereLight')\")",
                             "icon": "render_PxrSphereLight.png"
                         },
                         "rfmShelfCylinder": {
                             "label": "PxrCylinderLight",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_select('PxrCylinderLight')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_select('PxrCylinderLight')\")",
                             "icon": "render_PxrCylinderLight.png"
                         },
                         "rfmShelfAOV": {
                             "label": "PxrAovLight",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_select('PxrAovLight')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_select('PxrAovLight')\")",
                             "icon": "render_PxrAovLight.png"
                         }
                     }
@@ -156,34 +146,25 @@
                 "help": "PxrDomeLight - Right Click for Options",
                 "image": "rm22_envLight.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_select('PxrDomeLight')\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_select('PxrDomeLight')\")",
                 "popup": {
                     "items": {
-                        "rfmShelfAutoPlacePortals": {
-                            "label": "Auto-Place Portals",
-                            "command": "rfm2.api.ui_helpers.toggle_autoplace('portals')",
-                            "checkbox": "rfm2.api.ui_helpers.autoplace_state('portals')",
-                            "help": "Position the portal based on the current selection. If an object is selected, place portal at center of object. If faces are selected, place a portal at the center of the shell they belong to."
-                        },
-                        "rfmDivAutoplaceLights": {
-                            "divider": true
-                        },
                         "rfmShelfDome": {
                             "label": "PxrDomeLight",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_select('PxrDomeLight')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_select('PxrDomeLight')\")",
                             "icon": "render_PxrDomeLight.png"
                         },
                         "rfmShelfPortal": {
                             "label": "PxrPortalLight",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_connect_portal('PxrPortalLight')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_connect_portal('PxrPortalLight')\")",
                             "icon": "render_PxrPortalLight.png"
                         },
                         "rfmShelfDay": {
                             "label": "PxrEnvDayLight",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_select('PxrEnvDayLight')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_select('PxrEnvDayLight')\")",
                             "icon": "render_PxrEnvDayLight.png"
                         }
                     }
@@ -193,7 +174,7 @@
                 "help": "PxrMeshLight - Make Geometry Emissive",
                 "image": "rm22_emissive_geo.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_mesh_light()\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_mesh_light()\")",
                 "popup": {
                 }
             },
@@ -201,58 +182,49 @@
                 "help": "Create Light Filter",
                 "image": "rm22_lightBlocker.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrRodLightFilter')\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrRodLighFtilter')\")",
                 "popup": {
                     "items": {
-                        "rfmShelfAutoPlaceParentedFilters": {
-                            "label": "Parent filter to light",
-                            "command": "rfm2.api.ui_helpers.toggle_autoplace('filter_parented')",
-                            "checkbox": "rfm2.api.ui_helpers.autoplace_state('filter_parented')",
-                            "help": "Create one filter per selected light and parent the filter to the light.<br>Uncheck this option if you eed to create one filter connected to multiple lights."
-                        },
-                        "rfmDivAutoplaceFilters": {
-                            "divider": true
-                        },
                         "rfmShelfBarnLF": {
                             "label": "PxrBarnLightFilter",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrBarnLightFilter')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrBarnLightFilter')\")",
                             "icon": "render_PxrBarnLightFilter.png"
                         },
                         "rfmShelfBlockerLF": {
                             "label": "PxrBlockerLightFilter",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrBlockerLightFilter')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrBlockerLightFilter')\")",
                             "icon": "render_PxrBlockerLightFilter.png"
                         },
                         "rfmShelfCookieLF": {
                             "label": "PxrCookieLightFilter",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrCookieLightFilter')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrCookieLightFilter')\")",
                             "icon": "render_PxrCookieLightFilter.png"
                         },
                         "rfmShelfGoboLF": {
                             "label": "PxrGoboLightFilter",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrGoboLightFilter')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrGoboLightFilter')\")",
                             "icon": "render_PxrGoboLightFilter.png"
                         },
                         "rfmShelfMultiLF": {
                             "label": "PxrIntMultLightFilter",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrIntMultLightFilter')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrIntMultLightFilter')\")",
                             "icon": "render_PxrIntMultLightFilter.png"
                         },
                         "rfmShelfRampLF": {
                             "label": "PxrRampLightFilter",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrRampLightFilter')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrRampLightFilter')\")",
                             "icon": "render_PxrRampLightFilter.png"
                         },
                         "rfmShelfRodLF": {
                             "label": "PxrRodLightFilter",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrRodLightFilter')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_connect_light_filter('PxrRodLightFilter')\")",
                             "icon": "render_PxrRodLightFilter.png"
                         }
                     }
@@ -266,37 +238,37 @@
                 "help": "PxrSurface - Right Click for Options",
                 "image": "rm22_luxo.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrSurface')\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrSurface')\")",
                 "popup": {
                     "items": {
                         "rfmShelfSurface": {
                             "label": "PxrSurface",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrSurface')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrSurface')\")",
                             "icon": "render_PxrSurface.png"
                         },
                         "rfmShelfLayerSurf": {
                             "label": "PxrLayerSurface",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrLayerSurface')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrLayerSurface')\")",
                             "icon": "render_PxrLayerSurface.png"
                         },
                         "rfmShelfHair": {
                             "label": "PxrMarschnerHair",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrMarschnerHair')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrMarschnerHair')\")",
                             "icon": "render_PxrMarschnerHair.png"
                         },
                         "rfmShelfDisney": {
                             "label": "PxrDisney",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrDisney')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrDisney')\")",
                             "icon": "render_PxrDisney.png"
                         },
                         "rfmShelfConstant": {
                             "label": "PxrConstant",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrConstant')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrConstant')\")",
                             "icon": "render_PxrConstant.png"
                         },
                         "rfmDispDivider":{
@@ -305,7 +277,7 @@
                         "rfmShelfDisplace": {
                             "label": "PxrDisplace",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_node('', 'PxrDisplace')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_node('', 'PxrDisplace')\")",
                             "icon": "render_PxrDisplace.png"
                         }
                     }
@@ -315,13 +287,13 @@
                 "help": "Volumes - Right Click for Options",
                 "image": "rm22_openvdb.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrVolume')\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrVolume')\")",
                 "popup": {
                     "items": {
                         "rfmShelfVolume": {
                             "label": "Create PxrVolume",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrVolume')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_and_assign_bxdf('PxrVolume')\")",
                             "icon": "render_PxrVolume.png"
                         },
                         "rfmDivVolumes": {
@@ -330,25 +302,25 @@
                         "rfmShelfVDB": {
                             "label": "Create OpenVDB Visualizer",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_openvdb()\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_openvdb()\")",
                             "icon": "render_OpenVDBVisualize.png"
                         },
                         "rfmShelfVolumeBox": {
                             "label": "Create Volume Box",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_volume('box')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_volume('box')\")",
                             "icon": "volumeCube.png"
                         },
                         "rfmShelfVolumeSphere": {
                             "label": "Create Volume Sphere",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_volume('sphere')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_volume('sphere')\")",
                             "icon": "volumeSphere.png"
                         },
                         "rfmShelfVolumeCone": {
                             "label": "Create Volume Cone",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_volume('cone')\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_volume('cone')\")",
                             "icon": "volumeCone.png"
                         }
                     }
@@ -363,12 +335,12 @@
                         "rfmShelfCHoldout": {
                             "label": "Create Holdout",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.create_holdout()\")"
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.create_holdout()\")"
                         },
                         "rfmShelfDHoldout": {
                             "label": "Remove Holdout",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.api.nodes.remove_holdout()\")"
+                            "command": "load_rfm(\"22.4\", \"rfm2.api.nodes.remove_holdout()\")"
                         }
                     }
                 }
@@ -385,120 +357,34 @@
                         "rfmShelfExportSelGpuCache": {
                             "label": "Export Selected for GPU caches...",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.utils.abc_support.export(True, True)\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.utils.abc_support.export(True, True)\")",
                             "icon": "rm22_alembic_gpu.png"
                         },
                         "rfmShelfExportSceneGpuCache": {
                             "label": "Export Scene for GPU caches...",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.utils.abc_support.export(True, False)\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.utils.abc_support.export(True, False)\")",
                             "icon": "rm22_alembic_gpu.png"
                         },
                         "rfmShelfExportSelAlembic": {
                             "label": "Export Selected for Imported/Referenced caches...",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.utils.abc_support.export(False, True)\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.utils.abc_support.export(False, True)\")",
                             "icon": "rm22_alembic.png"
                         },
                         "rfmShelfExportSceneAlembic": {
                             "label": "Export Scene for Imported/Referenced caches...",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.utils.abc_support.export(False, False)\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.utils.abc_support.export(False, False)\")",
                             "icon": "rm22_alembic.png"
                         },
                         "rfmAbcDivider":{
                             "divider": true
                         },
-                        "abcReferencePose": {
-                            "label": "Alembic Reference Pose",
-                            "subMenu": {
-                                "subItems": {
-                                    "rmanAddPref": {
-                                        "label": "Freeze positions ( __Pref )",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.freeze_points(for_alembic=True)",
-                                        "commandType": "python"
-                                    },
-                                    "rmanAddNref": {
-                                        "label": "Freeze normals ( __Nref )",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.freeze_normals(for_alembic=True)",
-                                        "commandType": "python"
-                                    },
-                                    "rmanAddWPref": {
-                                        "label": "Freeze world-space positions ( __WPref )",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.freeze_world_points(for_alembic=True)",
-                                        "commandType": "python"
-                                    },
-                                    "rmanAddWNref": {
-                                        "label": "Freeze world-space normals ( __WNref )",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.freeze_world_normals(for_alembic=True)",
-                                        "commandType": "python"
-                                    },
-                                    "rfmAbcRefDivider1": {
-                                        "divider": true
-                                    },
-                                    "rmanDelPref": {
-                                        "label": "Remove frozen positions ( __Pref )",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.delete_primvar('__Pref')",
-                                        "commandType": "python"
-                                    },
-                                    "rmanDelNref": {
-                                        "label": "Remove frozen normals ( __Nref )",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.delete_primvar('__Nref')",
-                                        "commandType": "python"
-                                    },
-                                    "rmanDelWPref": {
-                                        "label": "Remove frozen world-space positions ( __WPref )",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.delete_primvar('__WPref')",
-                                        "commandType": "python"
-                                    },
-                                    "rmanDelWNref": {
-                                        "label": "Remove frozen world-space normals ( __WNref )",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.delete_primvar('__WNref')",
-                                        "commandType": "python"
-                                    },
-                                    "rmanDelAny": {
-                                        "label": "Remove all reference primvars",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.delete_primvar('<any>')",
-                                        "commandType": "python"
-                                    },
-                                    "rfmAbcRefDivider2": {
-                                        "divider": true
-                                    },
-                                    "rmanSelPref": {
-                                        "label": "Select objects with frozen positions ( __Pref )",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.select_by_primvar('__Pref')",
-                                        "commandType": "python"
-                                    },
-                                    "rmanSelNref": {
-                                        "label": "Select objects with frozen normals ( __Nref )",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.select_by_primvar('__Nref')",
-                                        "commandType": "python"
-                                    },
-                                    "rmanSelWPref": {
-                                        "label": "Select objects with world-space positions ( __WPref )",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.select_by_primvar('__WPref')",
-                                        "commandType": "python"
-                                    },
-                                    "rmanSelWNref": {
-                                        "label": "Select objects with frozen world-space normals ( __WNref )",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.select_by_primvar('__WNref')",
-                                        "commandType": "python"
-                                    },
-                                    "rmanSelAny": {
-                                        "label": "Select objects with any reference primvars",
-                                        "command": "import rfm2.utils.primvars; rfm2.utils.primvars.select_by_primvar('<any>')",
-                                        "commandType": "python"
-                                    }
-                                }
-                            }
-                        },
-                        "rfmAbcDivider2": {
-                            "divider": true
-                        },
-                            "rfmShelfImportGpuCache": {
+                        "rfmShelfImportGpuCache": {
                             "label": "Import GPU cache...",
                             "commandType": "mel",
-                            "command": "load_rfm(\"22.6\", \"rfm2.utils.abc_support.import_cache()\")",
+                            "command": "load_rfm(\"22.4\", \"rfm2.utils.abc_support.import_cache()\")",
                             "icon": "rm22_alembic_gpu.png"
                         }
                     }
@@ -508,7 +394,7 @@
                 "help": "Open the Dynamic Rule Editor",
                 "image": "rm22_DynamicRulesEditor.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.ui.rlf_editor.show()\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.ui.rlf_editor.show()\")",
                 "popup": {
                 }
             },
@@ -516,7 +402,7 @@
                 "help": "Open Texture Manager",
                 "image": "rm22_txmake.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.txmanager_maya.show()\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.txmanager_maya.show()\")",
                 "popup": {
                 }
             },
@@ -524,7 +410,7 @@
                 "help": "Open Preset Browser",
                 "image": "rm22_presetBrowser.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.ui.assets_browser.show_preset_browser()\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.ui.assets_browser.show_preset_browser()\")",
                 "popup": {
                 }
             },
@@ -532,7 +418,7 @@
                 "help": "View Statistics",
                 "image": "rm22_viewStatistics.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.api.ui_helpers.view_statistics()\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.api.ui_helpers.view_statistics()\")",
                 "popup": {
                 }
             },
@@ -541,10 +427,10 @@
                 "width": 30
             },
             "rfmShelfLoadPlugin": {
-                "help": "Load Plugin - RenderMan For Maya 22.6",
+                "help": "Load Plugin - RenderMan For Maya",
                 "image": "rm22_loadPlugin.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"\");",
+                "command": "load_rfm(\"22.4\", \"\");",
                 "popup": {
                 }
             },
@@ -552,7 +438,7 @@
                 "help": "Help - Online Documentation",
                 "image": "rm22_help.png",
                 "commandType": "mel",
-                "command": "load_rfm(\"22.6\", \"rfm2.api.ui_helpers.show_docs()\")",
+                "command": "load_rfm(\"22.4\", \"rfm2.api.ui_helpers.show_docs()\")",
                 "popup": {
                 }
             }

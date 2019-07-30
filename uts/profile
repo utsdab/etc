@@ -203,13 +203,18 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
 # PIXAR SETUP ####################
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
 #  Not entirely sure what the difference between RDIR and RMS_SCRIPT_PATHS is
-#export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"
-#export RDIR="${DABETC}/pixar/config"     ####  appeard to be obsolete
-#export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
-#export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
-#export RMAN_ASSET_LIBRARY=$RMANTREE/lib/RenderManAssetLibrary
+# export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"  obsolete
+# export RDIR="${DABETC}/pixar/config"     ####  aobsolete
+# export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
+export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
+# export RMAN_ASSET_LIBRARY=$RMANTREE/lib/RenderManAssetLibrary
+# RFMTREE=/Applications/Pixar/RenderManForMaya-22.6
+# RFM_DO_NOT_CREATE_MODULE_FILE=1
+# RFM_SHOW_PATH=/Users/Shared/UTS_Dev/gitRepositories/utsdab_repos/etc/pixar
+# RFM_SITE_PATH=/Users/Shared/UTS_Dev/gitRepositories/utsdab_repos/etc/pixar
+
 export RFM_SITE_PATH="${DABETC}/pixar"
-export RFM_SHOW_PATH="${DABETC}/pixar"
+# export RFM_SHOW_PATH="${DABETC}/pixar"
 export TRACTOR_USER="${USER}"
 export TRACTOR_ENGINE="tractor-engine:5600"
 
@@ -357,14 +362,6 @@ do
     fi
 done
 
-
-export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B:${RFMTREE}/icons/%B:${XBMLANGPATH}"
-export MAYA_PRESET_PATH="${DABUSR}/etc/maya/dab_presets"
-export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
-export MAYA_SHELF_PATH="${DABUSR}/etc/maya/dab_shelves"
-export MAYA_MAC_SET_UMASK=0
-export MAYA_DISABLE_CIP=1
-export MAYA_RENDER_DESC_PATH="${RFMTREE}/etc"
 
 
 ## removes duplicates
