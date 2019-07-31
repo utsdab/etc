@@ -392,12 +392,12 @@
         },
         "normal": {
             "channelType": "normal",
-            "channelSource": "lpe:nothruput;noinfinitecheck;noclamp;unoccluded;overwrite;CU6L",
+            "channelSource": "Nn",
             "group": "Denoiser"
         },
         "normal_var": {
             "channelType": "normal",
-            "channelSource": "lpe:nothruput;noinfinitecheck;noclamp;unoccluded;overwrite;CU6L",
+            "channelSource": "Nn",
             "statistics": "variance",
             "group": "Denoiser"
         },
@@ -490,16 +490,6 @@
             "channelType": "color",
             "channelSource": "__WNref",
             "group": "Integrator"
-        },
-        "Position":{
-            "channelType": "color",
-            "channelSource": "lpe:nothruput;noinfinitecheck;noclamp;unoccluded;overwrite;CU3L",
-            "group": "User Lobes"
-        },
-        "Color":{
-            "channelType": "color",
-            "channelSource": "lpe:nothruput;noinfinitecheck;noclamp;unoccluded;overwrite;CU4L",
-            "group": "User Lobes"
         }
     },
     "displays": {
@@ -546,70 +536,6 @@
                 "MatteID5",
                 "MatteID6",
                 "MatteID7"
-            ]
-        },
-        "Comp_Basic": {
-            "description": "Basic passes for comp.",
-            "display": {
-                "displayType": "d_openexr"
-            },
-            "driver": {
-                "storage": "planar",
-                "compression": "dwaa"
-            },
-            "channels": [
-                "diffuse",
-                "specular",
-                "emissive",
-                "subsurface",
-                "__depth"
-            ]
-        },
-        "Comp_Intermediate": {
-            "description": "Direct and Indirect passes for comp.",
-            "display": {
-                "displayType": "d_openexr"
-            },
-            "driver": {
-                "storage": "planar",
-                "compression": "dwaa"
-            },
-            "channels": [
-                "directDiffuse",
-                "directSpecular",
-                "indirectDiffuse",
-                "indirectSpecular",
-                "emissive",
-                "subsurface"
-            ]
-        },
-        "Comp_Advanced": {
-            "description": "Lobe passes for comp.",
-            "display": {
-                "displayType": "d_openexr"
-            },
-            "driver": {
-                "storage": "planar",
-                "compression": "dwaa"
-            },
-            "channels": [
-                "directDiffuseLobe",
-                "directSpecularPrimaryLobe",
-                "directSpecularRoughLobe",
-                "directSpecularClearcoatLobe",
-                "directSpecularIridescenceLobe",
-                "directSpecularFuzzLobe",
-                "directSpecularGlassLobe",
-                "indirectDiffuseLobe",
-                "indirectSpecularPrimaryLobe",
-                "indirectSpecularRoughLobe",
-                "indirectSpecularClearcoatLobe",
-                "indirectSpecularIridescenceLobe",
-                "indirectSpecularFuzzLobe",
-                "indirectSpecularGlassLobe",
-                "subsurfaceLobe",
-                "transmissiveGlassLobe",
-                "emissive"
             ]
         }
     }

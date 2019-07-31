@@ -36,8 +36,6 @@ else
 fi
 
 
-
-
 ########  source  profile
 if [ -d ${_dabdev} ]; then
     export DABDEV="${_dabdev}"
@@ -53,4 +51,4 @@ else
 fi
 
 echo     "ENDING  : ${BASH_SOURCE}"
-echo ""
+echo     ""
