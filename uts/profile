@@ -137,11 +137,11 @@ if [ ${DABDEV} ]; then
     echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
     export MAYA_VERSION="2018"
     echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-    export RMAN_VERSION="22.4"
+    export RMAN_VERSION="22.5"
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
     export TRACTOR_VERSION="2.3"
     echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-    export NUKE_VERSION="11.3v1"
+    export NUKE_VERSION="11.3v3"
     echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
     echo "INFO    : OS             : ${OSTYPE:0:5}"
 else
