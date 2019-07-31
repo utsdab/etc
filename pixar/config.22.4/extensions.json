@@ -148,18 +148,6 @@
                     "help": "Raytrace intersection priority for nested dielectrics"
                 },
                 {
-                    "name": "rman_visibilityCamera",
-                    "riattr": "visibility:camera",
-                    "label": "Camera Visibility",
-                    "type": "int",
-                    "default": -1,
-                    "widget": "mapper",
-                    "options": "Inherit:-1|Yes:1|No:0",
-                    "channelBox": true,
-                    "page": "Visibility",
-                    "help": "Indicates if object is visible to camera rays"
-                },
-                {
                     "name": "rman_visibilityIndirect",
                     "riattr": "visibility:indirect",
                     "label": "Indirect Visibility",
@@ -169,7 +157,7 @@
                     "options": "Inherit:-1|Yes:1|No:0",
                     "channelBox": true,
                     "page": "Visibility",
-                    "help": "Indicates if object is visible to indirect (reflection and specular refraction) rays"
+                    "help": "Indicates if object is visible to indrect (reflection and specular refraction) rays"
                 },
                 {
                     "name": "rman_visibilityTransmission",
@@ -193,8 +181,7 @@
         {
             "nodetypes": [
                 "mesh",
-                "nurbsSurface",
-                "renderSphere"
+                "nurbsSurface"
             ],
             "attributes": [
                 {
@@ -207,16 +194,6 @@
                     "page": "Geometry"
                 },
                 {
-                    "name": "rman_rasterorient",
-                    "primvar": "dice:rasterorient",
-                    "label": "RasterOrient dicing",
-                    "type": "int",
-                    "default": 1,
-                    "widget": "checkBox",
-                    "page": "Geometry",
-                    "help": "Changes micropolygon size based on the viewing angle of an object.<br>When rasterorient is on, surfaces are diced more coarsely at a glancing angle.<br>It may be useful to turn off for instances as their geometry is seen from different angles<br>or for objects where displacement details are lost."
-                },
-                {
                     "name": "rman_watertight",
                     "primvar": "dice:watertight",
                     "label": "Water-tight dicing",
@@ -226,25 +203,6 @@
                     "options": "Inherit:-1|Yes:1|No:0",
                     "page": "Geometry",
                     "help": "Fix pin-holes in Subdivision Surfaces.<br>It may slow down dicing and time to first pixel."
-                },
-                {
-                    "page": "Geometry",
-                    "name": "dice_referenceCameraType",
-                    "label": "Dice Camera",
-                    "type": "int",
-                    "default": 0,
-                    "widget": "mapper",
-                    "options": "Inherit from Globals:0|Reference Camera:1"
-                },
-                {
-                    "page": "Geometry",
-                    "name": "dice_referenceCamera",
-                    "label": "Reference Camera",
-                    "primvar": "dice:referencecamera",
-                    "type": "string",
-                    "widget": "scenegraphLocation",
-                    "options": "nodeType:camera",
-                    "default": ""
                 },
                 {
                     "name": "rman_traceDisplacements",
@@ -1016,21 +974,6 @@
                     "default": "",
                     "help": "A python script which will be evaluated before translating the node.  This could edit the data string that gets passed to the procedural.",
                     "page": "Procedural/Scripts"
-                }
-            ]
-        },
-        {
-            "nodetypes": [
-                "xgmDescription",
-                "gpuCache"
-            ],
-            "attributes": [
-                {
-                    "name": "visibleInReflections",
-                    "type": "int",
-                    "default": 1,
-                    "widget": "checkBox",
-                    "label": "Visible In Reflections"
                 }
             ]
         }

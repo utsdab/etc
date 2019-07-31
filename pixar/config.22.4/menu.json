@@ -165,92 +165,6 @@
                     "rmanExportDiv2": {
                         "divider": true
                     },
-                    "rmanReferencePose": {
-                        "label": "Alembic Reference Pose",
-                        "subMenu": {
-                            "subItems": {
-                                "rmanAddPref": {
-                                    "label": "Freeze positions ( __Pref )",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.freeze_points(for_alembic=True)",
-                                    "commandType": "python"
-                                },
-                                "rmanAddNref": {
-                                    "label": "Freeze normals ( __Nref )",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.freeze_normals(for_alembic=True)",
-                                    "commandType": "python"
-                                },
-                                "rmanAddWPref": {
-                                    "label": "Freeze world-space positions ( __WPref )",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.freeze_world_points(for_alembic=True)",
-                                    "commandType": "python"
-                                },
-                                "rmanAddWNref": {
-                                    "label": "Freeze world-space normals ( __WNref )",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.freeze_world_normals(for_alembic=True)",
-                                    "commandType": "python"
-                                },
-                                "rfmAbcRefDivider1": {
-                                    "divider": true
-                                },
-                                "rmanDelPref": {
-                                    "label": "Remove frozen positions ( __Pref )",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.delete_primvar('__Pref')",
-                                    "commandType": "python"
-                                },
-                                "rmanDelNref": {
-                                    "label": "Remove frozen normals ( __Nref )",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.delete_primvar('__Nref')",
-                                    "commandType": "python"
-                                },
-                                "rmanDelWPref": {
-                                    "label": "Remove frozen world-space positions ( __WPref )",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.delete_primvar('__WPref')",
-                                    "commandType": "python"
-                                },
-                                "rmanDelWNref": {
-                                    "label": "Remove frozen world-space normals ( __WNref )",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.delete_primvar('__WNref')",
-                                    "commandType": "python"
-                                },
-                                "rmanDelAny": {
-                                    "label": "Remove all reference primvars",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.delete_primvar('<any>')",
-                                    "commandType": "python"
-                                },
-                                "rfmAbcRefDivider2": {
-                                    "divider": true
-                                },
-                                "rmanSelPref": {
-                                    "label": "Select objects with frozen positions ( __Pref )",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.select_by_primvar('__Pref')",
-                                    "commandType": "python"
-                                },
-                                "rmanSelNref": {
-                                    "label": "Select objects with frozen normals ( __Nref )",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.select_by_primvar('__Nref')",
-                                    "commandType": "python"
-                                },
-                                "rmanSelWPref": {
-                                    "label": "Select objects with world-space positions ( __WPref )",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.select_by_primvar('__WPref')",
-                                    "commandType": "python"
-                                },
-                                "rmanSelWNref": {
-                                    "label": "Select objects with frozen world-space normals ( __WNref )",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.select_by_primvar('__WNref')",
-                                    "commandType": "python"
-                                },
-                                "rmanSelAny": {
-                                    "label": "Select objects with any reference primvars",
-                                    "command": "import rfm2.utils.primvars; rfm2.utils.primvars.select_by_primvar('<any>')",
-                                    "commandType": "python"
-                                }
-                            }
-                        }
-                    },
-                    "rmanExportDiv3": {
-                        "divider": true
-                    },
                     "rmanCreateProcedural": {
                         "label": "Create Procedural Node",
                         "help": "Import an arbitrary RenderMan procedural",
@@ -369,15 +283,6 @@
                                 }
                             }
                         }
-                    },
-                    "rmanDiagnoseMenuSep2": {
-                        "divider": true
-                    },
-                    "rmanRefreshAE":{
-                        "label": "Force Attribute Editor Refresh",
-                        "help": "Rebuild the Attribute Editor in case something went wrong.",
-                        "command": "refreshEditorTemplates",
-                        "commandType": "mel"
                     }
                 }
             }
@@ -390,11 +295,6 @@
                         "label": "Update Render Globals presets",
                         "help": "Update the preset files that were created when the plugin was first loaded",
                         "command": "import rfm2.ui.globals; rfm2.ui.globals.create_presets(force_update=True)"
-                    },
-                    "rmanConvertToLayer": {
-                        "label": "Convert to PxrLayerSurface",
-                        "help": "Convert the currently selected PxrSurface shader(s) to PxrLayerSurface",
-                        "command": "import rfm2.utils.convert_layered; rfm2.utils.convert_layered.convert_to_layered_pxrsurface() "
                     },
                     "rmanConvert21Scene": {
                         "label": "Migrate 21.x scene to 22",
