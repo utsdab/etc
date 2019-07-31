@@ -580,6 +580,8 @@
                 "indirectDiffuse",
                 "indirectSpecular",
                 "emissive",
+                "transmissiveGlassLobe",
+                "transmissiveSingleScatterLobe",
                 "subsurface"
             ]
         },
@@ -609,6 +611,7 @@
                 "indirectSpecularGlassLobe",
                 "subsurfaceLobe",
                 "transmissiveGlassLobe",
+                "transmissiveSingleScatterLobe",
                 "emissive"
             ]
         }
