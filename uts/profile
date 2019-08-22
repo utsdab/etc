@@ -198,7 +198,7 @@ export SESI_LMHOST=dab-license
 
 # PIXAR SETUP ####################
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
-# export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
+export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
 export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
 export RFM_DO_NOT_CREATE_MODULE_FILE=1
 export RFM_SITE_PATH="${DABETC}/pixar"
