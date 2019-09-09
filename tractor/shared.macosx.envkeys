@@ -22,6 +22,7 @@
             "RV_LICENSE_FILE":   "$DABETC/tweak/license.gto",
             "TWEAK_LICENSE_FILE":"$DABETC/tweak/license.gto",
             "SESI_LMHOST":       "dab-license",
+            "RFM_SITE_PATH":     "$DABETC/pixar",
             "PATH":              "@+:/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin:/Applications/Pixar/Tractor-2.3/bin",
             "PYTHONPATH":        "@+:$DABRENDER:$DABSWW:$RFMTREE/bin:$RMANTREE/bin:/Applications/Pixar/Tractor-2.3/lib/python2.7/site-packages/tractor"
         },
