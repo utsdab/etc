@@ -132,6 +132,8 @@ if [ ${DABDEV} ]; then
     echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
     export MAYA_VERSION="2019"
     echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
+    export BIFROST_VERSION="2.0.1.0"
+    echo "INFO    : BIFROST VERSION: $BIFROST_VERSION"
     export RMAN_VERSION="22.6"
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
     export TRACTOR_VERSION="2.3"
@@ -161,6 +163,8 @@ linux)
     export TRACTOR_LOCATION="/opt/pixar/Tractor-${TRACTOR_VERSION}"
     export ARNOLD_LOCATION="/opt/solidangle/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/usr/autodesk/maya${MAYA_VERSION}"
+    export BIFROST_APPLICATION_LOCATION="/usr/autodesk/bifrost/maya${MAYA_VERSION}/${BIFROST_VERSION}"
+#    /Applications/Autodesk/bifrost/maya2019/2.0.1.0
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}"
     export HOUDINI_LOCATION="/opt/sidefx"
     export HFS="${HOUDINI_LOCATION}"
@@ -173,6 +177,9 @@ darwi)
     export TRACTOR_LOCATION="/Applications/Pixar/Tractor-${TRACTOR_VERSION}"
     export ARNOLD_LOCATION="/Applications/solidangle/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/Applications/Autodesk/maya${MAYA_VERSION}"
+    export BIFROST_APPLICATION_LOCATION="/Applications/Autodesk/bifrost/maya${MAYA_VERSION}/${BIFROST_VERSION}"
+#    /Applications/Autodesk/bifrost/maya2019/2.0.1.0
+
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}/Maya.app/Contents"
     export MAYA_RENDER_DESC_PATH="${ARNOLD_LOCATION}/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}"
     export HOUDINI_LOCATION="/Applications/Houdini"
@@ -338,6 +345,7 @@ echo "MAYA_MODULE_PATH: appending....."
 _paths=( \
             "${DABUSR}/etc/maya/dab_modules" \
             "${RFMTREE}/etc" \
+            "${BIFROST_APPLICATION_LOCATION}" \
             )
 for i in "${_paths[@]}"
 do
