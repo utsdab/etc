@@ -9,7 +9,7 @@ echo  "STARTING: ${BASH_SOURCE}"
 
 #########  UTSDABBASE
 ID=`/usr/bin/id -u`
-[ -n "$ID" -a "$ID" -le 500 ] && [ $ID -ne 495 ] && echo "System User-- not using dabanim.sh" && return
+[ -n "$ID" -a "$ID" -le 500 ] && [ "$ID" -ne 495 ] && echo "System User-- not using dabanim.sh" && return
 
 #########  DABRENDER and DABDEV
 _dabrender="/Volumes/dabrender"
@@ -20,7 +20,7 @@ unset DABDEV
 
 
 ###  ideally we want to test whether this is a mounted filesystem that can be read
-if [ -d ${_dabrender} ]; then
+if [ -d "${_dabrender}" ]; then
     export DABRENDER="${_dabrender}"
     echo "INFO    : DABRENDER = ${DABRENDER}"
     if [ -f ${DABRENDER}/etc/uts/profile ]; then
@@ -37,10 +37,10 @@ fi
 
 
 ########  source  profile
-if [ -d ${_dabdev} ]; then
+if [ -d "${_dabdev}" ]; then
     export DABDEV="${_dabdev}"
     echo "INFO    : DABDEV = ${DABDEV}"
-    if [ -f ${DABDEV}/etc/uts/profile ]; then
+    if [ -f "${DABDEV}/etc/uts/profile" ]; then
         source "${DABDEV}/etc/uts/profile"
         echo "INFO: Run dev profile script ${DABDEV}/etc/uts/profile"
     else
