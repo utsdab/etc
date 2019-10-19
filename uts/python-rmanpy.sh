@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 #export MAYA_LOCATION="/Applications/Autodesk/maya2017/Maya.app/Contents"
 #export PYTHONPATH="/Applications/Autodesk/maya2017/Maya.app/Contents/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages":${PYTHONPATH}
 
@@ -10,7 +9,7 @@
 #export MAYA_NO_BUNDLE_RESOURCES="1"
 #export QT_PLUGIN_PATH="/Applications/Autodesk/maya2017/qt-plugins"
 export PYTHONPATH="/Applications/Pixar/Tractor-2.3/lib/python2.7/site-packages:${PYTHONPATH}"
-
+export PYTHONPATH="/Users/Shared/UTS_Dev/gitRepositories/utsdab_repos/shotgun_repos/python-api:${PYTHONPATH}"
 /Applications/Pixar/Tractor-2.3/bin/rmanpy "$@"
 #/Applications/Autodesk/maya2017/Maya.app/Contents/bin/mayapy "$@"
 #/Applications/Autodesk/maya2017/Maya.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python "$@"
