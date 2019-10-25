@@ -1,5 +1,5 @@
 {
-    "$schema": "./shelfSchema.json",
+    "$schema": "shelfSchema.json",
     "shelf": {
         "shelfID": "standard",
         "buttons": {

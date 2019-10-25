@@ -1,5 +1,5 @@
 {
-    "$schema": "./shelfSchema.json",
+    "$schema": "shelfSchema.json",
     "imports": ["rfm2", "rfm2.api.nodes", "rfm2.api.ui_helpers"],
     "shelf": {
         "shelfID": "standard",
