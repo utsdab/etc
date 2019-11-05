@@ -202,6 +202,10 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
  source houdini_setup
  cd ~
 export SESI_LMHOST=dab-license
+export HOUDIN_DEFAULT_RIB_RENDERER=prman22.6
+export RMANTREE=/Applications/Pixar/RenderManProServer-22.6
+export RFHTREE=/Applications/Pixar/RenderManForHoudini-22.6
+export HOUDINI_PATH=$RFHTREE/17.5:&
 
 # PIXAR SETUP ####################
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
@@ -215,6 +219,8 @@ export TRACTOR_ENGINE="tractor-engine:5600"
 
 # FOUNDRY SETUP ##################
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
+
+
 
 # AUTODESK SETUP #################
 export RV_LICENSE_FILE="${DABETC}/tweak/license.gto"
