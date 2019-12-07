@@ -6,7 +6,7 @@
 
 echo ""
 echo "STARTING  :${BASH_SOURCE}"
-echo "VERSION   :2019-07-01"
+echo "VERSION   :2020-01-01"
 echo "USER      :${USER}"
 
 # Function helper
@@ -134,11 +134,11 @@ if [ ${DABDEV} ]; then
     echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
     export BIFROST_VERSION="2.0.1.0"
     echo "INFO    : BIFROST VERSION: $BIFROST_VERSION"
-    export RMAN_VERSION="22.6"
+    export RMAN_VERSION="23.0"
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
     export TRACTOR_VERSION="2.3"
     echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-    export NUKE_VERSION="11.3v4"
+    export NUKE_VERSION="12.01"
     echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
     echo "INFO    : OS             : ${OSTYPE:0:5}"
 else
@@ -174,6 +174,7 @@ linux)
 darwi)
     export RMANTREE="/Applications/Pixar/RenderManProServer-${RMAN_VERSION}"
     export RFMTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}"
+    export RFHTREE="/Applications/Pixar/RenderManForHoudini-${RMAN_VERSION}"
     export TRACTOR_LOCATION="/Applications/Pixar/Tractor-${TRACTOR_VERSION}"
     export ARNOLD_LOCATION="/Applications/solidangle/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/Applications/Autodesk/maya${MAYA_VERSION}"
@@ -202,10 +203,11 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
  source houdini_setup
  cd ~
 export SESI_LMHOST=dab-license
-export HOUDIN_DEFAULT_RIB_RENDERER=prman22.6
-export RMANTREE=/Applications/Pixar/RenderManProServer-22.6
-export RFHTREE=/Applications/Pixar/RenderManForHoudini-22.6
-export HOUDINI_PATH=$RFHTREE/17.5:&
+export HOUDIN_DEFAULT_RIB_RENDERER="prman${RMAN_VERSION}"
+#export RMANTREE=/Applications/Pixar/RenderManProServer-23.0
+#export RFHTREE=/Applications/Pixar/RenderManForHoudini-23.0
+export HOUDINI_PATH=$RFHTREE/18.0:&
+export RMAN_PROCEDURALPATH=$RFHTREE/18.0/openvdb:&
 
 # PIXAR SETUP ####################
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
@@ -253,6 +255,7 @@ echo "PATH    : appending....."
 _paths=( \
             "${DABUSR}/bin" \
             "${MAYA_LOCATION}/bin" \
+            "${MAYA_LOCATION}/plug-ins/xgen/bin" \
             "${DABUSR}/etc/tractor" \
             "${DABSWW}/renderfarm/bin" \
             "${RMANTREE}/bin" \
