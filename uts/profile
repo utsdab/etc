@@ -134,7 +134,7 @@ if [ ${DABDEV} ]; then
     echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
     export BIFROST_VERSION="2.0.3.0"
     echo "INFO    : BIFROST VERSION: $BIFROST_VERSION"
-    export RMAN_VERSION="23.1"
+    export RMAN_VERSION="23.2"
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
     export TRACTOR_VERSION="2.3"
     echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
@@ -144,9 +144,9 @@ if [ ${DABDEV} ]; then
 else
     echo "PRODUCTION: Using the studio paths - to use dev set DABDEV to the path of the repos"
 	echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
-	export MAYA_VERSION="2020"
+	export MAYA_VERSION="2019"
 	echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-	export RMAN_VERSION="23.1"
+	export RMAN_VERSION="23.2"
 	echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 	export TRACTOR_VERSION="2.3"
 	echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
@@ -161,7 +161,7 @@ linux)
     export RMANTREE="/opt/pixar/RenderManProServer-${RMAN_VERSION}"
     export RFMTREE="/opt/pixar/RenderManForMaya-${RMAN_VERSION}"
     export TRACTOR_LOCATION="/opt/pixar/Tractor-${TRACTOR_VERSION}"
-    export ARNOLD_LOCATION="/opt/solidangle/mtoa/${MAYA_VERSION}"
+    export ARNOLD_LOCATION="/opt/autodesk/arnold/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/usr/autodesk/maya${MAYA_VERSION}"
     export BIFROST_APPLICATION_LOCATION="/usr/autodesk/bifrost/maya${MAYA_VERSION}/${BIFROST_VERSION}"
 #    /Applications/Autodesk/bifrost/maya2019/2.0.1.0
@@ -176,11 +176,9 @@ darwi)
     export RFMTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}"
     export RFHTREE="/Applications/Pixar/RenderManForHoudini-${RMAN_VERSION}"
     export TRACTOR_LOCATION="/Applications/Pixar/Tractor-${TRACTOR_VERSION}"
-    export ARNOLD_LOCATION="/Applications/solidangle/mtoa/${MAYA_VERSION}"
+    export ARNOLD_LOCATION="/Applications/Autodesk/Arnold/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/Applications/Autodesk/maya${MAYA_VERSION}"
     export BIFROST_APPLICATION_LOCATION="/Applications/Autodesk/bifrost/maya${MAYA_VERSION}/${BIFROST_VERSION}"
-#    /Applications/Autodesk/bifrost/maya2019/2.0.1.0
-
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}/Maya.app/Contents"
     export MAYA_RENDER_DESC_PATH="${ARNOLD_LOCATION}/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}"
     export HOUDINI_LOCATION="/Applications/Houdini"
@@ -255,7 +253,7 @@ echo "PATH    : appending....."
 _paths=( \
             "${DABUSR}/bin" \
             "${MAYA_LOCATION}/bin" \
-            "${MAYA_LOCATION}/plug-ins/xgen/bin" \
+            "${MAYA_APPLICATION_LOCATION}/plug-ins/xgen/bin" \
             "${DABUSR}/etc/tractor" \
             "${DABSWW}/renderfarm/bin" \
             "${RMANTREE}/bin" \
@@ -295,6 +293,22 @@ do
     fi
 done
 
+## BUILDING DYLD_LIBRARY_PATH ####################
+#echo "DYLD_LIBRARY_PATH: appending....."
+#_paths=( \
+#            "${ARNOLD_LOCATION}/bin" \
+#            "${MAYA_APPLICATION_LOCATION}/plug-ins/xgen/lib" \
+#            "${MAYA_LOCATION}/MacOS" \
+#            )
+#for i in "${_paths[@]}"
+#do
+#    if [ -d ${i} ]; then
+#        export DYLD_LIBRARY_PATH="${i}:${DYLD_LIBRARY_PATH}"
+#        echo "        : ${i}"
+#    else
+#        echo "WARNING: Cant add ${i} to DYLD_LIBRARY_PATH"
+#    fi
+#done
 
 # BUILDING NUKE_PATH ########################
 echo "NUKE_PATH: appending....."
