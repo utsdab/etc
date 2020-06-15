@@ -1,5 +1,5 @@
 {
-    "$schema": "./menuSchema.json",
+    "$schema": "menuSchema.json",
     "items": {
         "rmanMenuIPRRender": {
             "label": "IPR Render",

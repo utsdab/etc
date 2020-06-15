@@ -4,17 +4,12 @@
 # This script is sources at the end of /etc/profile.d/dabanim.sh
 # It requires some initial vairables to be set DABRENDER AND DABDEV
 
-
 echo ""
-echo "STARTING: ${BASH_SOURCE}"
-echo "VERSION: 2018-04-01"
-echo "USER: ${USER}"
-export PATH="/usr/X11R6/bin:${PATH}"
+echo "STARTING  :${BASH_SOURCE}"
+echo "VERSION   :2020-01-01"
+echo "USER      :${USER}"
 
-#
 # Function helper
-#
-
 checkpath () {
     # check to see if a string is a valid directory of file
     # exxpect a path as a string
@@ -135,25 +130,29 @@ fi
 if [ ${DABDEV} ]; then
     echo ">>>>>>>>> DEVELOPMENT: Using the development paths"
     echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
-    export MAYA_VERSION="2019"
+    export MAYA_VERSION="2020"
     echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-    export RMAN_VERSION="22.6"
+    export BIFROST_VERSION="2.0.3.0"
+    echo "INFO    : BIFROST VERSION: $BIFROST_VERSION"
+    export RMAN_VERSION="23.3"
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
     export TRACTOR_VERSION="2.3"
     echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-    export NUKE_VERSION="11.3v4"
+    export NUKE_VERSION="12.0v2"
     echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
     echo "INFO    : OS             : ${OSTYPE:0:5}"
 else
     echo "PRODUCTION: Using the studio paths - to use dev set DABDEV to the path of the repos"
 	echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
-	export MAYA_VERSION="2018"
+	export MAYA_VERSION="2020"
 	echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-	export RMAN_VERSION="22.6"
+	export BIFROST_VERSION="2.0.3.0"
+    echo "INFO    : BIFROST VERSION: $BIFROST_VERSION"
+	export RMAN_VERSION="23.3"
 	echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 	export TRACTOR_VERSION="2.3"
 	echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-	export NUKE_VERSION="11.3v4"
+	export NUKE_VERSION="12.0v2"
 	echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
 	echo "INFO    : OS             : ${OSTYPE:0:5}"
 fi
@@ -164,8 +163,10 @@ linux)
     export RMANTREE="/opt/pixar/RenderManProServer-${RMAN_VERSION}"
     export RFMTREE="/opt/pixar/RenderManForMaya-${RMAN_VERSION}"
     export TRACTOR_LOCATION="/opt/pixar/Tractor-${TRACTOR_VERSION}"
-    export ARNOLD_LOCATION="/opt/solidangle/mtoa/${MAYA_VERSION}"
+    export ARNOLD_LOCATION="/opt/autodesk/arnold/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/usr/autodesk/maya${MAYA_VERSION}"
+    export BIFROST_APPLICATION_LOCATION="/usr/autodesk/bifrost/maya${MAYA_VERSION}/${BIFROST_VERSION}"
+#    /Applications/Autodesk/bifrost/maya2019/2.0.1.0
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}"
     export HOUDINI_LOCATION="/opt/sidefx"
     export HFS="${HOUDINI_LOCATION}"
@@ -175,17 +176,19 @@ linux)
 darwi)
     export RMANTREE="/Applications/Pixar/RenderManProServer-${RMAN_VERSION}"
     export RFMTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}"
+    export RFHTREE="/Applications/Pixar/RenderManForHoudini-${RMAN_VERSION}"
     export TRACTOR_LOCATION="/Applications/Pixar/Tractor-${TRACTOR_VERSION}"
-    export ARNOLD_LOCATION="/Applications/solidangle/mtoa/${MAYA_VERSION}"
+    export ARNOLD_LOCATION="/Applications/Autodesk/Arnold/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/Applications/Autodesk/maya${MAYA_VERSION}"
+    export BIFROST_APPLICATION_LOCATION="/Applications/Autodesk/bifrost/maya${MAYA_VERSION}/${BIFROST_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}/Maya.app/Contents"
     export MAYA_RENDER_DESC_PATH="${ARNOLD_LOCATION}/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}"
     export HOUDINI_LOCATION="/Applications/Houdini"
     export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Current/Resources"
-#    export NUKE_INSTALL_PATH="/Applications/Nuke${NUKE_VERSION}"
-#    export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app"
-#    export NUKE_TEMP_DIR="/var/tmp/nuke-${USER}"
-#    export PATH="${NUKE_LOCATION}/Contents/MacOS:${PATH}"
+    export NUKE_INSTALL_PATH="/Applications/Nuke${NUKE_VERSION}"
+    export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app"
+    export NUKE_TEMP_DIR="/var/tmp/nuke-${USER}"
+    export PATH="${NUKE_LOCATION}/Contents/MacOS:${PATH}"
     export PATH="/usr/aw/COM/bin:/usr/aw/COM/etc:${PATH}"
     export PATH="/Applications/RV64.app/Contents/MacOS:${PATH}"
     ;;
@@ -199,28 +202,27 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
  cd $HFS
  source houdini_setup
  cd ~
+export SESI_LMHOST=dab-license
+export HOUDIN_DEFAULT_RIB_RENDERER="prman${RMAN_VERSION}"
+#export RMANTREE=/Applications/Pixar/RenderManProServer-23.0
+#export RFHTREE=/Applications/Pixar/RenderManForHoudini-23.0
+export HOUDINI_PATH=$RFHTREE/18.0:&
+export RMAN_PROCEDURALPATH=$RFHTREE/18.0/openvdb:&
 
 # PIXAR SETUP ####################
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
-#  Not entirely sure what the difference between RDIR and RMS_SCRIPT_PATHS is
-# export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"  obsolete
-# export RDIR="${DABETC}/pixar/config"     ####  aobsolete
-# export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
+#export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
 export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
-# export RMAN_ASSET_LIBRARY=$RMANTREE/lib/RenderManAssetLibrary
-# RFMTREE=/Applications/Pixar/RenderManForMaya-22.6
-# RFM_DO_NOT_CREATE_MODULE_FILE=1
-# RFM_SHOW_PATH=/Users/Shared/UTS_Dev/gitRepositories/utsdab_repos/etc/pixar
-# RFM_SITE_PATH=/Users/Shared/UTS_Dev/gitRepositories/utsdab_repos/etc/pixar
-
+export RFM_DO_NOT_CREATE_MODULE_FILE=1
 export RFM_SITE_PATH="${DABETC}/pixar"
-# export RFM_SHOW_PATH="${DABETC}/pixar"
+export RFM_SHOW_PATH="${DABETC}/pixar"
 export TRACTOR_USER="${USER}"
 export TRACTOR_ENGINE="tractor-engine:5600"
 
 # FOUNDRY SETUP ##################
 export foundry_LICENSE="${DABETC}/foundry/foundry_license.lic"
-export NUKE_PLUGIN_PATH=""
+
+
 
 # AUTODESK SETUP #################
 export RV_LICENSE_FILE="${DABETC}/tweak/license.gto"
@@ -247,21 +249,20 @@ export MAYA_DISABLE_CIP=1
 export RFM_DO_NOT_CREATE_MODULE_FILE=1
 export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B:${RFMTREE}/icons/%B:${XBMLANGPATH}"
 
-# SIDEFX ###################
-export SESI_LMHOST=dab-license
-
 
 ######################## BUILDING PATHS #########################
 echo "PATH    : appending....."
 _paths=( \
             "${DABUSR}/bin" \
             "${MAYA_LOCATION}/bin" \
+            "${MAYA_APPLICATION_LOCATION}/plug-ins/xgen/bin" \
             "${DABUSR}/etc/tractor" \
             "${DABSWW}/renderfarm/bin" \
             "${RMANTREE}/bin" \
             "${TRACTOR_LOCATION}/bin" \
             "${ARNOLD_LOCATION}/bin" \
              )
+
 for i in "${_paths[@]}"
 do
     if [ -d ${i} ]; then
@@ -294,11 +295,29 @@ do
     fi
 done
 
+## BUILDING DYLD_LIBRARY_PATH ####################
+#echo "DYLD_LIBRARY_PATH: appending....."
+#_paths=( \
+#            "${ARNOLD_LOCATION}/bin" \
+#            "${MAYA_APPLICATION_LOCATION}/plug-ins/xgen/lib" \
+#            "${MAYA_LOCATION}/MacOS" \
+#            )
+#for i in "${_paths[@]}"
+#do
+#    if [ -d ${i} ]; then
+#        export DYLD_LIBRARY_PATH="${i}:${DYLD_LIBRARY_PATH}"
+#        echo "        : ${i}"
+#    else
+#        echo "WARNING: Cant add ${i} to DYLD_LIBRARY_PATH"
+#    fi
+#done
 
 # BUILDING NUKE_PATH ########################
 echo "NUKE_PATH: appending....."
 _paths=( \
             "${DABUSR}/etc/nuke/tractorNuke" \
+            "${DABUSR}/etc/nuke/cryptomatte" \
+            "${DABUSR}/etc/nuke" \
             )
 for i in "${_paths[@]}"
 do
@@ -351,6 +370,7 @@ echo "MAYA_MODULE_PATH: appending....."
 _paths=( \
             "${DABUSR}/etc/maya/dab_modules" \
             "${RFMTREE}/etc" \
+            "${BIFROST_APPLICATION_LOCATION}" \
             )
 for i in "${_paths[@]}"
 do
@@ -362,19 +382,10 @@ do
     fi
 done
 
-
-
-## removes duplicates
-#export PATH="$(echo "$PATH" |gawk 'BEGIN{RS=":";}
-#{sub(sprintf("%c$",10),"");if(A[$0]){}else{A[$0]=1;
-#printf(((NR==1)?"":":")$0)}}')";
-
-
 ###########################  ALIAS's
 alias nukex='Nuke${NUKE_VERSION} --nukex'
 alias nukestudio='Nuke${NUKE_VERSION} --studio'
 alias nuke='Nuke${NUKE_VERSION}'
-#alias maya='maya'
 alias tqd='tq --engine tractor-engine:5600'
 alias myprefs='open `myprefs.py`'
 alias mywork='open `mywork.py`'

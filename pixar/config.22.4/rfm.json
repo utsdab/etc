@@ -53,7 +53,7 @@
         "user": ""
     },
     "user tokens": [],
-    "$schema": "./rfmSchema.json",
+    "$schema": "rfmSchema.json",
     "woffs": [
         "R90007"
     ],

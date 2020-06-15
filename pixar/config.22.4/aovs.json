@@ -1,5 +1,5 @@
 {
-    "$schema": "./aovsSchema.json",
+    "$schema": "aovsSchema.json",
     "channels": {
         "Ci": {
             "description": "The beauty render, all effects included.",
