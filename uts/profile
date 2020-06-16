@@ -135,11 +135,11 @@ fi
 if [ ${DABDEV} ]; then
     echo ">>>>>>>>> DEVELOPMENT: Using the development paths"
     echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
-    export MAYA_VERSION="2019"
+    export MAYA_VERSION="2020"
     echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-    export RMAN_VERSION="22.6"
+    export RMAN_VERSION="23.3"
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
-    export TRACTOR_VERSION="2.3"
+    export TRACTOR_VERSION="2.4"
     echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
     export NUKE_VERSION="11.3v4"
     echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
@@ -147,11 +147,11 @@ if [ ${DABDEV} ]; then
 else
     echo "PRODUCTION: Using the studio paths - to use dev set DABDEV to the path of the repos"
 	echo "INFO    : BASIC SHELL INITIALIZATION SETTINGS"
-	export MAYA_VERSION="2018"
+	export MAYA_VERSION="2020"
 	echo "INFO    : MAYA VERSION   : $MAYA_VERSION"
-	export RMAN_VERSION="22.6"
+	export RMAN_VERSION="23.3"
 	echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
-	export TRACTOR_VERSION="2.3"
+	export TRACTOR_VERSION="2.4"
 	echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
 	export NUKE_VERSION="11.3v4"
 	echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
@@ -176,7 +176,7 @@ darwi)
     export RMANTREE="/Applications/Pixar/RenderManProServer-${RMAN_VERSION}"
     export RFMTREE="/Applications/Pixar/RenderManForMaya-${RMAN_VERSION}"
     export TRACTOR_LOCATION="/Applications/Pixar/Tractor-${TRACTOR_VERSION}"
-    export ARNOLD_LOCATION="/Applications/solidangle/mtoa/${MAYA_VERSION}"
+    export ARNOLD_LOCATION="/Applications/Autodesk/Arnold/mtoa/${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/Applications/Autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}/Maya.app/Contents"
     export MAYA_RENDER_DESC_PATH="${ARNOLD_LOCATION}/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}"
@@ -188,6 +188,7 @@ darwi)
 #    export PATH="${NUKE_LOCATION}/Contents/MacOS:${PATH}"
     export PATH="/usr/aw/COM/bin:/usr/aw/COM/etc:${PATH}"
     export PATH="/Applications/RV64.app/Contents/MacOS:${PATH}"
+    export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages:${PYTHONPATH}"
     ;;
 *)
     echo "WARNING:   LIBRARY_PATH and base environment NOT set in profile.d/dabanim.sh"
@@ -230,8 +231,7 @@ export SGTK_DESKTOP_CONFIG_LOCATION="${DABPREFS}/shotgun/toolkit_configs"
 export SGTK_PREFERENCES_LOCATION="${DABPREFS}/shotgun/toolkit_configs"
 export SHOTGUN_BUNDLE_CACHE_FALLBACK_PATHS="${DABPREFS}/shotgun/toolkit_configs"
 export SHOTGUN_PATH_MAC="${DABWORK}/shotgun_work"
-#export solidangle_LICENSE="${DABETC}/solidangle/solidangle_license.lic"
-export solidangle_LICENSE="27000@138.25.40.219"
+export solidangle_LICENSE="${DABETC}/solidangle/solidangle_license.lic"
 export ARNOLD_PLUGIN_PATH="${ARNOLD_LOCATION}/shaders"
 export MTOA_TEMPLATES_PATH="" # is for the Attribute Editor (AE) templates of Arnold shaders.
 export MTOA_EXTENSIONS_PATH="" # is for MtoA extensions like Yeti.
@@ -277,7 +277,7 @@ done
 # BUILDING PYTHONPATH ####################
 echo "PYTHONPATH: appending....."
 _paths=( \
-            "${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages" \
+            #"${MAYA_LOCATION}/lib/python2.7/site-packages" \
             "${TRACTOR_LOCATION}/lib/python2.7/site-packages" \
             "${RFMTREE}/scripts" \
             "${DABSWW}" \
