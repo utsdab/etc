@@ -19,14 +19,15 @@
             "DABUSERPREFS":      "$DABWORK/user_prefs",
 
             "PIXAR_LICENSE_FILE":"$DABETC/pixar/pixar.license",
+            "solidangle_LICENSE":  "27000@138.25.40.219"
             "RV_LICENSE_FILE":   "$DABETC/tweak/license.gto",
             "TWEAK_LICENSE_FILE":"$DABETC/tweak/license.gto",
             "SESI_LMHOST":        "dab-license",
 //            "RMS_SCRIPT_PATHS":  "$DABETC/pixar/config",
 //            "RDIR":              "$DABETC/pixar/config",
 
-            "PATH":              "@+:/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin:/Applications/Pixar/Tractor-2.3/bin",
-            "PYTHONPATH":        "@+:$DABRENDER:$DABSWW:$RFMTREE/bin:$RMANTREE/bin:/Applications/Pixar/Tractor-2.3/lib/python2.7/site-packages/tractor"
+            "PATH":              "@+:/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin:/Applications/Pixar/Tractor-2.4/bin",
+            "PYTHONPATH":        "@+:$DABRENDER:$DABSWW:$RFMTREE/bin:$RMANTREE/bin:/Applications/Pixar/Tractor-2.4/lib/python2.7/site-packages/tractor"
         },
        "envhandler": "default"
     },
@@ -131,12 +132,12 @@
             "MAYA_LOCATION":    "$TR_ENV_MAYALOCATION/Maya.app/Contents",
             "RFM_MAYA_VERSION": "$TR_ENV_MAYAVER",
             "XGEN_LOCATION":    "$TR_ENV_MAYALOCATION/plug-ins/xgen",
-            "PATH":             "$MAYA_LOCATION/bin:$TR_ENV_MAYALOCATION/Maya.app/Contents/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/bin:$PATH\":$PATH",
+            "PATH":             "$MAYA_LOCATION/bin:$TR_ENV_MAYALOCATION/Maya.app/Contents/bin:/usr/aw/COM/bin:/usr/aw/COM/etc:/Applications/Autodesk/Arnold/mtoa/$TR_ENV_MAYAVER/bin:$PATH\":$PATH",
             "PYTHONPATH":       "@+:$DABUSR/etc/maya/dab_scripts",
             "TMPDIR":           "/var/tmp",
 
-            "DYLD_LIBRARY_PATH":   "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
-            "DYLD_FALLBACK_LIBRARY_PATH": "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS:/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
+            "DYLD_LIBRARY_PATH":   "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS:/Applications/Autodesk/Arnold/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
+            "DYLD_FALLBACK_LIBRARY_PATH": "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS:/Applications/Autodesk/Arnold/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
             "DYLD_FRAMEWORK_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/Frameworks",
 
             "MAYA_MODULE_PATH":  "@+:$DABUSR/etc/maya/dab_modules",
@@ -144,8 +145,8 @@
             "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_plug-ins:$DABUSR/etc/maya/dab_scripts",
             "MAYA_DISABLE_CIP":  "1",
             "SYNCOLOR":          "$DABETC/macosx/synColorConfig.xml",
-            "ARNOLD_PLUGIN_PATH":     "/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",
-            "ARNOLD_PROCEDURAL_PATH": "/Applications/solidangle/mtoa/$TR_ENV_MAYAVER/procedurals",
+            "ARNOLD_PLUGIN_PATH":     "/Applications/Autodesk/Arnold/mtoa/$TR_ENV_MAYAVER/shaders",
+            "ARNOLD_PROCEDURAL_PATH": "/Applications/Autodesk/Arnold/mtoa/$TR_ENV_MAYAVER/procedurals",
             "MTOA_EXTENSIONS_PATH":       "",
             "MAYA_CUSTOM_TEMPLATE_PATH":  "",
             "MTOA_STARTUP_LOG_VERBOSITY": "",
@@ -202,8 +203,8 @@
         "keys": ["rvio*"],
         "environment": {
             "ENVKEY":             "@+:rvio.shared.macosx.envkeys",
-            "PATH":               "$DABSWW/renderfarm/bin:/Applications/Pixar/Tractor-2.3/bin:/Applications/RV64.app/Contents/MacOS:$PATH",
-            "PYTHONPATH":         "$DABSWW/renderfarm/:/Applications/Pixar/Tractor-2.3/bin",
+            "PATH":               "$DABSWW/renderfarm/bin:/Applications/Pixar/Tractor-2.4/bin:/Applications/RV64.app/Contents/MacOS:$PATH",
+            "PYTHONPATH":         "$DABSWW/renderfarm/:/Applications/Pixar/Tractor-2.4/bin",
             "RV_LICENSE_FILE":    "$DABRENDER/etc/tweak/license.gto",
             "TWEAK_LICENSE_PATH": "$DABETC/tweak/license.gto",
             "MU_MODULE_PATH":     "$DABUSR/etc/tweak/mu"

@@ -231,6 +231,7 @@ export SGTK_PREFERENCES_LOCATION="${DABPREFS}/shotgun/toolkit_configs"
 export SHOTGUN_BUNDLE_CACHE_FALLBACK_PATHS="${DABPREFS}/shotgun/toolkit_configs"
 export SHOTGUN_PATH_MAC="${DABWORK}/shotgun_work"
 #export solidangle_LICENSE="${DABETC}/solidangle/solidangle_license.lic"
+export solidangle_LICENSE="27000@138.25.40.219"
 export ARNOLD_PLUGIN_PATH="${ARNOLD_LOCATION}/shaders"
 export MTOA_TEMPLATES_PATH="" # is for the Attribute Editor (AE) templates of Arnold shaders.
 export MTOA_EXTENSIONS_PATH="" # is for MtoA extensions like Yeti.
