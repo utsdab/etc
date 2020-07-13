@@ -40,6 +40,7 @@ if [ ${DABDEV} ]; then
     echo ">>>>>>>>> DEVELOPMENT: Using the development paths"
     _dabusr="${DABDEV}/usr"
     _dabetc="${DABDEV}/etc"
+    _dablib="${DABDEV}/lib"
     _dabsww="${DABDEV}/sww"
     _dabwork="${DABRENDER}/work"
     _dabassets="${DABRENDER}/assets"
@@ -49,6 +50,7 @@ else
     echo "PRODUCTION: Using the studio paths"
     _dabusr="${DABRENDER}/usr"
     _dabetc="${DABRENDER}/etc"
+    _dablib="${DABRENDER}/lib"
     _dabsww="${DABRENDER}/sww"
     _dabwork="${DABRENDER}/work"
     _dabassets="${DABRENDER}/assets"
@@ -72,6 +74,15 @@ if [ -d ${_dabetc} ]; then
 else
     echo "CRITICAL: Cant set DABETC correctly ${_dabetc}"
     unset DABETC
+fi
+
+######### DABLIB - 3rd party instances of software - mostly python
+if [ -d ${_dablib} ]; then
+    export DABLIB="${_dablib}"
+    echo "INFO    : DABLIB = ${DABLIB}"
+else
+    echo "CRITICAL: Cant set DABLIB correctly ${_dablib}"
+    unset DABLIB
 fi
 
 ######## DABSWW - software and scripts
@@ -141,7 +152,7 @@ if [ ${DABDEV} ]; then
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
     export TRACTOR_VERSION="2.4"
     echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-    export NUKE_VERSION="11.3v4"
+    export NUKE_VERSION="12.1v2"
     echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
     echo "INFO    : OS             : ${OSTYPE:0:5}"
 else
@@ -153,7 +164,7 @@ else
 	echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
 	export TRACTOR_VERSION="2.4"
 	echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-	export NUKE_VERSION="11.3v4"
+	export NUKE_VERSION="12.1v2"
 	echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
 	echo "INFO    : OS             : ${OSTYPE:0:5}"
 fi
@@ -203,18 +214,11 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
 
 # PIXAR SETUP ####################
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
-#  Not entirely sure what the difference between RDIR and RMS_SCRIPT_PATHS is
-# export RMS_SCRIPT_PATHS="${DABETC}/pixar/config"  obsolete
-# export RDIR="${DABETC}/pixar/config"     ####  aobsolete
 # export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
 export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
-# export RMAN_ASSET_LIBRARY=$RMANTREE/lib/RenderManAssetLibrary
-# RFMTREE=/Applications/Pixar/RenderManForMaya-22.6
 # RFM_DO_NOT_CREATE_MODULE_FILE=1
-# RFM_SHOW_PATH=/Users/Shared/UTS_Dev/gitRepositories/utsdab_repos/etc/pixar
-# RFM_SITE_PATH=/Users/Shared/UTS_Dev/gitRepositories/utsdab_repos/etc/pixar
-
 export RFM_SITE_PATH="${DABETC}/pixar"
+# export RFM_SHOW_PATH="${DABETC}/pixar"
 # export RFM_SHOW_PATH="${DABETC}/pixar"
 export TRACTOR_USER="${USER}"
 export TRACTOR_ENGINE="tractor-engine:5600"
@@ -284,6 +288,7 @@ _paths=( \
             "${DABUSR}/etc/tractor" \
             "${DABUSR}/etc/maya/dab_scripts" \
             "${DABUSR}/etc/maya/dab_plug-ins" \
+            "${DABLIB}" \
             )
 for i in "${_paths[@]}"
 do
