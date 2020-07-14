@@ -175,7 +175,7 @@ linux)
     export RMANTREE="/opt/pixar/RenderManProServer-${RMAN_VERSION}"
     export RFMTREE="/opt/pixar/RenderManForMaya-${RMAN_VERSION}"
     export TRACTOR_LOCATION="/opt/pixar/Tractor-${TRACTOR_VERSION}"
-    export ARNOLD_LOCATION="/opt/solidangle/mtoa/${MAYA_VERSION}"
+    export ARNOLD_LOCATION="/usr/autodesk/arnold/maya${MAYA_VERSION}"
     export MAYA_APPLICATION_LOCATION="/usr/autodesk/maya${MAYA_VERSION}"
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}"
     export HOUDINI_LOCATION="/opt/sidefx"
