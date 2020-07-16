@@ -1,4 +1,4 @@
-# ____________________________________________________________________ 
+# ____________________________________________________________________
 # TrEnvHandler - Construction of environments for apps launched by
 #                tractor-blade.  Each launch request may request a
 #                particular named set of environment variables from
@@ -6,7 +6,7 @@
 #                The profile's 'default' settings are the basis of
 #                all specialized env settings.  - rdavis, 2008
 #
-# ____________________________________________________________________ 
+# ____________________________________________________________________
 # Copyright (C) 2007-2014 Pixar Animation Studios. All rights reserved.
 #
 # The information in this file is provided for the exclusive use of the
@@ -23,10 +23,10 @@
 # WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION,
 # ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 # SOFTWARE.
-# ____________________________________________________________________ 
+# ____________________________________________________________________
 #
 
-import string 
+import string
 import types
 import logging
 import platform
@@ -63,7 +63,7 @@ class TrEnvHandler(object):
         if 'rewritedict' in envkeydict and \
            types.DictType != type(envkeydict['rewritedict']):
             self.rewritedict = envkeydict['rewritedict']
-        
+
         self.initialEnvDict = self.environmentdict.copy()
 
     def remapCmdArgs(self, cmdinfo, launchenv, thisHost):
@@ -116,7 +116,7 @@ class TrEnvHandler(object):
                 # subst in the stored socket fileno.
                 # By pre-arrangement, the cmdline token sent from
                 # our peer (e.g. netrender) is already in python's
-                # dict-subst format, like: %(file)s  or  %(dspy)s 
+                # dict-subst format, like: %(file)s  or  %(dspy)s
                 try:
                     s = a % cmdinfo.sfdDict
                     argv.append(s)
@@ -276,7 +276,7 @@ class TrEnvHandler(object):
         # special notation means "append this value to the existing such
         # variable, if it exists, otherwise just use this value" which is
         # to handle cases like LD_LIBRARY_PATH that may not be set at all
-        # by default. For cases like extending PATH we can just use a 
+        # by default. For cases like extending PATH we can just use a
         # self reference "PATH": "$PATH:new_stuff" since PATH always exists.
 
         if type(v) in (str, unicode) and v.startswith("@+"):
@@ -301,7 +301,7 @@ class TrEnvHandler(object):
         len1 = len(d1)
         len2 = len(d2)
 
-        if len1 != len2: 
+        if len1 != len2:
             self.logger.trace("env lengths differ: %d %d" % (len1, len2))
         compared = {}
 
@@ -309,7 +309,7 @@ class TrEnvHandler(object):
             e1 = d1[e]
             if e in d2:
                 e2 = d2[e]
-                if e1 != e2:  
+                if e1 != e2:
                     self.logger.trace("Entries different: %s" % (e))
                     self.logger.trace("%s -- %s" % (e, e1))
                     self.logger.trace("%s -- %s" % (e, e2))
@@ -368,7 +368,7 @@ class TrEnvHandler(object):
         return None
 
     def locateMayaDirectory(self, version):
-        """ 
+        """
         Simple check of the 4 variants of Maya installation
         directories.  Check through, return the first found.
         64 bit Linux has precendence of 32 bit if both installed
@@ -431,7 +431,7 @@ class rmanhandler(TrEnvHandler):
             tok = key.split("-")
             vers = tok[1] if len(tok) > 1 else None
             rmantree = self.locateRMANTREE(vers)
-            if rmantree: 
+            if rmantree:
                 self.environmentdict['TR_ENV_RMANTREE'] = rmantree
             else:
                 # put something in the environment to indicate obvious error
@@ -540,7 +540,7 @@ class rmantreehandler(TrEnvHandler):
     def remapCmdArgs(self, cmdinfo, launchenv, thisHost):
         self.logger.debug("rmantreehandler.remapCmdArgs: %s" % self.name)
         argv = TrEnvHandler.remapCmdArgs(self, cmdinfo, launchenv, thisHost)
-                
+
         return argv
 
     def debug(self):
@@ -565,7 +565,7 @@ class rmstreehandler(TrEnvHandler):
     def remapCmdArgs(self, cmdinfo, launchenv, thisHost):
         self.logger.debug("rmstreehandler.remapCmdArgs: %s" % self.name)
         argv = TrEnvHandler.remapCmdArgs(self, cmdinfo, launchenv, thisHost)
-                
+
         return argv
 
     def debug(self):
@@ -589,7 +589,7 @@ class rfmtreehandler(TrEnvHandler):
     def remapCmdArgs(self, cmdinfo, launchenv, thisHost):
         self.logger.debug("rfmtreehandler.remapCmdArgs: %s" % self.name)
         argv = TrEnvHandler.remapCmdArgs(self, cmdinfo, launchenv, thisHost)
-                
+
         return argv
 
     def debug(self):
@@ -610,18 +610,18 @@ class mayahandler(TrEnvHandler):
         for key in envkeys:
             vals = key.split("-")
             if len(vals) == 2:
-		val = vals[1]
-                self.environmentdict['TR_ENV_MAYAVER'] = val 
-            	ml = TrEnvHandler.locateMayaDirectory(self, val)
-	    else:
-            	val = key[4:]
-            	self.environmentdict['TR_ENV_MAYAVER'] = val
-            	ml = TrEnvHandler.locateMayaDirectory(self, val)
+        val = vals[1]
+                self.environmentdict['TR_ENV_MAYAVER'] = val
+                ml = TrEnvHandler.locateMayaDirectory(self, val)
+        else:
+                val = key[4:]
+                self.environmentdict['TR_ENV_MAYAVER'] = val
+                ml = TrEnvHandler.locateMayaDirectory(self, val)
             if ml:
                 self.environmentdict['TR_ENV_MAYALOCATION'] = ml
 
         if not env.has_key("MAYA_MODULE_PATH"):
-            env['MAYA_MODULE_PATH'] = "" 
+            env['MAYA_MODULE_PATH'] = ""
 
         return TrEnvHandler.updateEnvironment(self, cmd, env, envkeys)
 
