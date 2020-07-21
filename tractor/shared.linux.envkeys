@@ -15,7 +15,7 @@
             "RV_LICENSE_FILE":    "$DABETC/tweak/license.gto",
             "TWEAK_LICENSE_FILE": "$DABETC/tweak/license.gto",
             "SESI_LMHOST":        "dab-license",
-            "solidangle_LICENSE":  "27000@138.25.40.219",
+            "solidangle_LICENSE":  "27000@138.25.40.82",
             "RMS_SCRIPT_PATHS":   "$DABETC/pixar/config",
             "RDIR":               "$DABETC/pixar/config",
             "RFM_DO_NOT_CREATE_MODULE_FILE": "1",
