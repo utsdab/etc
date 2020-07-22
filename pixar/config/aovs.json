@@ -5,6 +5,7 @@
             "description": "The beauty render, all effects included.",
             "channelType": "color",
             "channelSource": "Ci",
+            "relativepixelvariance": 1.0,
             "group": "Standard"
         },
         "Oi": {
@@ -198,6 +199,7 @@
         "beauty": {
             "channelType": "color",
             "channelSource": "lpe:C[DS]*[<L.>O]",
+            "relativepixelvariance": 1.0,
             "group": "Lighting"
         },
         "emissive": {
@@ -548,68 +550,40 @@
                 "MatteID7"
             ]
         },
-        "Comp_Basic": {
-            "description": "Basic passes for comp.",
-            "display": {
-                "displayType": "d_openexr"
-            },
-            "driver": {
-                "storage": "planar",
-                "compression": "dwaa"
-            },
+        "BakeDefault": {
+            "description": "The default diffuse render.",
+            "category": "bake",
             "channels": [
                 "diffuse",
-                "specular",
-                "emissive",
-                "subsurface",
-                "__depth"
+                "a"
             ]
         },
-        "Comp_Intermediate": {
-            "description": "Direct and Indirect passes for comp.",
-            "display": {
-                "displayType": "d_openexr"
-            },
-            "driver": {
-                "storage": "planar",
-                "compression": "dwaa"
-            },
+        "BakeAlbedo": {
+            "description": "Surface albedo",
+            "category": "bake",
             "channels": [
-                "directDiffuse",
-                "directSpecular",
-                "indirectDiffuse",
-                "indirectSpecular",
-                "emissive",
-                "subsurface"
+                "albedo"
             ]
         },
-        "Comp_Advanced": {
-            "description": "Lobe passes for comp.",
-            "display": {
-                "displayType": "d_openexr"
-            },
-            "driver": {
-                "storage": "planar",
-                "compression": "dwaa"
-            },
+        "BakeDiffuse": {
+            "description": "Surface diffuse illumination",
+            "category": "bake",
             "channels": [
-                "directDiffuseLobe",
-                "directSpecularPrimaryLobe",
-                "directSpecularRoughLobe",
-                "directSpecularClearcoatLobe",
-                "directSpecularIridescenceLobe",
-                "directSpecularFuzzLobe",
-                "directSpecularGlassLobe",
-                "indirectDiffuseLobe",
-                "indirectSpecularPrimaryLobe",
-                "indirectSpecularRoughLobe",
-                "indirectSpecularClearcoatLobe",
-                "indirectSpecularIridescenceLobe",
-                "indirectSpecularFuzzLobe",
-                "indirectSpecularGlassLobe",
-                "subsurfaceLobe",
-                "transmissiveGlassLobe",
-                "emissive"
+                "diffuse"
+            ]
+        },
+        "BakeDirectDiffuse": {
+            "description": "Surface direct diffuse illumination",
+            "category": "bake",
+            "channels": [
+                "directDiffuse"
+            ]
+        },
+        "BakeIndirectDiffuse": {
+            "description": "Surface indirect diffuse illumination",
+            "category": "bake",
+            "channels": [
+                "indirectDiffuse"
             ]
         }
     }

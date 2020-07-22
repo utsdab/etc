@@ -25,6 +25,7 @@
         "hairSystem", "PxrMayaHair",
         "hsvToRgb", "PxrMayaHsvToRgb",
         "imagePlane", "PxrMayaImagePlane",
+        "lambert", "PxrMayaLambert",
         "layeredTexture", "PxrMayaLayeredTexture",
         "leather", "PxrMayaLeather",
         "luminance", "PxrMayaLuminance",

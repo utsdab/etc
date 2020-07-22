@@ -1,0 +1,157 @@
+{
+    "$schema": "./rlfAttributesSchema.json",
+    "definitions": {
+        "dice": {
+            "float micropolygonlength": {
+                "label": "Micropolygon Length",
+                "type": "float",
+                "default": 1.0
+            },
+            "string offscreenstrategy": {
+                "label": "Off Screen Dicing Strategy",
+                "help": "Dicing method of objects outside the viewing frustum.",
+                "type": "string",
+                "default": "viewfrustumdistance",
+                "options": [
+                    "viewfrustumdistance",
+                    "worlddistance",
+                    "objectdistance",
+                    "planarprojection"
+                ]
+            },
+            "int rasterorient": {
+                "label": "Raster Oriented Dicing",
+                "type": "int",
+                "default": 1,
+                "help": "Turning this off enables non-oriented dicing, a mode of dicing that computes micropolygon sizes using non-oriented raster space rather than screen-aligned raster space. Non-oriented dicing is useful for displacement around edges where projected micropolygon distance can be arbitrarily small.",
+                "options": {
+                    "Off": 0,
+                    "On": 1
+                }
+            },
+            "string referencecamera": {
+                "label": "Reference Camera",
+                "type": "string",
+                "default": "",
+                "help": "Specify the camera used for dicing. If no reference camera is specified, RenderMan will use the primary camera."
+            },
+            "string strategy": {
+                "label": "Dicing strategy",
+                "help": "Dicing method of objects within the viewing frustum.",
+                "type": "string",
+                "default": "instanceprojection",
+                "options": [
+                    "instanceprojection",
+                    "worlddistance",
+                    "objectdistance"
+                ]
+            },
+            "float worlddistancelength": {
+                "label": "Dicing Distance Length",
+                "help": "Micropolygon distance in world space for 'worlddistance' dicing or object space for 'objectdistance' dicing.",
+                "type": "float",
+                "default": -1
+            }
+        },
+        "displacementbound": {
+            "string CoordinateSystem": {
+                "label": "Displacement Space",
+                "help": "The displacement bound will be measured in this space (default to 'object')",
+                "type": "string",
+                "default": "object",
+                "options": [
+                    "object",
+                    "world"
+                ]
+            },
+            "float sphere": {
+                "label": "Displacement Bound",
+                "help": "The amount of padding around the object to avoid clipping.",
+                "type": "float",
+                "default": 0.5
+            }
+        },
+        "polygon": {
+            "int smoothdisplacement": {
+                "label": "Smooth Displacement",
+                "help": "Poly meshes: create smoothed normals Ndsp that can be used to avoid patch cracks during displacement.",
+                "type": "int",
+                "default": 0,
+                "options": {
+                    "Off": 0,
+                    "On": 1
+                }
+            },
+            "int smoothnormals": {
+                "label": "Smooth Normals",
+                "help": "Poly meshes: create smooth normal if there are no normals defined.",
+                "type": "int",
+                "default": 0,
+                "options": {
+                    "Off": 0,
+                    "On": 1
+                }
+            }
+        },
+        "Ri": {
+            "string Orientation": {
+                "label": "Orientation",
+                "help": "Geometry winding order that determines surface normal. This attribute effects lighting and displacement.",
+                "type": "string",
+                "default": "outside",
+                "options": [
+                    "outside",
+                    "inside"
+                ]
+            }
+        },
+        "shade": {
+            "float relativepixelvariance": {
+                "label": "Relative Pixel Variance",
+                "help": "Multiplies the global pixel variance for a particular object",
+                "type": "float",
+                "default": 1.0
+            }
+        },
+        "trace": {
+            "int autobias": {
+                "label": "Auto Trace Bias",
+                "help": "Enable automatic raytrace bias.",
+                "type": "int",
+                "default": 1,
+                "options": {
+                    "Off": 0,
+                    "On": 1
+                }
+            },
+            "float bias": {
+                "label": "Trace Bias",
+                "help": "Manual raytrace bias in object space. Small values should be used to avoid artifacts such as shadow acne.",
+                "type": "float",
+                "default": 0.01
+            },
+            "int displacements": {
+                "label": "Enable Displacement",
+                "help": "Enable displacement shading",
+                "type": "int",
+                "default": 1,
+                "options": {
+                    "Off": 0,
+                    "On": 1
+                }
+            },
+            "int maxdiffusedepth": {
+                "label": "Max Diffuse Depth",
+                "help": "Limit the number of indirect diffuse bounces for a specific piece of geometry",
+                "type": "int",
+                "default": 1
+            },
+            "int maxspeculardepth": {
+                "label": "Max Specular Depth",
+                "help": "Limit the number of indirect specular bounces for a specific piece of geometry",
+                "type": "int",
+                "default": 4
+            }
+        }
+    }
+}

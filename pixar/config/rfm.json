@@ -8,7 +8,8 @@
     "maya compatibility": [
         2017, 
         2018, 
-        2019
+        2019, 
+        2020
     ], 
     "dirmaps": {
         "myserver_to_z": {
@@ -18,15 +19,15 @@
         }
     }, 
     "versions": {
-        "rman": "22.6", 
-        "rfm": "22.6"
+        "rman": "23.3", 
+        "rfm": "23.3"
     }, 
     "rman search paths": {
-        "shader": [
-            "${HOME}/rfm", 
-            "${RFM_SHOW_PATH}", 
-            "${RFM_SITE_PATH}", 
-            "${RMANTREE}/lib/shaders", 
+        "texture": [
+            "@"
+        ], 
+        "display": [
+            "${RFMTREE}/lib/${RFM_MAYA_VERSION}", 
             "@"
         ], 
         "rixplugin": [
@@ -36,7 +37,11 @@
             "${RFMTREE}/lib/plugins", 
             "@"
         ], 
-        "texture": [
+        "shader": [
+            "${HOME}/rfm", 
+            "${RFM_SHOW_PATH}", 
+            "${RFM_SITE_PATH}", 
+            "${RMANTREE}/lib/shaders", 
             "@"
         ], 
         "procedural": [
@@ -49,7 +54,7 @@
     }, 
     "tractor_cfg": {
         "engine": "tractor-engine", 
-        "port": 5600, 
+        "port": 80, 
         "user": ""
     }, 
     "user tokens": [], 
@@ -60,7 +65,7 @@
     "lpe": {
         "lobe ids": {
             "specular8": "Glass", 
-            "user6": "DiffuseNormal,HairTangent,SubsurfaceNormal,SpecularNormal,RoughSpecularNormal,SingleScatterNormal,FuzzNormal,IridescenceNormal,GlassNormal", 
+            "user6": "Normal,DiffuseNormal,HairTangent,SubsurfaceNormal,SpecularNormal,RoughSpecularNormal,SingleScatterNormal,FuzzNormal,IridescenceNormal,GlassNormal", 
             "user4": "UserColor", 
             "user5": "", 
             "user2": "Albedo,DiffuseAlbedo,SubsurfaceAlbedo,HairAlbedo", 
