@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+        <key>KeepAlive</key>
+        <dict>
+                <key>Crashed</key>
+                <true/>
+        </dict>
+        <key>Label</key>
+        <string>com.pixar.tractor-blade</string>
+        <key>ProgramArguments</key>
+        <array>
+                <string>/Applications/Pixar/Tractor-2.4/bin/tractor-blade</string>
+                <string>--engine</string>
+                <string>tractor-engine</string>
+                <string>-P</string>
+                <string>5600</string>
+                <string>--nimby</string>
+                <string>0</string>
+                <string>-v</string>
+                <string>--logrotate</string>
+                <string>5000</string>
+                <string>--logenv</string>
+                <string>--log</string>
+                <string>/var/tmp/blade.log</string>
+        </array>
+        <key>RunAtLoad</key>
+        <true/>
+        <key>UserName</key>
+        <string>root</string>
+        <key>EnvironmentVariables</key>
+        <dict>
+            <key>HOME</key>
+            <string>/var/root</string>
+        </dict>
+</dict>
+</plist>
