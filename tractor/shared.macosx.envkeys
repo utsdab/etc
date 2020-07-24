@@ -19,13 +19,12 @@
             "DABUSERPREFS":      "$DABWORK/user_prefs",
 
             "PIXAR_LICENSE_FILE":"$DABETC/pixar/pixar.license",
-            "solidangle_LICENSE":  "27000@138.25.40.82"
+            "solidangle_LICENSE":"27000@138.25.40.82",
             "RV_LICENSE_FILE":   "$DABETC/tweak/license.gto",
             "TWEAK_LICENSE_FILE":"$DABETC/tweak/license.gto",
-            "SESI_LMHOST":        "dab-license",
-            "RFM_SHOW_PATH":      "$DABETC/pixar/config",
-            "RFM_SITE_PATH"       "$DABETC/pixar/config",
-ß
+            "SESI_LMHOST":       "dab-license",
+            "RFM_SHOW_PATH":     "$DABETC/pixar/config",
+            "RFM_SITE_PATH":     "$DABETC/pixar/config",
             "PATH":              "@+:/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin:/Applications/Pixar/Tractor-2.4/bin",
             "PYTHONPATH":        "@+:$DABRENDER:$DABSWW:$RFMTREE/bin:$RMANTREE/bin:/Applications/Pixar/Tractor-2.4/lib/python2.7/site-packages/tractor"
         },
