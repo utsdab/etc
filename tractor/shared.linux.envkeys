@@ -7,6 +7,7 @@
             "DABUSR":            "$DABRENDER/usr",
             "DABETC":            "$DABRENDER/etc",
             "DABSWW":            "$DABRENDER/sww",
+            "DABLIB":            "$DABRENDER/lib",
             "DABWORK":           "$DABRENDER/work",
             "DABASSETS":         "$DABRENDER/assets",
             "DABUSERPREFS":      "$DABWORK/user_prefs",
@@ -22,7 +23,7 @@
 
 
             "PATH":               "/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin:$PATH",
-            "PYTHONPATH" :        "@+:$DABRENDER:$DABSWW"
+            "PYTHONPATH" :        "@+:$DABRENDER:$DABSWW:$DABLIB:/opt/pixar/Tractor-2.4/lib/pyhton2.7/site-packages"
         },
         "envhandler":    "default"
     },

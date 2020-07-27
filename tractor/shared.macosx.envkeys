@@ -14,6 +14,7 @@
             "DABUSR":            "$DABRENDER/usr",
             "DABETC":            "$DABRENDER/etc",
             "DABSWW":            "$DABRENDER/sww",
+            "DABLIB":            "$DABRENDER/lib",
             "DABWORK":           "$DABRENDER/work",
             "DABASSETS":         "$DABRENDER/assets",
             "DABUSERPREFS":      "$DABWORK/user_prefs",
@@ -26,7 +27,7 @@
             "RFM_SHOW_PATH":     "$DABETC/pixar/config",
             "RFM_SITE_PATH":     "$DABETC/pixar/config",
             "PATH":              "@+:/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin:/Applications/Pixar/Tractor-2.4/bin",
-            "PYTHONPATH":        "@+:$DABRENDER:$DABSWW:$RFMTREE/bin:$RMANTREE/bin:/Applications/Pixar/Tractor-2.4/lib/python2.7/site-packages/tractor"
+            "PYTHONPATH":        "@+:$DABRENDER:$DABSWW:$DABLIB:$RFMTREE/bin:$RMANTREE/bin:/Applications/Pixar/Tractor-2.4/lib/python2.7.7/site-packages/tractor"
         },
        "envhandler": "default"
     },
