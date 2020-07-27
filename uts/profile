@@ -180,8 +180,8 @@ linux)
     export MAYA_LOCATION="${MAYA_APPLICATION_LOCATION}"
     export HOUDINI_LOCATION="/opt/sidefx"
     export HFS="${HOUDINI_LOCATION}"
-#    export NUKE_INSTALL_PATH="/opt/foundry/${NUKE_VERSION}"
-#    export NUKE_LOCATION="/opt/foundry/${NUKE_VERSION}"
+    export NUKE_INSTALL_PATH="/opt/foundry/${NUKE_VERSION}"
+    export NUKE_LOCATION="/opt/foundry/${NUKE_VERSION}"
     ;;
 darwi)
     export RMANTREE="/Applications/Pixar/RenderManProServer-${RMAN_VERSION}"
@@ -193,10 +193,11 @@ darwi)
     export MAYA_RENDER_DESC_PATH="${ARNOLD_LOCATION}/arnoldRenderer.xml:${MAYA_RENDER_DESC_PATH}"
     export HOUDINI_LOCATION="/Applications/Houdini"
     export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Current/Resources"
-#    export NUKE_INSTALL_PATH="/Applications/Nuke${NUKE_VERSION}"
-#    export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app"
-#    export NUKE_TEMP_DIR="/var/tmp/nuke-${USER}"
-#    export PATH="${NUKE_LOCATION}/Contents/MacOS:${PATH}"
+    export NUKE_INSTALL_PATH="/Applications/Nuke${NUKE_VERSION}"
+    export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app"
+    export NUKE_TEMP_DIR="/var/tmp/nuke-${USER}"
+    export PATH="${NUKE_LOCATION}/Contents/MacOS:${PATH}"
+
     export PATH="/usr/aw/COM/bin:/usr/aw/COM/etc:${PATH}"
     export PATH="/Applications/RV64.app/Contents/MacOS:${PATH}"
     export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages:${PYTHONPATH}"
@@ -217,9 +218,8 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
 # export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
 export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
 # RFM_DO_NOT_CREATE_MODULE_FILE=1
-export RFM_SITE_PATH="${DABETC}/pixar"
-# export RFM_SHOW_PATH="${DABETC}/pixar"
-# export RFM_SHOW_PATH="${DABETC}/pixar"
+#export RFM_SITE_PATH="${DABETC}/pixar"
+#export RFM_SHOW_PATH="${DABETC}/pixar"
 export TRACTOR_USER="${USER}"
 export TRACTOR_ENGINE="tractor-engine:5600"
 
@@ -304,7 +304,7 @@ done
 # BUILDING NUKE_PATH ########################
 echo "NUKE_PATH: appending....."
 _paths=( \
-            "${DABUSR}/etc/nuke/tractorNuke" \
+            "${DABUSR}/etc/tractorNuke" \
             )
 for i in "${_paths[@]}"
 do
@@ -377,9 +377,10 @@ done
 
 
 ###########################  ALIAS's
-alias nukex='Nuke${NUKE_VERSION} --nukex'
-alias nukestudio='Nuke${NUKE_VERSION} --studio'
-alias nuke='Nuke${NUKE_VERSION}'
+alias nukex='Nuke${NUKE_VERSION:0:4} --nukex'
+alias nukenc='Nuke${NUKE_VERSION:0:4} --nc'
+alias nukestudio='Nuke${NUKE_VERSION:0:4} --studio'
+alias nuke='Nuke${NUKE_VERSION:0:4}'
 #alias maya='maya'
 alias tqd='tq --engine tractor-engine:5600'
 alias myprefs='open `myprefs.py`'
