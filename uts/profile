@@ -152,7 +152,7 @@ if [ ${DABDEV} ]; then
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
     export TRACTOR_VERSION="2.4"
     echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-    export NUKE_VERSION="12.1v2"
+    export NUKE_VERSION="11.1v1"
     echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
     echo "INFO    : OS             : ${OSTYPE:0:5}"
 else
@@ -217,8 +217,8 @@ export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Cu
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
 # export PIXAR_LICENSE_FILE="${DABETC}/pixar/pixar.license"
 export RMAN_ASSET_LIBRARY="${DABASSETS}/RenderManAssetLibrary"
-# RFM_DO_NOT_CREATE_MODULE_FILE=1
-#export RFM_SITE_PATH="${DABETC}/pixar"
+ RFM_DO_NOT_CREATE_MODULE_FILE=1
+export RFM_SITE_PATH="${DABETC}/pixar"
 #export RFM_SHOW_PATH="${DABETC}/pixar"
 export TRACTOR_USER="${USER}"
 export TRACTOR_ENGINE="tractor-engine:5600"
@@ -289,6 +289,7 @@ _paths=( \
             "${DABUSR}/etc/maya/dab_scripts" \
             "${DABUSR}/etc/maya/dab_plug-ins" \
             "${DABLIB}" \
+            "${DABLIB}/studiolibrary/src" \
             )
 for i in "${_paths[@]}"
 do
@@ -304,7 +305,9 @@ done
 # BUILDING NUKE_PATH ########################
 echo "NUKE_PATH: appending....."
 _paths=( \
-            "${DABUSR}/etc/tractorNuke" \
+            "${DABUSR}/etc/nuke/tractorNuke" \
+            "${DABUSR}/etc/nuke/Cryptomatte" \
+            "${DABUSR}/etc/nuke" \
             )
 for i in "${_paths[@]}"
 do
@@ -339,6 +342,7 @@ done
 echo "MAYA_SCRIPT_PATH: appending....."
 _paths=( \
             "${DABUSR}/etc/maya/dab_scripts" \
+            "${DABLIB}" \
             "${RFMTREE}/scripts" \
             )
 for i in "${_paths[@]}"
@@ -377,14 +381,22 @@ done
 
 
 ###########################  ALIAS's
-alias nukex='Nuke${NUKE_VERSION:0:4} --nukex'
-alias nukenc='Nuke${NUKE_VERSION:0:4} --nc'
-alias nukestudio='Nuke${NUKE_VERSION:0:4} --studio'
-alias nuke='Nuke${NUKE_VERSION:0:4}'
+#alias nukex='Nuke${NUKE_VERSION:0:4} --nukex'
+alias nukex='open /Applications/Nuke${NUKE_VERSION}/NukeX${NUKE_VERSION}.app'
+
+#alias nukenc='Nuke${NUKE_VERSION:0:4} --nc'
+alias nukexnc='open /Applications/Nuke${NUKE_VERSION}/NukeX${NUKE_VERSION}\ Non-commercial.app'
+
+#alias nukestudio='Nuke${NUKE_VERSION:0:4} --studio'
+alias nukestudio='open /Applications/Nuke${NUKE_VERSION}/NukeStudio${NUKE_VERSION}.app'
+
+#alias nuke='Nuke${NUKE_VERSION:0:4}'
+alias nuke='open /Applications/Nuke${NUKE_VERSION}/Nuke${NUKE_VERSION}.app'
 #alias maya='maya'
 alias tqd='tq --engine tractor-engine:5600'
 alias myprefs='open `myprefs.py`'
 alias mywork='open `mywork.py`'
+alias projects="open ${DABWORK}/project_work"
 
 
 ##########################

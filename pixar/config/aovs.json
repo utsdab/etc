@@ -530,6 +530,19 @@
                 "backward"
             ]
         },
+        "DABpasses1": {
+            "description": "Basic set of passes to comp",
+            "channels": [
+                "beauty",
+                "directDiffuse",
+                "indirectDiffuse",
+                "directSpecular",
+                "indirectSpecular",
+                "__depth",
+                "emissive",
+                "subsurface"
+            ]
+        },
         "Mattes": {
             "description": "All MatteID channels in an OpenEXR file.",
             "display": {
