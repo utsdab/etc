@@ -152,7 +152,7 @@ if [ ${DABDEV} ]; then
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
     export TRACTOR_VERSION="2.4"
     echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-    export NUKE_VERSION="11.1v1"
+    export NUKE_VERSION="12.1v2"
     echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
     echo "INFO    : OS             : ${OSTYPE:0:5}"
 else
@@ -371,14 +371,6 @@ do
         echo "WARNING: Cant add ${i} to MAYA_MODULE_PATH"
     fi
 done
-
-
-
-## removes duplicates
-#export PATH="$(echo "$PATH" |gawk 'BEGIN{RS=":";}
-#{sub(sprintf("%c$",10),"");if(A[$0]){}else{A[$0]=1;
-#printf(((NR==1)?"":":")$0)}}')";
-
 
 ###########################  ALIAS's
 #alias nukex='Nuke${NUKE_VERSION:0:4} --nukex'
