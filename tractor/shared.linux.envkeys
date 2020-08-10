@@ -23,7 +23,7 @@
 
 
             "PATH":               "/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin:$PATH",
-            "PYTHONPATH" :        "@+:$DABRENDER:$DABSWW:$DABLIB:/opt/pixar/Tractor-2.4/lib/pyhton2.7/site-packages"
+            "PYTHONPATH" :        "@+:$DABRENDER:$DABSWW:$DABLIB:/opt/pixar/Tractor-2.4/lib/python2.7/site-packages"
         },
         "envhandler":    "default"
     },
@@ -34,14 +34,14 @@
             "RMSTREE":          "/opt/pixar/RenderManStudio-$TR_ENV_RMSVER-maya$TR_ENV_MAYAVER",
             "RMANTREE":         "$RMSTREE/rmantree",
             "MAYA_LOCATION":    "$TR_ENV_MAYALOCATION",
-            "XGEN_LOCATION":    "$TR_ENV_MAYALOCATION/plug-ins/xgen",
+            "XGEN_LOCATION":     "$TR_ENV_MAYALOCATION/plug-ins/xgen",
             "MAYA_MODULE_PATH": "$RMSTREE/etc:$DABUSR/etc/maya/dab_modules",
             "MAYA_PLUG_IN_PATH":"$RMSTREE/plug-ins:$MAYA_LOCATION/plug-ins",
             "MAYA_SCRIPT_PATH": "$DABETC/maya/dab_scripts:$RMSTREE/scripts:$MAYA_LOCATION/scripts",
 
-            "PATH":             "@+:$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin",
+            "PATH":             "$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:$PATH",
             "PYTHONPATH":       "@+:$DABUSR/etc/maya/dab_scripts:$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python",
-            "MAYA_DISABLE_CIP" :"1"
+            "MAYA_DISABLE_CIP" :"1",
         },
         "envhandler":    "rmshandler"
     },
@@ -55,7 +55,7 @@
             "MAYA_MODULE_PATH":  "$RMSTREE/etc:$DABUSR/etc/maya/dab_modules",
             "MAYA_PLUG_IN_PATH": "$RMSTREE/plug-ins:$MAYA_LOCATION/plug-ins:$DABUSR/etc/maya/dab_plug-ins",
             "MAYA_SCRIPT_PATH":  "$DABUSR/etc/maya/dab_scripts:$RMSTREE/scripts:$MAYA_LOCATION/scripts",
-            "PATH":              "@+:$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin",
+            "PATH":              "$RMSTREE/bin:$RMANTREE/bin:$MAYA_LOCATION/bin:$PATH",
             "PYTHONPATH":        "@+:$DABUSR/etc/maya/dab_scripts:$RMSTREE/scripts:$RMANTREE/bin:$DABUSR/lib/python",
             "LD_LIBRARY_PATH":   "@+:/usr/autodesk/maya$TR_ENV_MAYAVER-x64/plug-ins/xgen/lib/:/usr/autodesk/maya$TR_ENV_MAYAVER-x64/lib"
         },
@@ -64,14 +64,14 @@
     {
         "keys": ["rfm-*"],
         "environment": {
-            "ENVKEY":                   "@+:rfm.shared.linux.envkeys",
-            "RFMTREE":                  "/opt/pixar/RenderManForMaya-$TR_ENV_RFMVER",
-            "RMANTREE":                 "/opt/pixar/RenderManProServer-$TR_ENV_RFMVER",
-            "MAYA_MODULE_PATH":         "$RFMTREE/etc:$DABUSR/etc/maya/dab_modules",
-            "MAYA_RENDER_DESC_PATH":    "$RFMTREE/etc",
-            "PYTHONPATH":               "@+:$RFMTREE/scripts",
-            "RFM_SCRIPTS":              "scripts",
-            "PATH":                     "@+:$RFMTREE/bin:$RMANTREE/bin",
+            "ENVKEY":             "@+:rfm.shared.linux.envkeys",
+            "RFMTREE":            "/opt/pixar/RenderManForMaya-$TR_ENV_RFMVER",
+            "RMANTREE":           "/opt/pixar/RenderManProServer-$TR_ENV_RFMVER",
+            "MAYA_MODULE_PATH":   "$RFMTREE/etc:$DABUSR/etc/maya/dab_modules",
+            "MAYA_RENDER_DESC_PATH": "$RFMTREE/etc",
+            "PYTHONPATH":         "@+:$RFMTREE/scripts",
+            "RFM_SCRIPTS":        "scripts",
+            "PATH":               "$RFMTREE/bin:$RMANTREE/bin:$PATH",
             "RFM_DO_NOT_CREATE_MODULE_FILE": "1"
         },
         "envhandler":    "rfmhandler2"
@@ -119,19 +119,19 @@
     {
         "keys": ["maya*"],
         "environment": {
-            "ENVKEY":                   "@+:maya.shared.linux.envkeys",
-            "MAYA_LOCATION":            "$TR_ENV_MAYALOCATION",
-            "RFM_MAYA_VERSION":         "$TR_ENV_MAYAVER",
-            "MAYA_MODULE_PATH":         "$RFMTREE/etc:$DABUSR/etc/maya/dab_modules",
-            "MAYA_SCRIPT_PATH":         "$DABUSR/etc/maya/dab_scripts:$RFMTREE/scripts:$MAYA_LOCATION/scripts",
-            "MAYA_PLUG_IN_PATH":        "$RFMTREE/plug-ins:$MAYA_LOCATION/plug-ins:$DABUSR/etc/maya/dab_plug-ins",
-            "XGEN_LOCATION":            "$TR_ENV_MAYALOCATION/plug-ins/xgen",
-            "PATH":                     "@+:$MAYA_LOCATION/bin:/usr/autodesk/arnold/maya$TR_ENV_MAYAVER/bin",
-            "LD_LIBRARY_PATH":          "@+:/usr/autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib/:/usr/autodesk/maya$TR_ENV_MAYAVER/lib",
-            "SYNCOLOR":                 "$DABETC/autodesk/linux/synColorConfig.xml",
-            "ARNOLD_PLUGIN_PATH":       "/usr/autodesk/arnold/maya$TR_ENV_MAYAVER/shaders",
-            "ARNOLD_PROCEDURAL_PATH":   "/usr/autodesk/arnold/maya$TR_ENV_MAYAVER/procedurals",
-            "MTOA_EXTENSIONS_PATH":     "",
+            "ENVKEY":              "@+:maya.shared.linux.envkeys",
+            "MAYA_LOCATION":       "$TR_ENV_MAYALOCATION",
+            "RFM_MAYA_VERSION":    "$TR_ENV_MAYAVER",
+            "MAYA_MODULE_PATH":    "$RFMTREE/etc:$DABUSR/etc/maya/dab_modules",
+            "MAYA_SCRIPT_PATH":    "$DABUSR/etc/maya/dab_scripts:$RFMTREE/scripts:$MAYA_LOCATION/scripts",
+            "MAYA_PLUG_IN_PATH":   "$RFMTREE/plug-ins:$MAYA_LOCATION/plug-ins:$DABUSR/etc/maya/dab_plug-ins",
+            "XGEN_LOCATION":       "$TR_ENV_MAYALOCATION/plug-ins/xgen",
+            "PATH":                "$MAYA_LOCATION/bin:/usr/autodesk/arnold/maya$TR_ENV_MAYAVER/bin:$PATH",
+            "LD_LIBRARY_PATH":     "@+:/usr/autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib/:/usr/autodesk/maya$TR_ENV_MAYAVER/lib",
+            "SYNCOLOR":            "$DABETC/autodesk/linux/synColorConfig.xml",
+            "ARNOLD_PLUGIN_PATH":     "/usr/autodesk/arnold/maya$TR_ENV_MAYAVER/shaders",
+            "ARNOLD_PROCEDURAL_PATH": "/usr/autodesk/arnold/maya$TR_ENV_MAYAVER/procedurals",
+            "MTOA_EXTENSIONS_PATH":   "",
             "MAYA_CUSTOM_TEMPLATE_PATH":  "",
             "MTOA_STARTUP_LOG_VERBOSITY": "",
             "MTOA_LOG_PATH":       "/var/tmp",
