@@ -204,28 +204,50 @@
                     "type": "float",
                     "default": -1.0,
                     "channelBox": true,
-                    "page": "Geometry"
+                    "page": "Geometry",
+                    "help": "Micropolygon distance in raster space for 'instanceprojection' dicing. Values are expressed in pixel size."
+                },
+                {
+                    "page": "Geometry",
+                    "name": "rman_diceStrategy",
+                    "primvar": "dice:strategy",
+                    "type": "string",
+                    "label": "Dicing Strategy",
+                    "default": "instanceprojection",
+                    "widget": "popup",
+                    "options": "instanceprojection|worlddistance|objectdistance",
+                    "help": "Dicing method of objects within the viewing frustum.<br>instanceprojection: Use object size in screen space.<br>worlddistance: Use object size in world space<br>objectdistance: Use object size in object space."
                 },
                 {
                     "name": "rman_rasterorient",
                     "primvar": "dice:rasterorient",
-                    "label": "RasterOrient dicing",
+                    "label": "Raster-Oriented Dicing",
                     "type": "int",
                     "default": 1,
                     "widget": "checkBox",
                     "page": "Geometry",
-                    "help": "Changes micropolygon size based on the viewing angle of an object.<br>When rasterorient is on, surfaces are diced more coarsely at a glancing angle.<br>It may be useful to turn off for instances as their geometry is seen from different angles<br>or for objects where displacement details are lost."
+                    "help": "Changes micropolygon size based on the viewing angle of an object.<br>When rasterorient is on, surfaces are diced more coarsely at a glancing angle.<br>It may be useful to turn off for instances as their geometry is seen from different angles<br>or for objects where displacement details are lost.",
+                    "conditionalVisOps": {
+                        "conditionalVisOp": "equalTo",
+                        "conditionalVisPath": "../rman_diceStrategy",
+                        "conditionalVisValue": "instanceprojection"
+                    }
                 },
                 {
-                    "name": "rman_watertight",
-                    "primvar": "dice:watertight",
-                    "label": "Water-tight dicing",
-                    "type": "int",
-                    "default": -1,
-                    "widget": "mapper",
-                    "options": "Inherit:-1|Yes:1|No:0",
                     "page": "Geometry",
-                    "help": "Fix pin-holes in Subdivision Surfaces.<br>It may slow down dicing and time to first pixel."
+                    "name": "rman_diceDistanceLength",
+                    "primvar": "dice:worlddistancelength",
+                    "type": "float",
+                    "label": "Dicing Distance Length",
+                    "default": -1.0,
+                    "min": -1,
+                    "slidermax": 2,
+                    "help": "Micropolygon distance in world space for 'worlddistance' dicing or object space for 'objectdistance' dicing.",
+                    "conditionalVisOps": {
+                        "conditionalVisOp": "notEqualTo",
+                        "conditionalVisPath": "../rman_diceStrategy",
+                        "conditionalVisValue": "instanceprojection"
+                    }
                 },
                 {
                     "page": "Geometry",
@@ -234,7 +256,8 @@
                     "type": "int",
                     "default": 0,
                     "widget": "mapper",
-                    "options": "Inherit from Globals:0|Reference Camera:1"
+                    "options": "Inherit from Globals:0|Reference Camera:1",
+                    "help": "Specify the camera used for dicing. If no reference camera is specified, RenderMan will use the primary camera."
                 },
                 {
                     "page": "Geometry",
@@ -244,7 +267,12 @@
                     "type": "string",
                     "widget": "scenegraphLocation",
                     "options": "nodeType:camera",
-                    "default": ""
+                    "default": "",
+                    "conditionalVisOps": {
+                        "conditionalVisOp": "equalTo",
+                        "conditionalVisPath": "../dice_referenceCameraType",
+                        "conditionalVisValue": 1
+                    }
                 },
                 {
                     "name": "rman_traceDisplacements",
@@ -318,6 +346,14 @@
                     "widget": "checkBox",
                     "page": "Reference Object",
                     "help": "A primvar called __WPref will be emitted for this shape if a texture reference object has been created.  Maya's place3dTexture nodes automatically use this."
+                },
+                {
+                    "name": "rman_bakingIdentifier",
+                    "label": "Baking identifier",
+                    "type": "string",
+                    "default": "<shapepath>",
+                    "riattr": "user:bakingIdentifier",
+                    "page": "Illumination Baking"
                 }
             ]
         },
@@ -360,6 +396,22 @@
                     "page": "Subdivision Surface",
                     "conditionalVisOps": {
                         "conditionalVisOp": "greaterThan",
+                        "conditionalVisPath": "../rman_subdivScheme",
+                        "conditionalVisValue": 0
+                    }
+                },
+                {
+                    "name": "rman_watertight",
+                    "primvar": "dice:watertight",
+                    "label": "Water-tight dicing",
+                    "type": "int",
+                    "default": -1,
+                    "widget": "mapper",
+                    "options": "Inherit:-1|Yes:1|No:0",
+                    "page": "Subdivision Surface",
+                    "help": "Fix pin-holes in Subdivision Surfaces.<br>It may slow down dicing and time to first pixel.",
+                    "conditionalVisOps": {
+                        "conditionalVisOp": "notEqualTo",
                         "conditionalVisPath": "../rman_subdivScheme",
                         "conditionalVisValue": 0
                     }
@@ -916,6 +968,33 @@
                     "help": "The Renderman Look File used to shade this alembic archive."
                 },
                 {
+                    "name": "rman_edit_rlf",
+                    "type": "string",
+                    "widget": "scriptButton",
+                    "buttonText": [
+                        "Edit RLF file",
+                        "Edit objects"
+                    ],
+                    "scriptText": [
+                        "import rfm2.ui.rlf_editor;rfm2.ui.rlf_editor.edit_node_file(node)",
+                        "import rfm2.ui.abc_editor;rfm2.ui.abc_editor.edit_node(node)"
+                    ],
+                    "hidden": true
+                },
+                {
+                    "name": "rman__torattr___mergeSceneRlf",
+                    "label": "Merge scene RLF",
+                    "type": "int",
+                    "default": 0,
+                    "widget": "checkBox",
+                    "help": "Override the contents of the RLF File with scene assignments.",
+                    "conditionalVisOps": {
+                        "conditionalVisOp": "notEqualTo",
+                        "conditionalVisPath": "../rman__torattr___rlfName",
+                        "conditionalVisValue": ""
+                    }
+                },
+                {
                     "name": "rman__torattr___abcFPS",
                     "label": "Alembic FPS",
                     "type": "float",
@@ -936,6 +1015,20 @@
                     "type": "string",
                     "default": "",
                     "widget": "abcManifest"
+                },
+                {
+                    "name": "rman__torattr___abcShapeEdits",
+                    "type": "string",
+                    "default": "",
+                    "widget": null,
+                    "hidden": true
+                },
+                {
+                    "name": "rman__shapeEditRules",
+                    "type": "string",
+                    "default": "",
+                    "widget": null,
+                    "hidden": true
                 }
             ]
         },
@@ -990,7 +1083,6 @@
                     "type": "string",
                     "default": "",
                     "page": "Procedural"
-
                 },
                 {
                     "name": "rman_frame",
@@ -1022,7 +1114,10 @@
         {
             "nodetypes": [
                 "xgmDescription",
-                "gpuCache"
+                "gpuCache",
+                "RenderManArchive",
+                "RenderManProcedural",
+                "RenderManProgram"
             ],
             "attributes": [
                 {
@@ -1030,7 +1125,9 @@
                     "type": "int",
                     "default": 1,
                     "widget": "checkBox",
-                    "label": "Visible In Reflections"
+                    "label": "Visible In Reflections",
+                    "hidden": true,
+                    "do_not_display": true
                 }
             ]
         }

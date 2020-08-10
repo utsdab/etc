@@ -7,6 +7,7 @@
             "DABUSR":            "$DABRENDER/usr",
             "DABETC":            "$DABRENDER/etc",
             "DABSWW":            "$DABRENDER/sww",
+            "DABLIB":            "$DABRENDER/lib",
             "DABWORK":           "$DABRENDER/work",
             "DABASSETS":         "$DABRENDER/assets",
             "DABUSERPREFS":      "$DABWORK/user_prefs",
@@ -15,11 +16,14 @@
             "RV_LICENSE_FILE":    "$DABETC/tweak/license.gto",
             "TWEAK_LICENSE_FILE": "$DABETC/tweak/license.gto",
             "SESI_LMHOST":        "dab-license",
-            "RFM_SITE_PATH":     "$DABETC/pixar",
+            "solidangle_LICENSE":  "27000@138.25.40.82",
+            "RMS_SCRIPT_PATHS":   "$DABETC/pixar/config",
+            "RDIR":               "$DABETC/pixar/config",
             "RFM_DO_NOT_CREATE_MODULE_FILE": "1",
 
+
             "PATH":               "/usr/local/bin:$DABSWW/renderfarm/bin:$DABUSR/bin:$PATH",
-            "PYTHONPATH" :        "@+:$DABRENDER:$DABSWW"
+            "PYTHONPATH" :        "@+:$DABRENDER:$DABSWW:$DABLIB:/opt/pixar/Tractor-2.4/lib/python2.7/site-packages"
         },
         "envhandler":    "default"
     },
@@ -122,11 +126,11 @@
             "MAYA_SCRIPT_PATH":    "$DABUSR/etc/maya/dab_scripts:$RFMTREE/scripts:$MAYA_LOCATION/scripts",
             "MAYA_PLUG_IN_PATH":   "$RFMTREE/plug-ins:$MAYA_LOCATION/plug-ins:$DABUSR/etc/maya/dab_plug-ins",
             "XGEN_LOCATION":       "$TR_ENV_MAYALOCATION/plug-ins/xgen",
-            "PATH":                "$MAYA_LOCATION/bin:/opt/solidangle/mtoa/$TR_ENV_MAYAVER/bin:$PATH",
+            "PATH":                "$MAYA_LOCATION/bin:/usr/autodesk/arnold/maya$TR_ENV_MAYAVER/bin:$PATH",
             "LD_LIBRARY_PATH":     "@+:/usr/autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib/:/usr/autodesk/maya$TR_ENV_MAYAVER/lib",
-            "SYNCOLOR":            "$DABETC/linux/synColorConfig.xml",
-            "ARNOLD_PLUGIN_PATH":     "/opt/solidangle/mtoa/$TR_ENV_MAYAVER/shaders",
-            "ARNOLD_PROCEDURAL_PATH": "/opt/solidangle/mtoa/$TR_ENV_MAYAVER/procedurals",
+            "SYNCOLOR":            "$DABETC/autodesk/linux/synColorConfig.xml",
+            "ARNOLD_PLUGIN_PATH":     "/usr/autodesk/arnold/maya$TR_ENV_MAYAVER/shaders",
+            "ARNOLD_PROCEDURAL_PATH": "/usr/autodesk/arnold/maya$TR_ENV_MAYAVER/procedurals",
             "MTOA_EXTENSIONS_PATH":   "",
             "MAYA_CUSTOM_TEMPLATE_PATH":  "",
             "MTOA_STARTUP_LOG_VERBOSITY": "",
@@ -135,6 +139,37 @@
 
         },
         "envhandler":     "mayahandler"
+    },
+        {
+        "keys": ["kick*"],
+        "environment": {
+            "ENVKEY":           "@+:maya.shared.macosx.envkeys",
+            "MAYA_LOCATION":    "$TR_ENV_MAYALOCATION",
+            "ARNOLD_LOCATION":  "/usr/autodesk/arnold/maya$TR_ENV_MAYAVER",
+            "RFM_MAYA_VERSION": "$TR_ENV_MAYAVER",
+            "XGEN_LOCATION":    "$TR_ENV_MAYALOCATION/plug-ins/xgen",
+            "PATH":             "@+:$MAYA_LOCATION/bin:$ARNOLD_LOCATION/bin:",
+            "PYTHONPATH":       "@+:$DABUSR/etc/maya/dab_scripts",
+            "TMPDIR":           "/var/tmp",
+
+            "DYLD_LIBRARY_PATH":   "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS:/Applications/Autodesk/Arnold/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
+            "DYLD_FALLBACK_LIBRARY_PATH": "@+:/Applications/Autodesk/maya$TR_ENV_MAYAVER/plug-ins/xgen/lib:/Applications/Autodesk/maya$TR_ENV_MAYAVER/Maya.app/Contents/MacOS:/Applications/Autodesk/Arnold/mtoa/$TR_ENV_MAYAVER/PROCEDURALS",
+            "DYLD_FRAMEWORK_PATH": "$TR_ENV_MAYALOCATION/Maya.app/Contents/Frameworks",
+
+            "MAYA_MODULE_PATH":  "@+:$DABUSR/etc/maya/dab_modules",
+            "MAYA_SCRIPT_PATH":  "$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_scripts",
+            "MAYA_PLUG_IN_PATH": "$TR_ENV_MAYALOCATION/plug-ins:$TR_ENV_MAYALOCATION/scripts:$DABUSR/etc/maya/dab_plug-ins:$DABUSR/etc/maya/dab_scripts",
+            "MAYA_DISABLE_CIP":  "1",
+            "SYNCOLOR":          "$DABETC/autodesk/macosx/synColorConfig.xml",
+            "ARNOLD_PLUGIN_PATH":     "/Applications/Autodesk/Arnold/mtoa/$TR_ENV_MAYAVER/shaders",
+            "ARNOLD_PROCEDURAL_PATH": "/Applications/Autodesk/Arnold/mtoa/$TR_ENV_MAYAVER/procedurals",
+            "MTOA_EXTENSIONS_PATH":       "",
+            "MAYA_CUSTOM_TEMPLATE_PATH":  "",
+            "MTOA_STARTUP_LOG_VERBOSITY": "",
+            "MTOA_LOG_PATH":              "/var/tmp"
+
+        },
+        "envhandler": "arnoldhandler"
     },
     {
         "keys": ["houdini*"],

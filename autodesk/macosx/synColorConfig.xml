@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SynColorConfig version="2.0">
    <AutoConfigure graphicsMonitor="false" />
-   <TransformsHome dir="/Applications/Autodesk/maya2018/synColor" />
-   <SharedHome dir="/Users/120988/Library/Preferences/Autodesk/maya/synColor/Shared/" />
+   <TransformsHome dir="/Applications/Autodesk/maya2020/synColor" />
+   <SharedHome dir="/Volumes/dabrender/etc/autodesk/synColor/Shared/" />
    <ReferenceTable>
       <Ref alias="OutputToSceneBridge" path="primaries/CIE-XYZ_to_ACES.ctf" basePath="Autodesk" />
       <Ref alias="SceneToOutputBridge" path="primaries/ACES_to_CIE-XYZ.ctf" basePath="Autodesk" />

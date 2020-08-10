@@ -38,10 +38,18 @@
             "commandType": "mel"
         },
         "rmanMenuBakeRender": {
-            "label": "Bake Render",
+            "label": "Bake Render: Patterns",
             "help": "Output Baking Data",
             "icon": "rm22_bake.svg",
-            "command": "setCurrentRenderer(\"renderman\");rmanBakeStartCmd()",
+            "command": "setCurrentRenderer(\"renderman\");rmanBakeStartCmd(0)",
+            "commandType": "mel"
+        },
+        "rmanMenuBakeIllumRender": {
+            "label": "Bake Render: Illumination",
+            "help": "Output Baking Data",
+            "icon": "rm22_bake.svg",
+            "command": "setCurrentRenderer(\"renderman\");rmanBakeStartCmd(1)",
+            "optionCommand": "configureIlluminationBaking()",
             "commandType": "mel"
         },
         "rmanMenuSep2": {

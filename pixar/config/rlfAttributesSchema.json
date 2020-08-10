@@ -1,0 +1,45 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "description": "Validation schema file."
+        },
+        "definitions": {
+            "type": "object",
+            "patternProperties": {
+                "[a-z]+": {
+                    "type": "object",
+                    "patternProperties": {
+                        "type": "object",
+                        "[a-z]+ [a-z]+": {
+                            "properties": {
+                                "label": {
+                                    "type": "string"
+                                },
+                                "help": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "enum": [
+                                        "int",
+                                        "float",
+                                        "string"
+                                    ]
+                                },
+                                "default": {
+                                    "type": ["number", "string"]
+                                },
+                                "options": {
+                                    "type": ["array", "object"]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
