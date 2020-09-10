@@ -502,6 +502,11 @@
             "channelType": "color",
             "channelSource": "lpe:nothruput;noinfinitecheck;noclamp;unoccluded;overwrite;CU4L",
             "group": "User Lobes"
+        },
+        "Transmissive":{
+            "channelType": "color",
+            "channelSource": "lpe:C<TS>[DS]*[<L.>O]",
+            "group": "User Lobes"
         }
     },
     "displays": {
@@ -530,7 +535,7 @@
                 "backward"
             ]
         },
-        "DABpasses1": {
+        "DABpasses": {
             "description": "Basic set of passes to comp",
             "channels": [
                 "beauty",
@@ -540,7 +545,33 @@
                 "indirectSpecular",
                 "__depth",
                 "emissive",
-                "subsurface"
+                "subsurface",
+                "__st",
+                "Transmissive"
+            ]
+        },
+        "DABpasses_lobes": {
+            "description": "Basic set of shader lobe passes to comp",
+            "channels": [
+                "directDiffuseLobe",
+                "indirectDiffuseLobe",
+                "subsurfaceLobe",
+                "directSpecularPrimaryLobe",
+                "indirectSpecularPrimaryLobe",
+                "directSpecularRoughLobe",
+                "indirectSpecularRoughLobe",
+                "directSpecularClearcoatLobe",
+                "indirectSpecularClearcoatLobe",
+                "directSpecularIridescenceLobe",
+                "indirectSpecularIridescenceLobe",
+                "directSpecularFuzzLobe",
+                "indirectSpecularFuzzLobe",
+                "transmissiveSingleScatterLobe",
+                "directSpecularGlassLobe",
+                "indirectSpecularGlassLobe",
+                "transmissiveGlassLobe",
+                "emissive",
+                "__depth"
             ]
         },
         "Mattes": {
