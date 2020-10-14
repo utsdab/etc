@@ -152,7 +152,7 @@ if [ ${DABDEV} ]; then
     echo "INFO    : RMAN_VERSION   : $RMAN_VERSION"
     export TRACTOR_VERSION="2.4"
     echo "INFO    : TRACTOR_VERSION: $TRACTOR_VERSION"
-    export NUKE_VERSION="11.3v1"
+    export NUKE_VERSION="12.1v2"
     echo "INFO    : NUKE_VERSION   : $NUKE_VERSION"
     echo "INFO    : OS             : ${OSTYPE:0:5}"
 else
@@ -196,11 +196,13 @@ darwi)
     export NUKE_INSTALL_PATH="/Applications/Nuke${NUKE_VERSION}"
     export NUKE_LOCATION="${NUKE_INSTALL_PATH}/Nuke${NUKE_VERSION}.app"
     export NUKE_TEMP_DIR="/var/tmp/nuke-${USER}"
-    export PATH="${NUKE_LOCATION}/Contents/MacOS:${PATH}"
+    #export PATH="${NUKE_LOCATION}/Contents/MacOS:${PATH}"
 
-    export PATH="/usr/aw/COM/bin:/usr/aw/COM/etc:${PATH}"
-    export PATH="/Applications/RV64.app/Contents/MacOS:${PATH}"
-    export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages:${PYTHONPATH}"
+    #export PATH="/usr/aw/COM/bin:/usr/aw/COM/etc:${PATH}"
+    #export PATH="/Applications/RV64.app/Contents/MacOS:${PATH}"
+    #export DYLD_LIBRARY_PATH="${MAYA_LOCATION}/MacOS:${DYLD_LIBRARY_PATH}"
+    #export DYLD_FRAMEWORK_PATH="${MAYA_LOCATION}/Frameworks:${DYLD_FRAMEWORK_PATH}"
+    #export PYTHONPATH="${MAYA_LOCATION}/Frameworks/Python.framework/Versions/Current/lib/python2.7/site-packages:${PYTHONPATH}"
     ;;
 *)
     echo "WARNING:   LIBRARY_PATH and base environment NOT set in profile.d/dabanim.sh"
@@ -208,10 +210,10 @@ darwi)
 esac
 
 # SIDEFX SETUP ###################
-export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Current/Resources"
-cd $HFS
-source houdini_setup
-cd ~
+#export HFS="${HOUDINI_LOCATION}/Current/Frameworks/Houdini.framework/Versions/Current/Resources"
+#cd $HFS
+#source houdini_setup
+#cd ~
 
 # PIXAR SETUP ####################
 #  DABRENDER is set in /etc/profile.d/dabanim.sh and is OS aware
@@ -251,6 +253,9 @@ export MAYA_MAC_SET_UMASK=0
 export MAYA_DISABLE_CIP=1
 export RFM_DO_NOT_CREATE_MODULE_FILE=1
 export XBMLANGPATH="${DABUSR}/maya/dab_icons/%B:${RFMTREE}/icons/%B:${XBMLANGPATH}"
+export PYTHONUSERBASE="~/MyPythonFolder"
+
+
 
 # SIDEFX ###################
 export SESI_LMHOST=dab-license
@@ -281,7 +286,7 @@ done
 # BUILDING PYTHONPATH ####################
 echo "PYTHONPATH: appending....."
 _paths=( \
-            #"${MAYA_LOCATION}/lib/python2.7/site-packages" \
+            "${MAYA_LOCATION}/lib/python2.7/site-packages" \
             "${TRACTOR_LOCATION}/lib/python2.7/site-packages" \
             "${RFMTREE}/scripts" \
             "${DABSWW}" \
